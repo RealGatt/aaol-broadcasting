@@ -1,0 +1,86 @@
+{
+  "name": "aaol-broadcasting",
+  "version": "0.1.0",
+  "description": "Broadcasting bundle for AAOL (AOE)",
+  "homepage": "https://github.com/RealGatt/AAOL-Broadcasting",
+  "author": {
+    "name": "Gatt",
+    "email": "gatt@gatt.space",
+    "url": "gatt.space"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "~1.8.0",
+    "dashboardPanels": [
+      {
+        "name": "stream-controls-panel",
+        "title": "Stream Controls",
+        "file": "stream-controls.html",
+        "fullbleed": false,
+        "headerColor": "#5166a3",
+        "width": 10
+      },
+      {
+        "name": "score-panel",
+        "title": "Match Scores",
+        "file": "scoreboard-controls.html",
+        "fullbleed": false,
+        "headerColor": "#6b54b6",
+        "width": 5
+      },
+      {
+        "name": "match-set-panel",
+        "title": "Add Match",
+        "file": "match-set.html",
+        "fullbleed": false,
+        "headerColor": "#6b54b6",
+        "width": 5
+      },
+      {
+        "name": "set-current-match-panel",
+        "title": "Set Current Match",
+        "file": "current-match.html",
+        "fullbleed": false,
+        "headerColor": "#6b54b6",
+        "width": 2
+      },
+      {
+        "name": "active-scene",
+        "title": "Set Current Scene",
+        "file": "current-scene.html",
+        "fullbleed": false,
+        "headerColor": "#6b54b6",
+        "width": 2
+      },
+      {
+        "name": "overview-panel",
+        "title": "AAOL Overview",
+        "file": "overview-panel.html",
+        "fullbleed": false,
+        "headerColor": "#5166a3",
+        "width": 10
+      }
+    ],
+    "graphics": [
+      {
+        "file": "index.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mdbootstrap": "^4.19.2"
+  }
+}
