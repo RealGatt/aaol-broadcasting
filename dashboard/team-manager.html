@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<style>
+			.monospace {
+				font-family: monospace;
+			}
+		</style>
+	</head>
+	<body class="bg-dark text-white">
+		<br />
+		<div class="container-fluid">
+			<div class="input-group">
+				<span class="input-group-text">Team Name</span>
+				<input
+					type="text"
+					id="updateTeamName"
+					class="form-control"
+					value="No Team Selected"
+					disabled
+				/>
+				<button
+					class="btn btn-success"
+					onclick="saveTeamName()"
+					disabled
+					id="saveTeamButton"
+				>
+					Update Name
+				</button>
+			</div>
+			<hr />
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<img
+						src=""
+						id="teamManagerSelectLogoDisplay"
+						style="max-width: 128px; max-height: 128px"
+					/>
+				</button>
+				<select
+					class="form-select"
+					name="teamManagerSelectLogo"
+					id="teamManagerSelectLogo"
+					disabled
+				></select>
+				<button class="btn btn-info" onclick="setLogo()" disabled id="setLogoButton">
+					Set Logo
+				</button>
+			</div>
+		</div>
+
+		<hr />
+		<div class="container-fluid">
+			<div class="input-group mb-3">
+				<select
+					class="form-select"
+					name="teamManagerSelectTeam"
+					id="teamManagerSelectTeam"
+				></select>
+				<button class="btn btn-success" onclick="loadTeam()">
+					Load Team Data
+				</button>
+			</div>
+		</div>
+		<hr />
+		<div class="container-fluid">
+			<div class="input-group">
+				<span class="input-group-text">Create New Team</span>
+				<input
+					type="text"
+					id="newTeamName"
+					class="form-control"
+					placeholder="New Team Name"
+				/>
+				<button class="btn btn-success" onclick="addTeam()">
+					Add Team
+				</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		const teamList = nodecg.Replicant("teamList", { defaultValue: [] });
+		const teamLogos = nodecg.Replicant("assets:teamlogos");
+		let selectedIndex = -1;
+		let modifyingTeam = null;
+
+		const teamManagerSelectTeam = document.getElementById(
+			"teamManagerSelectTeam"
+		);
+		const teamManagerSelectLogo = document.getElementById(
+			"teamManagerSelectLogo"
+		);
+
+		function addTeam() {
+			const newTeamName = document.getElementById("newTeamName").value;
+			if (newTeamName && newTeamName.length > 0) {
+				const newTeamObj = {
+					name: newTeamName,
+					logo: null,
+					id: (teamList.value.length || 0) + 1,
+				};
+				const allTeams = teamList.value || [];
+				allTeams[allTeams.length] = newTeamObj;
+				console.log("All Teams", allTeams, newTeamObj);
+				teamList.value = allTeams;
+			}
+		}
+
+		function saveTeamName(){
+			const newName = document.getElementById("updateTeamName").value;
+			modifyingTeam.name = newName;
+		}
+
+		function setLogo(){
+			const logo = teamLogos.value[teamManagerSelectLogo.selectedIndex];
+			modifyingTeam.logo = logo.url;
+			console.log("Selected Logo", logo);
+		}
+
+		function loadTeam() {
+			const teamToLoad = teamManagerSelectTeam.selectedIndex;
+			modifyingTeam = teamList.value[teamToLoad];
+			selectedIndex = teamManagerSelectTeam.selectedIndex
+			updateDisplay();
+		}
+
+		function updateDisplay(){
+			document.getElementById("teamManagerSelectLogoDisplay").src = modifyingTeam.logo || "";
+			document.getElementById("updateTeamName").value = modifyingTeam.name;
+
+			document.getElementById("teamManagerSelectLogoDisplay").disabled = false;
+			document.getElementById("updateTeamName").disabled = false;
+			document.getElementById("setLogoButton").disabled = false;
+			document.getElementById("saveTeamButton").disabled = false;
+			document.getElementById("teamManagerSelectLogo").disabled = false;
+		}
+
+		teamList.on("change", (teamList) => {
+			console.log("Team List changed");
+
+			/* Remove all options from the select list */
+			$("#teamManagerSelectTeam").empty();
+
+			/* Insert the new ones from the array above */
+
+			$.each(teamList, function (value) {
+				const team = teamList[value];
+				if (team) {
+					var ele = document.createElement("option");
+					console.log("Team Data", team);
+					ele.text = team.name;
+					ele.id = team.id;
+					$("#teamManagerSelectTeam").append(ele);
+				}
+			});
+			if (modifyingTeam) updateDisplay();
+			if (selectedIndex >= 0) teamManagerSelectTeam.selectedIndex = selectedIndex;
+		});
+		teamLogos.on("change", (logoList) => {
+			console.log("Loaded Team Logos", logoList);
+
+			/* Remove all options from the select list */
+			$("#teamManagerSelectLogo").empty();
+
+			/* Insert the new ones from the array above */
+			$.each(logoList, function (value) {
+				var ele = document.createElement("option");
+				const image = logoList[value];
+				console.log("Image Data", image);
+				ele.text = image.base;
+				ele.id = value;
+				ele.style = `background-image: url(${image.url})`;
+				$("#teamManagerSelectLogo").append(ele);
+			});
+		});
+	</script>
+</html>

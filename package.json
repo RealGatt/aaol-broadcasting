@@ -20,6 +20,40 @@
   ],
   "nodecg": {
     "compatibleRange": "~1.8.0",
+    "assetCategories": [
+      {
+        "name": "teamlogos",
+        "title": "Team Scoreboard Logos",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
+      },
+      {
+        "name": "branding",
+        "title": "Branding",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
+      }
+    ],
+    "soundCues": [
+      {
+        "name": "scoreboard-in",
+        "assignable": false,
+        "defaultFile": "sound/scoreboard-in.ogg"
+      },
+      {
+        "name": "scoreboard-out",
+        "assignable": false,
+        "defaultFile": "sound/scoreboard-out.ogg"
+      }
+    ],
     "dashboardPanels": [
       {
         "name": "stream-controls-panel",
@@ -62,6 +96,14 @@
         "width": 2
       },
       {
+        "name": "team-manager",
+        "title": "Team Manager",
+        "file": "team-manager.html",
+        "fullbleed": false,
+        "headerColor": "#6b54b6",
+        "width": 5
+      },
+      {
         "name": "overview-panel",
         "title": "AAOL Overview",
         "file": "overview-panel.html",
@@ -81,6 +123,6 @@
   "repository": "https://github.com/nodecg/nodecg.git",
   "license": "Apache-2.0",
   "dependencies": {
-    "mdbootstrap": "^4.19.2"
+    "@polymer/paper-icon-button": "^3.0.2"
   }
 }

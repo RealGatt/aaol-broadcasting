@@ -2,19 +2,22 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/jquery.min.js"></script>
 		<style>
 			.monospace {
 				font-family: monospace;
 			}
 		</style>
 	</head>
-	<body>
+	<body class="bg-dark text-white">
 		<table style="width: 100%" border="1" cellpadding="5">
 			<thead>
 				<tr>
-					<td style="width: 30%;">Team 1</td>
-					<td style="width: 30%;">Team 2</td>
-					<td style="width: 40%;">Options</td>
+					<td style="width: 30%">Team 1</td>
+					<td style="width: 30%">Team 2</td>
+					<td style="width: 40%">Options</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,8 +28,18 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="text" id="team1name" placeholder="Team 1 name" /> vs
-		<input type="text" id="team2name" placeholder="Team 2 name" />
+
+		<select name="match" id="matches">
+			<option value="derf">[KE] Derf</option>
+			<option value="kings">[ACE] Kings</option>
+			<option value="jokers">[ACE] Jokers</option>
+		</select>
+		vs
+		<select name="match" id="matches">
+			<option value="derf">[KE] Derf</option>
+			<option value="kings">[ACE] Kings</option>
+			<option value="jokers">[ACE] Jokers</option>
+		</select>
 		<button>Add Match</button>
 	</body>
 </html>
