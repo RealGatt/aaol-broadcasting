@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "FuturaPTHeavyOblique";
+    src: url(FuturaPTHeavyOblique.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "FuturaPTHeavy";
+    src: url(FuturaPTHeavy.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal
+}
+
+html{
+    line-height: 1.15;
+}
+
+body {
+    line-height: 1.4285em;
+    font-size: 14px;
+    font-family: "FuturaPTHeavyOblique", Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+    min-width: 320px;
+    background: #fff
+}
+
+.graphic {
+    font-size: 2rem
+}
+
+.OWD {
+    font-family: "FuturaPTHeavyOblique", Arial, sans-serif;
+    color: #fff
+}
+
+.parent {
+    display: flex;
+    justify-content: space-around;
+    top: 10px;
+    left: 0%;
+    position: absolute;
+}
+
+.monospace {
+    font-family: monospace;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Match Score Overlay</title>
+		<meta charset="UTF-8" />
+		<script defer src="match-score-overlay.js"></script>
+		<link rel="stylesheet" href="../css/index.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="graphic OWD">
+			<div id="team1" class="displayLeft teamDisplay hidden">
+				<img src="" id="team1Background" alt="" />
+				<img src="" id="team1logo" class="teamLogo" />
+				<img src="" id="team1role" class="teamRole" />
+				<div id="team1name" class="teamDisplayName"></div>
+				<div id="team1score" class="teamScore"></div>
+			</div>
+			<div id="matchTitle" class="matchTitle hidden">
+				<div id="matchTitleDiv"></div>
+				<img src="" id="matchTitleBackground" class="" alt="" />
+			</div>
+			<div id="team2" class="displayRight teamDisplay hidden">
+				<img src="" id="team2Background" alt="" />
+				<img src="" id="team2logo" class="teamLogo" />
+				<img src="" id="team2role" class="teamRole" />
+				<div id="team2name" class="teamDisplayName"></div>
+				<div id="team2score" class="teamScore">0</div>
+			</div>
+		</div>
+	</body>
+</html>

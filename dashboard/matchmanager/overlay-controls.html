@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body class="bg-dark text-white">
+		<div class="container-fluid">
+			<br />
+			<h4>Scoreboard</h4>
+			<button class="btn btn-success" onclick="setScoreboard(true)">
+				Show Scoreboard
+			</button>
+			<button class="btn btn-danger" onclick="setScoreboard(false)">
+				Hide Scoreboard
+			</button>
+			<hr />
+			<h4>Casters</h4>
+			<button class="btn btn-success" onclick="setCasters(true)">
+				Show Casters Block
+			</button>
+			<button class="btn btn-danger" onclick="setCasters(false)">
+				Hide Casters Block
+			</button>
+			<hr />
+			<h4>Set Roster Display</h4>
+			<div class="input-group mb-3">
+				<select
+					class="form-select"
+					name="teamToDisplay"
+					id="teamToDisplay"
+				></select
+				><button
+					class="btn btn-success"
+					onclick="showTeam()"
+				>
+					Show Roster
+				</button>
+				<button
+					class="btn btn-danger"
+					onclick="hideTeam()"
+				>
+					Hide Roster
+				</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		const teams = nodecg.Replicant("teamList");
+
+		let cachedTeams;
+
+		teams.on("change", (newTeams) => {
+			cachedTeams = newTeams;
+			$("#teamToDisplay").empty();
+			$.each(newTeams, function (value) {
+				const team = newTeams[value];
+				var ele = document.createElement("option");
+				ele.text = team.name;
+				ele.id = value;
+				$("#teamToDisplay").append(ele);
+			});
+		});
+
+		function showTeam(){
+			const teamId = $("#teamToDisplay").prop("selectedIndex");
+			console.log("Displaying Team", teamId);
+			nodecg.sendMessage(`updateRosterDisplay`, {shown: true, teamId: teamId});
+		}
+
+		function hideTeam(){
+			nodecg.sendMessage(`updateRosterDisplay`, {shown: false, teamId: null});
+		}
+
+		function setScoreboard(shown) {
+			nodecg.sendMessage("showScoreboard", shown);
+		}
+	</script>
+</html>

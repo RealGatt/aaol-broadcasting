@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<style>
+			.monospace {
+				font-family: monospace;
+			}
+			.icon {
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-color: white;
+				background-position: center; /* Center the image */
+				max-width: 48px;
+			}
+		</style>
+	</head>
+	<body class="bg-dark text-white">
+		<div class="container-fluid">
+			<br />
+			<h4>Match Title</h4>
+			<div class="input-group">
+				<input
+					type="text"
+					id="matchTitle"
+					class="form-control"
+					value=""
+					placeholder="Match Title"
+				/>
+			</div>
+			<hr />
+			<h4>Team Roles</h4>
+			<div class="input-group">
+				<span class="input-group-text">Left Team</span>
+				<select class="form-select" id="leftTeamRole">
+					<option value="Attack">Attack</option>
+					<option value="Defense">Defense</option>
+				</select>
+				<span class="input-group-text">Right Team</span>
+				<select class="form-select" id="rightTeamRole">
+					<option value="Attack">Attack</option>
+					<option value="Defense">Defense</option>
+				</select>
+				<button
+					class="btn btn-warning"
+					id="swapButton"
+					onclick="swapRoles()"
+				>
+					Swap Roles
+				</button>
+				<div class="input-group-text">
+					<input
+						class="form-check-input mt-0"
+						type="checkbox"
+						id="rolesDisplayed"
+					/>
+					<label class="form-check-label" for="">Display Roles</label>
+				</div>
+			</div>
+			<hr />
+
+			<button class="btn btn-success" onclick="saveMatchConfig()">
+				Update
+			</button>
+		</div>
+	</body>
+	<script>
+		const matchConfiguration = nodecg.Replicant("matchConfiguration", {
+			defaultValue: {
+				matchTitle: "SET ME",
+				leftRole: "Attack",
+				rightRole: "Defense",
+				rolesDisplayed: false,
+			},
+		});
+		let cachedConfig = {
+			matchTitle: "SET ME",
+			leftRole: "Attack",
+			rightRole: "Defense",
+			rolesDisplayed: false,
+		};
+		matchConfiguration.on("change", (newData) => {
+			cachedConfig = newData;
+			if (!cachedConfig)
+				cachedConfig = {
+					matchTitle: "SET ME",
+					leftRole: "Attack",
+					rightRole: "Defense",
+					rolesDisplayed: false,
+				};
+			console.log("Loaded Match Configuration", cachedConfig);
+			$("#matchTitle").val(newData.matchTitle);
+			$("#leftTeamRole").val(newData.leftRole);
+			$("#rightTeamRole").val(newData.rightRole);
+			$("#rolesDisplayed").prop(
+				"checked",
+				cachedConfig.rolesDisplayed || false
+			);
+		});
+
+		function swapRoles() {
+			$("#leftTeamRole").val(cachedConfig.rightRole);
+			$("#rightTeamRole").val(cachedConfig.leftRole);
+		}
+
+		function saveMatchConfig() {
+			cachedConfig.matchTitle = $("#matchTitle").val();
+			cachedConfig.leftRole = $("#leftTeamRole").val();
+			cachedConfig.rightRole = $("#rightTeamRole").val();
+			cachedConfig.rolesDisplayed = $("#rolesDisplayed").prop("checked");
+			matchConfiguration.value = cachedConfig;
+			console.log(cachedConfig);
+		}
+	</script>
+</html>

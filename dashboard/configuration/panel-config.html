@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script defer src="panel-config.js"></script>
+		<style>
+			.monospace {
+				font-family: monospace;
+			}
+			.disabled {
+				display: none;
+			}
+			.section {
+				border-bottom: 1px dashed white;
+				padding: 16px;
+			}
+			.imageDisplay {
+				max-width: inherit;
+				min-width: 256px;
+				border: none;
+				background-color: transparent;
+			}
+			.icon {
+				border: none;
+				background-color: transparent;
+				max-height: 32px !important;
+			}
+		</style>
+	</head>
+	<body class="bg-dark text-white">
+		<br />
+		<div class="container-fluid input-group mb-3">
+			<div id="theme" class="container-fluid">
+				<div id="themeLoader">
+					<div class="input-group mb-3">
+						<input
+							type="text"
+							class="form-control"
+							id="newThemeName"
+							placeholder="New Theme Name"
+						/>
+						<button class="btn btn-success" onclick="createTheme()">
+							Create Theme
+						</button>
+						<select
+							class="form-select"
+							name="selectTheme"
+							id="selectTheme"
+						></select>
+						<button class="btn btn-warning" onclick="loadTheme()">
+							Load Theme
+						</button>
+						<button class="btn btn-success" onclick="setCurrent()">
+							Set Current Theme
+						</button>
+					</div>
+				</div>
+				<hr />
+
+				<div id="themeConfiguration" class=""></div>
+			</div>
+		</div>
+	</body>
+</html>

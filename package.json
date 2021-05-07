@@ -40,6 +40,26 @@
           "png",
           "gif"
         ]
+      },
+      {
+        "name": "theme",
+        "title": "Theming",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
+      },
+      {
+        "name": "player-icons",
+        "title": "Player Icons",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
       }
     ],
     "soundCues": [
@@ -56,65 +76,74 @@
     ],
     "dashboardPanels": [
       {
-        "name": "stream-controls-panel",
-        "title": "Stream Controls",
-        "file": "stream-controls.html",
-        "fullbleed": false,
-        "headerColor": "#5166a3",
-        "width": 10
-      },
-      {
         "name": "score-panel",
-        "title": "Match Scores",
-        "file": "scoreboard-controls.html",
+        "title": "Score Manager",
+        "file": "matchmanager/scoreboard-controls.html",
         "fullbleed": false,
         "headerColor": "#6b54b6",
-        "width": 5
+        "width": 4,
+        "workspace": ".Match Manager"
       },
       {
         "name": "match-set-panel",
-        "title": "Add Match",
-        "file": "match-set.html",
+        "title": "Match List",
+        "file": "matchmanager/match-set.html",
         "fullbleed": false,
         "headerColor": "#6b54b6",
-        "width": 5
+        "width": 5,
+        "workspace": ".Match Manager"
       },
       {
-        "name": "set-current-match-panel",
-        "title": "Set Current Match",
-        "file": "current-match.html",
+        "name": "match-title",
+        "title": "Match Configuration",
+        "file": "matchmanager/match-configuration.html",
         "fullbleed": false,
         "headerColor": "#6b54b6",
-        "width": 2
+        "width": 5,
+        "workspace": ".Match Manager"
       },
       {
-        "name": "active-scene",
-        "title": "Set Current Scene",
-        "file": "current-scene.html",
+        "name": "overlay-controls",
+        "title": "Overlay Controls",
+        "file": "matchmanager/overlay-controls.html",
         "fullbleed": false,
         "headerColor": "#6b54b6",
-        "width": 2
+        "width": 3,
+        "workspace": ".Match Manager"
       },
       {
-        "name": "team-manager",
+        "name": "Team Manager",
         "title": "Team Manager",
-        "file": "team-manager.html",
-        "fullbleed": false,
-        "headerColor": "#6b54b6",
-        "width": 5
+        "file": "teammanager/team-manager.html",
+        "fullbleed": true,
+        "headerColor": "#6b54b6"
       },
       {
-        "name": "overview-panel",
-        "title": "AAOL Overview",
-        "file": "overview-panel.html",
-        "fullbleed": false,
-        "headerColor": "#5166a3",
-        "width": 10
+        "name": "Layout Configuration",
+        "title": "Layout Configuration",
+        "file": "configuration/panel-config.html",
+        "fullbleed": true,
+        "headerColor": "#6b54b6"
       }
     ],
     "graphics": [
       {
-        "file": "index.html",
+        "file": "match-score-overlay/match-score-overlay.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "next-match/next-match.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "roster-view/roster-view.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "roster-view-custom/roster-view-custom.html",
         "width": 1920,
         "height": 1080
       }

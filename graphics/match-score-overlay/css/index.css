@@ -1,0 +1,95 @@
+.teamLogo {
+    /* max-width: max(0px, 35px);*/
+    max-height: 45px;
+    max-width: 45px;
+}
+
+.displayLeft {
+    position: absolute;
+    top: 10px;
+    left: 0%;
+}
+
+.displayRight {
+    position: absolute;
+    top: 10px;
+    right: 0%;
+}
+
+#team1logo {
+    position: absolute;
+    top: 5px;
+    left: 25px;
+}
+
+#team2logo {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+}
+
+#team1score {
+    position: absolute;
+    top: 15px;
+    left: 600px;
+    font-family: "FuturaPTHeavy", Arial, sans-serif;
+}
+
+#team1name {
+    position: absolute;
+    top: 15px;
+    left: 90px
+}
+
+#team2score {
+    position: absolute;
+    top: 15px;
+    right: 600px;
+    font-family: "FuturaPTHeavy", Arial, sans-serif;
+}
+
+#team2name {
+    position: absolute;
+    top: 15px;
+    text-align: right;
+    right: 90px;
+}
+
+#team1role {
+    position: absolute;
+    top: 12px;
+    left: 665px;
+}
+
+#team2role {
+    position: absolute;
+    top: 12px;
+    right: 670px;
+}
+
+.hidden {
+    position: absolute;
+    top: -1000px !important;
+}
+
+.teamDisplay {
+    background-repeat: no-repeat;
+    transition: all 2s;
+}
+
+.matchTitle {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -141px;
+    transition-delay: 2s;
+    transition: all 2s;
+}
+
+.matchTitle > div {
+    list-style: none;
+    position: relative;
+    top: 28px;
+    text-align: center;
+    font-family: "FuturaPTHeavy", Arial, sans-serif;
+}

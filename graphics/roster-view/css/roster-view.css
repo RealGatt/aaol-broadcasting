@@ -1,0 +1,372 @@
+:root {
+    --background: rgba(0, 0, 0, 0.5);
+}
+
+
+.offscreen {
+    transform: translateX(-100vw);
+}
+
+.offscreen:nth-child(1) {
+    transition-delay: 0.0s !important;
+}
+
+.offscreen:nth-child(2) {
+    transition-delay: 0.1s !important;
+}
+
+.offscreen:nth-child(3) {
+    transition-delay: 0.2s !important;
+}
+
+.offscreen:nth-child(4) {
+    transition-delay: 0.3s !important;
+}
+
+.offscreen:nth-child(5) {
+    transition-delay: 0.4s !important;
+}
+
+.offscreen:nth-child(6) {
+    transition-delay: 0.5s !important;
+}
+
+.playerDisplay:nth-child(6) {
+    transition-delay: 0.0s;
+}
+
+.playerDisplay:nth-child(5) {
+    transition-delay: 0.1s;
+}
+
+.playerDisplay:nth-child(4) {
+    transition-delay: 0.2s;
+}
+
+.playerDisplay:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.playerDisplay:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.playerDisplay:nth-child(1) {
+    transition-delay: 0.5s;
+}
+
+
+.vertical {
+    transform: translateY(25%);
+}
+
+.rosterParent {
+    display: flex;
+    background: transparent;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.colorOverlay {
+    z-index: 1;
+    min-height: 100%;
+    min-width: inherit;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.7);
+    /*can be anything, of course*/
+}
+
+.teamInformation {
+    transition: transform 2s;
+    position: absolute;
+    left: 120px;
+    top: 40px;
+    z-index: 10;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+
+.teamName {
+    color: black;
+    font-family: "FuturaPTHeavy", Arial, sans-serif;
+    font-size: 1.75rem;
+    align-self: center;
+}
+
+.logo {
+    max-width: 120px;
+    min-width: 120px;
+    align-self: center;
+}
+
+.playerDisplay{
+    transition: transform 2s;
+    max-width: 250px;
+    max-height: 700px;
+    min-width: 250px;
+    min-height: 700px;
+    /* border: 4px rgba(0, 0, 0, 0.9) solid; */
+    display: inline-flex;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.rosterDisplay {
+    background: var(--background);
+}
+
+.heroDisplay {
+    display: inline-flex;
+    max-width: 250px;
+    max-height: 700px;
+    min-width: 250px;
+    min-height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-self: flex-end;
+}
+
+.playerIcon {
+	position: absolute;
+	top: 450px;
+    width: 250px;
+    height: 250px;
+	background-color: transparent;
+}
+
+.namePlate {
+    display: inline-block;
+    width: 100%;
+    color: white;
+    font-family: "FuturaPTHeavy", Arial, sans-serif;
+    text-transform: uppercase;
+    align-self: flex-end;
+    /* white-space: nowrap;*/
+    overflow: hidden; 
+    text-align: left;
+	padding-left: 4px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    z-index: 10;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+.rosterName {
+    display: inline;
+    line-height: 1;
+    font-size: 1.65rem;
+    /* white-space: nowrap;
+    overflow: hidden; */
+    width: 100%;
+    height: 50px;
+}
+
+.roleIcon {
+    display: block;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 100%;
+    max-height: 50px;
+    background-size: 50px 50px;
+    margin-bottom: 8px;
+}
+
+
+/* Icons */
+
+.Tank {
+    background-image: url(../../assets/icons/Tank.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.DPS {
+    background-image: url(../../assets/icons/DPS.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Support {
+    background-image: url(../../assets/icons/Support.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Flex {
+    background-image: url(../../assets/icons/Flex.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/* Hero Specific Classes */
+
+.Reinhardt {
+    /* background-position-x: -270px; */
+    background-image: url(../../assets/portraits/Reinhardt.png);
+}
+
+.Zarya {
+    /* background-position-x: -130px; */
+    background-image: url(../../assets/portraits/Zarya.png);
+}
+
+.Genji {
+    /* background-position-x: -120px; */
+    background-image: url(../../assets/portraits/Genji.png);
+}
+
+.Mercy {
+    /* background-position-x: -210px;
+    background-position-y: -80px;
+    background-size: 900px 800px; */
+    background-image: url(../../assets/portraits/Mercy.png);
+}
+
+.Tracer {
+    /* background-position-x: 0px; */
+    background-image: url(../../assets/portraits/Tracer.png);
+}
+
+.Moira {
+    /* background-position-x: -50px; */
+    background-image: url(../../assets/portraits/Moira.png);
+}
+
+.DVa {
+    /* background-position-x: -150px;
+    background-position-y: -80px;
+    background-size: 900px 800px; */
+    background-image: url(../../assets/portraits/DVa.png);
+}
+
+.Orisa {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Orisa.png);
+}
+
+.Roadhog {
+    /* background-position-x: -120px; */
+    background-image: url(../../assets/portraits/Roadhog.png);
+}
+
+.Sigma {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Sigma.png);
+}
+
+.Winston {
+    /* background-position-x: -180px; */
+    background-image: url(../../assets/portraits/Winston.png);
+}
+
+.Wrecking_Ball {
+    /* background-position-x: -230px; */
+    background-image: url(../../assets/portraits/WreckingBall.png);
+}
+
+.Ashe {
+    /* background-position-x: -130px;
+    background-position-y: -180px;
+    background-size: 900px 950px; */
+    background-image: url(../../assets/portraits/Ashe.png);
+}
+
+.Bastion {
+    /* background-position-x: -230px; */
+    background-image: url(../../assets/portraits/Bastion.png);
+}
+
+.Doomfist {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Doomfist.png);
+}
+
+.Echo {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Echo.png);
+}
+
+.Hanzo {
+    /* background-position-x: -90px; */
+    background-image: url(../../assets/portraits/Hanzo.png);
+}
+
+.Junkrat {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Junkrat.png);
+}
+
+.McCree {
+    /* background-position-x: -150px;
+    background-position-y: 30px; */
+    background-image: url(../../assets/portraits/McCree.png);
+}
+
+.Mei {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Mei.png);
+}
+
+.Pharah {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Pharah.png);
+}
+
+.Reaper {
+    /* No changes needed */
+    background-image: url(../../assets/portraits/Reaper.png);
+}
+
+.Soldier_76 {
+    /* background-position-x: -10px; */
+    background-image: url(../../assets/portraits/Soldier76.png);
+}
+
+.Sombra {
+    /* background-position-x: -180px; */
+    background-image: url(../../assets/portraits/Sombra.png);
+}
+
+.Symmetra {
+    /* background-position-x: -30px;
+    background-size: 923px 2000px; */
+    background-image: url(../../assets/portraits/Symmetra.png);
+}
+
+.Torbjorn {
+    background-image: url(../../assets/portraits/Torbjorn.png);
+}
+
+.Widowmaker {
+    background-image: url(../../assets/portraits/Widowmaker.png);
+}
+
+.Ana {
+    background-image: url(../../assets/portraits/Ana.png);
+}
+
+.Baptiste {
+    background-image: url(../../assets/portraits/Baptiste.png);
+}
+
+.Brigitte {
+    background-image: url(../../assets/portraits/Brigitte.png);
+}
+
+.Lucio {
+    background-image: url(../../assets/portraits/Lucio.png);
+}
+
+.Zenyatta {
+    background-image: url(../../assets/portraits/Zenyatta.png);
+}

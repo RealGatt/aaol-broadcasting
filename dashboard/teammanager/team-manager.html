@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<style>
+			.monospace {
+				font-family: monospace;
+			}
+		</style>
+	</head>
+	<body class="bg-dark text-white">
+		<br />
+		<div class="container-fluid">
+			<div class="input-group">
+				<span class="input-group-text">Team Name</span>
+				<input
+					type="text"
+					id="updateTeamName"
+					class="form-control"
+					value="No Team Selected"
+					disabled
+				/>
+			</div>
+			<hr />
+			<h4>Scoreboard Logo</h4>
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<img
+						src=""
+						id="teamManagerSelectLogoDisplay"
+						style="max-width: 128px; max-height: 128px"
+					/>
+				</button>
+				<select
+					class="form-select"
+					name="teamManagerSelectLogo"
+					id="teamManagerSelectLogo"
+					disabled
+					onchange="updateImage()"
+				></select>
+			</div>
+			<h4>Roster Logo</h4>
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<img
+						src=""
+						id="teamManagerSelectRosterLogoDisplay"
+						style="max-width: 128px; max-height: 128px"
+					/>
+				</button>
+				<select
+					class="form-select"
+					name="teamManagerSelectRosterLogo"
+					id="teamManagerSelectRosterLogo"
+					disabled
+					onchange="updateRosterImage()"
+				></select>
+			</div>
+			<hr />
+
+			<h4>Team Roster</h4>
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<span>Player 1</span>
+				</button>
+				<input
+					type="text"
+					id="rosterPlayer1"
+					class="form-control"
+					placeholder="Player 1"
+					disabled
+				/>
+				<select
+					class="form-select playerIcons"
+					name="player1picture"
+					id="player1picture"
+					disabled
+					onchange="updatePlayerImage(1)"
+				></select>
+				<select
+					class="form-select playerHeroes"
+					name="player1hero"
+					id="player1hero"
+					disabled
+				></select>
+				<select
+					class="form-select"
+					name="player1role"
+					id="player1role"
+					disabled
+				>
+					<option value="Tank">Tank</option>
+					<option value="DPS">DPS</option>
+					<option value="Support">Support</option>
+				</select>
+			</div>
+			
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<span>Player 2</span>
+				</button>
+				<input
+					type="text"
+					id="rosterPlayer2"
+					class="form-control"
+					placeholder="Player 2"
+					disabled
+				/>
+				<select
+					class="form-select playerIcons"
+					name="player2picture"
+					id="player2picture"
+					disabled
+					onchange="updatePlayerImage(2)"
+				></select>
+				<select
+					class="form-select playerHeroes"
+					name="player2hero"
+					id="player2hero"
+					disabled
+				></select>
+				<select
+					class="form-select"
+					name="player2role"
+					id="player2role"
+					disabled
+				>
+					<option value="Tank">Tank</option>
+					<option value="DPS">DPS</option>
+					<option value="Support">Support</option>
+				</select>
+			</div>
+			
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<span>Player 3</span>
+				</button>
+				<input
+					type="text"
+					id="rosterPlayer3"
+					class="form-control"
+					placeholder="Player 3"
+					disabled
+				/>
+				<select
+					class="form-select playerIcons"
+					name="player3picture"
+					id="player3picture"
+					disabled
+					onchange="updatePlayerImage(3)"
+				></select>
+				<select
+					class="form-select playerHeroes"
+					name="player3hero"
+					id="player3hero"
+					disabled
+				></select>
+				<select
+					class="form-select"
+					name="player3role"
+					id="player3role"
+					disabled
+				>
+					<option value="Tank">Tank</option>
+					<option value="DPS">DPS</option>
+					<option value="Support">Support</option>
+				</select>
+			</div>
+			
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<span>Player 4</span>
+				</button>
+				<input
+					type="text"
+					id="rosterPlayer4"
+					class="form-control"
+					placeholder="Player 4"
+					disabled
+				/>
+				<select
+					class="form-select playerIcons"
+					name="player4picture"
+					id="player4picture"
+					disabled
+					onchange="updatePlayerImage(4)"
+				></select>
+				<select
+					class="form-select playerHeroes"
+					name="player4hero"
+					id="player4hero"
+					disabled
+				></select>
+				<select
+					class="form-select"
+					name="player4role"
+					id="player4role"
+					disabled
+				>
+					<option value="Tank">Tank</option>
+					<option value="DPS">DPS</option>
+					<option value="Support">Support</option>
+				</select>
+			</div>
+			
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<span>Player 5</span>
+				</button>
+				<input
+					type="text"
+					id="rosterPlayer5"
+					class="form-control"
+					placeholder="Player 5"
+					disabled
+				/>
+				<select
+					class="form-select playerIcons"
+					name="player5picture"
+					id="player5picture"
+					disabled
+					onchange="updatePlayerImage(5)"
+				></select>
+				<select
+					class="form-select playerHeroes"
+					name="player5hero"
+					id="player5hero"
+					disabled
+				></select>
+				<select
+					class="form-select"
+					name="player5role"
+					id="player5role"
+					disabled
+				>
+					<option value="Tank">Tank</option>
+					<option value="DPS">DPS</option>
+					<option value="Support">Support</option>
+				</select>
+			</div>
+			
+			<div class="input-group mb-3">
+				<button
+					class="btn btn-info"
+					onclick="return false;"
+					style="pointer-events: none"
+				>
+					<span>Player 6</span>
+				</button>
+				<input
+					type="text"
+					id="rosterPlayer6"
+					class="form-control"
+					placeholder="Player 6"
+					disabled
+				/>
+				<select
+					class="form-select playerIcons"
+					name="player6picture"
+					id="player6picture"
+					disabled
+					onchange="updatePlayerImage(6)"
+				></select>
+				<select
+					class="form-select playerHeroes"
+					name="player6hero"
+					id="player6hero"
+					disabled
+				></select>
+				<select
+					class="form-select"
+					name="player6role"
+					id="player6role"
+					disabled
+				>
+					<option value="Tank">Tank</option>
+					<option value="DPS">DPS</option>
+					<option value="Support">Support</option>
+				</select>
+			</div>
+			
+			<button
+				class="btn btn-success"
+				onclick="saveTeamData()"
+				disabled
+				id="saveTeamButton"
+			>
+				Save Team
+			</button>
+		</div>
+
+		<hr />
+		<div class="container-fluid">
+			<div class="input-group mb-3">
+				<select
+					class="form-select"
+					name="teamManagerSelectTeam"
+					id="teamManagerSelectTeam"
+				></select>
+				<button class="btn btn-success" onclick="loadTeam()">
+					Load Team Data
+				</button>
+				<input
+					type="text"
+					id="newTeamName"
+					class="form-control"
+					placeholder="New Team Name"
+				/>
+				<button class="btn btn-success" onclick="addTeam()">
+					Create Team
+				</button>
+			</div>
+		</div>
+	</body>
+	<script src="team-manager.js"></script>
+</html>
