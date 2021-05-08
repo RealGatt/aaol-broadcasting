@@ -43,13 +43,14 @@ currentMatch.on("change", (newMatch) => {
 
 matchConfiguration.on("change", (newConfig) => {
 	$("#matchTitleDiv").html(newConfig.matchTitle);
+	$("#caster1").html(newConfig.casters[0]);
+	$("#caster2").html(newConfig.casters[1]);
 	if (!newConfig.rolesDisplayed) {
 		$("#team1role").hide();
 		$("#team2role").hide();
 	} else {
 		const team1role = newConfig.leftRole == "Attack" ? cachedThemeObj.assets.attackIcon : cachedThemeObj.assets.defenseIcon;
 		const team2role = newConfig.rightRole == "Attack" ? cachedThemeObj.assets.attackIcon : cachedThemeObj.assets.defenseIcon;
-
 		$("#team1role").hide();
 		$("#team2role").hide();
 		$("#team1role").attr("src", `${team1role}`);
@@ -70,9 +71,10 @@ function updateTheme() {
 	// console.log(cachedThemeObj);
 	// $("#team1").css('background-image', `url(${cachedThemeObj.assets.teamLeftImage})`);
 	// $("#team2").css('background-image', `url(${cachedThemeObj.assets.teamRightImage})`);
-	$("#team1Background").attr("src", `${cachedThemeObj.assets.teamLeftImage}`);
-	$("#team2Background").attr("src", `${cachedThemeObj.assets.teamRightImage}`);
-	$("#matchTitleBackground").attr("src", `${cachedThemeObj.assets.mapBackground}`);
+	$("#team1Background").attr("src", cachedThemeObj.assets.teamLeftImage);
+	$("#team2Background").attr("src", cachedThemeObj.assets.teamRightImage);
+	$("#matchTitleBackground").attr("src", cachedThemeObj.assets.mapBackground);
+	$("#castersBackground").attr("src", cachedThemeObj.assets.castersNamesBackground);
 }
 
 function updateGraphics() {
@@ -94,7 +96,6 @@ function updateGraphics() {
 		$("#team1logo").attr("src", team1obj.logo);
 		$("#team2logo").attr("src", team2obj.logo);
 
-
 	}, 100);
 }
 
@@ -109,6 +110,19 @@ nodecg.listenFor('showScoreboard', (shown) => {
 		$(".not-hidden").each(async function (id, e) {
 			$(e).removeClass("not-hidden");
 			$(e).addClass("hidden");
+		})
+	}
+});
+nodecg.listenFor('showCasters', (shown) => {
+	if (shown){
+		$(".hiddenCasters").each(async function (id, e) {
+			$(e).removeClass("hiddenCasters");
+			$(e).addClass("not-hiddenCasters");
+		})
+	}else{
+		$(".not-hiddenCasters").each(async function (id, e) {
+			$(e).removeClass("not-hiddenCasters");
+			$(e).addClass("hiddenCasters");
 		})
 	}
 });

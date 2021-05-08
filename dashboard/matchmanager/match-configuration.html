@@ -61,6 +61,26 @@
 				</div>
 			</div>
 			<hr />
+			<h4>Casters</h4>
+			<div class="input-group">
+				<span class="input-group-text">Caster 1</span>
+				<input
+					type="text"
+					id="caster1name"
+					class="form-control"
+					value=""
+					placeholder="Caster 1 name"
+				/>
+				<span class="input-group-text">Caster 2</span>
+				<input
+					type="text"
+					id="caster2name"
+					class="form-control"
+					value=""
+					placeholder="Caster 1 name"
+				/>
+			</div>
+			<hr />
 
 			<button class="btn btn-success" onclick="saveMatchConfig()">
 				Update
@@ -74,6 +94,7 @@
 				leftRole: "Attack",
 				rightRole: "Defense",
 				rolesDisplayed: false,
+				casters: ["Caster 1", "Caster 2"],
 			},
 		});
 		let cachedConfig = {
@@ -81,6 +102,7 @@
 			leftRole: "Attack",
 			rightRole: "Defense",
 			rolesDisplayed: false,
+			casters: ["Caster 1", "Caster 2"],
 		};
 		matchConfiguration.on("change", (newData) => {
 			cachedConfig = newData;
@@ -91,14 +113,20 @@
 					rightRole: "Defense",
 					rolesDisplayed: false,
 				};
+
+			if (!cachedConfig.casters)
+				cachedConfig.casters = ["Caster 1", "Caster 2"];
+
 			console.log("Loaded Match Configuration", cachedConfig);
-			$("#matchTitle").val(newData.matchTitle);
-			$("#leftTeamRole").val(newData.leftRole);
-			$("#rightTeamRole").val(newData.rightRole);
+			$("#matchTitle").val(cachedConfig.matchTitle);
+			$("#leftTeamRole").val(cachedConfig.leftRole);
+			$("#rightTeamRole").val(cachedConfig.rightRole);
 			$("#rolesDisplayed").prop(
 				"checked",
 				cachedConfig.rolesDisplayed || false
 			);
+			$("#caster1name").val(cachedConfig.casters[0]);
+			$("#caster2name").val(cachedConfig.casters[1]);
 		});
 
 		function swapRoles() {
@@ -111,6 +139,8 @@
 			cachedConfig.leftRole = $("#leftTeamRole").val();
 			cachedConfig.rightRole = $("#rightTeamRole").val();
 			cachedConfig.rolesDisplayed = $("#rolesDisplayed").prop("checked");
+			cachedConfig.casters[0] = $("#caster1name").val();
+			cachedConfig.casters[1] = $("#caster2name").val();
 			matchConfiguration.value = cachedConfig;
 			console.log(cachedConfig);
 		}
