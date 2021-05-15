@@ -53,14 +53,24 @@
 						<button class="btn btn-warning" onclick="loadTheme()">
 							Load Theme
 						</button>
-						<button class="btn btn-success" onclick="setCurrent()">
-							Set Current Theme
-						</button>
 					</div>
 				</div>
 				<hr />
 
-				<div id="themeConfiguration" class=""></div>
+				<div id="themeConfiguration" class="">
+					<div class="input-group" id="topbar">				
+						<span class="input-group-text" id="themeName">Select a theme</span>
+						<button class="btn btn-danger" disabled onclick="deleteTheme()">
+							Delete Theme
+						</button>
+						<button class="btn btn-info" disabled onclick="saveTheme()">
+							Save Theme
+						</button>
+						<button class="btn btn-success" disabled onclick="setCurrent()">
+							Set Current Theme
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

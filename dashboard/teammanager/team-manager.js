@@ -68,7 +68,8 @@ function saveTeamData() {
 		const newPlayer = {
 			name: $("#rosterPlayer" + playerId).val(),
 			role: $("#player" + playerId + "role option:selected").text(),
-			profileImage: $("#player" + playerId + "picture option:selected").attr("data-image-url")
+			profileImage: $("#player" + playerId + "picture option:selected").attr("data-image-url"),
+			hero: $("#player" + playerId + "hero option:selected").attr("data-hero")
 		};
 		modifyingTeam.roster[playerId - 1] = (newPlayer);
 		console.log(playerId, newPlayer, modifyingTeam.roster);
@@ -207,6 +208,7 @@ function loadHeroes() {
 		var ele = document.createElement("option");
 		ele.text = hero;
 		ele.id = hero;
+		ele.setAttribute("data-hero", hero);
 		$(".playerHeroes").append(ele);
 	})
 }
