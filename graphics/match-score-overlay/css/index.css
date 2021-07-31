@@ -36,20 +36,21 @@ body{
 #team1score {
     position: absolute;
     top: 15px;
-    left: 600px;
+    left: 630px;
     font-family: "FuturaPTHeavy", Arial, sans-serif;
 }
 
 #team1name {
     position: absolute;
     top: 15px;
-    left: 90px
+    left: 90px;
+    color: #3a3a3a;
 }
 
 #team2score {
     position: absolute;
     top: 15px;
-    right: 600px;
+    right: 630px;
     font-family: "FuturaPTHeavy", Arial, sans-serif;
 }
 
@@ -58,18 +59,19 @@ body{
     top: 15px;
     text-align: right;
     right: 90px;
+    color: #3a3a3a;
 }
 
 #team1role {
     position: absolute;
     top: 12px;
-    left: 665px;
+    left: 677px;
 }
 
 #team2role {
     position: absolute;
     top: 12px;
-    right: 670px;
+    right: 677px;
 }
 
 .hidden {

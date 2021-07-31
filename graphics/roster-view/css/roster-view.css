@@ -1,5 +1,5 @@
 :root {
-    --background: pink;
+    --background: rgba(0, 0, 0, 0.3);
 }
 
 
@@ -94,16 +94,21 @@
     align-items: center;
 }
 
-.teamName {
-    color: black;
-    font-family: "FuturaPTHeavy", Arial, sans-serif;
-    font-size: 1.75rem;
-    align-self: center;
+.logo {
+    padding-top: 10px;
+    transition: transform 2s;
+    z-index: 10;
+    max-height: 100px;
+    min-height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.logo {
-    max-width: 120px;
-    min-width: 120px;
+.teamName {
+    color: black;
+    font-family: "BigNoodleTooOblique", Arial, sans-serif;
+    font-size: 4.75rem;
     align-self: center;
 }
 
@@ -161,13 +166,13 @@
 }
 
 .rosterName {
-    display: inline;
+    display: block;
     line-height: 1;
     font-size: 1.65rem;
     /* white-space: nowrap;
     overflow: hidden; */
-    width: 100%;
     height: 50px;
+    text-align: center;
 }
 
 .roleIcon {
