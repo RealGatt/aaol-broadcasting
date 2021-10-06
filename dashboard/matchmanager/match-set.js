@@ -4,7 +4,8 @@ const teamList = nodecg.Replicant("teamList", {
 const matchList = nodecg.Replicant("matchList", {
 	defaultValue: []
 });
-const currentMatch = nodecg.Replicant("currentMatch");
+const currentMatch = nodecg.Replicant("currentMatch", {defaultValue: 1});
+const matchCount = nodecg.Replicant("matchCount", {defaultValue: 0});
 const matchHistoryEle = document.getElementById("matchHistory");
 
 let cachedTeamList;
@@ -63,12 +64,12 @@ function updateDisplayedMatches() {
 				div.classList.add("input-group");
 				div.classList.add("mb-3");
 
-				if (cachedCurrentMatch == match.matchId){
+				if (cachedCurrentMatch == match.matchId) {
 					const isCurrent = document.createElement("span");
 					div.appendChild(isCurrent);
 					isCurrent.classList.add("icon");
 					isCurrent.classList.add("form-control");
-					isCurrent.style.backgroundImage = `url('../assets/white_check_mark.svg')`;	
+					isCurrent.style.backgroundImage = `url('../assets/white_check_mark.svg')`;
 					isCurrent.style.maxWidth = "32px";
 					isCurrent.style.maxHeight = "38px";
 				}
@@ -96,6 +97,15 @@ function updateDisplayedMatches() {
 				team2image.classList.add("form-control");
 				team2image.style.backgroundImage = `url('${team2obj.logo}')`;
 
+				const matchNotes = document.createElement("input");
+				div.appendChild(matchNotes);
+				matchNotes.classList.add("form-control");
+				matchNotes.placeholder = "Match Note"
+				matchNotes.value = match.matchNote || "";
+				matchNotes.onchange = function () {
+					match.matchNote = matchNotes.value || null;
+				}
+
 				const deleteBtn = document.createElement("button");
 				div.appendChild(deleteBtn);
 				deleteBtn.classList.add("btn");
@@ -103,7 +113,8 @@ function updateDisplayedMatches() {
 				deleteBtn.innerHTML = "Delete";
 
 				deleteBtn.onclick = function () {
-					match.isDeleted = true;
+					let updatedMatches = cachedMatchList.splice(value, 1);
+					cachedMatchList = updatedMatches;
 				}
 
 				const swapBtn = document.createElement("button");
@@ -146,14 +157,15 @@ function updateDisplayedMatches() {
 	}
 }
 
-function createMatch(){
+function createMatch() {
 	console.log("T v T", $("#team1").prop('selectedIndex'), $("#team2").prop('selectedIndex'))
 	console.log(cachedTeamList);
 	let team1 = cachedTeamList[$("#team1").prop('selectedIndex')];
 	let team2 = cachedTeamList[$("#team2").prop('selectedIndex')];
 	console.log("Creating Match between", team1, team2);
-	const newMatch = {team1: team1.id, team2: team2.id, matchId: cachedMatchList.length, matchCompleted: false, team1score: 0, team2score: 0};
+	const newMatch = { team1: team1.id, team2: team2.id, matchId: matchCount.value, matchNote: "", matchCompleted: false, team1score: 0, team2score: 0 };
 	if (!cachedMatchList) cachedMatchList = [];
 	cachedMatchList.push(newMatch);
+	matchCount.value++;
 	//matches.value = cachedMatchList;
 }

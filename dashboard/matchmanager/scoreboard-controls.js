@@ -1,3 +1,23 @@
+let maps;
+
+$.ajax({
+	url: "../assets/data/maps.json",
+	success: function (data) {
+		maps = data.allmaps;
+		console.log("Successfully grabbed Maps.json");
+		loadMaps();
+	},
+});
+
+function loadMaps(){
+	maps.forEach(map=>{
+		const opt = $(`<option value="${map.name}">${map.name} (${map.gamemode})</option>`)
+		$(".mapTarget").each((id, tar)=>{
+			$(tar).append($(opt).clone());
+		})
+	})
+}
+
 let loadedMatch = null;
 let loadedMatchIndex = -1;
 const teamList = nodecg.Replicant("teamList", {
@@ -57,7 +77,7 @@ function updateDisplay() {
 		return;
 	}
 
-	loadedMatch = cachedMatchList[loadedMatchIndex];
+	loadedMatch = Object.entries(cachedMatchList).filter((mtch)=>{console.log(mtch[1], mtch[1].matchId, currentMatch.value); return mtch[1].matchId == currentMatch.value})[0][1]
 	if (!loadedMatch) return;
 	console.log("Cached Team List", cachedTeamList);
 	console.log("Loaded Match obj", loadedMatch);

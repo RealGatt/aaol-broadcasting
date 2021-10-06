@@ -39,7 +39,8 @@ function addTeam() {
 			id: (teamList.value.length || 0),
 			logo: null,
 			rosterRoster: null,
-			roster: []
+			roster: [],
+			colors: { teamColor: "#ffffff", playerColor: "#A4F0CA" }
 		};
 		const allTeams = teamList.value || [];
 		allTeams[allTeams.length] = newTeamObj;
@@ -48,7 +49,7 @@ function addTeam() {
 	}
 }
 
-function saveTeamName() {}
+function saveTeamName() { }
 
 function setLogo() {
 	// console.log("Selected Logo", logo);
@@ -61,14 +62,16 @@ function saveTeamData() {
 	modifyingTeam.logo = $("#teamManagerSelectLogo option:selected").attr("data-image-url");
 	modifyingTeam.rosterLogo = $("#teamManagerSelectRosterLogo option:selected").attr("data-image-url");
 
+	modifyingTeam.colors = { teamColor: $("#teamColor").val(), playerColor: $("#playerColor").val() }
+
 	modifyingTeam.roster = [];
+	console.log($("#teamColor").val(), $("#playerColor").val())
 	console.log(modifyingTeam.roster);
 
 	for (let playerId = 1; playerId < 7; playerId++) {
 		const newPlayer = {
 			name: $("#rosterPlayer" + playerId).val(),
 			role: $("#player" + playerId + "role option:selected").text(),
-			profileImage: $("#player" + playerId + "picture option:selected").attr("data-image-url"),
 			hero: $("#player" + playerId + "hero option:selected").attr("data-hero")
 		};
 		modifyingTeam.roster[playerId - 1] = (newPlayer);
@@ -88,57 +91,64 @@ function loadTeam() {
 }
 
 function updateImage() {
-	const logo = teamLogos.value[teamManagerSelectLogo.selectedIndex];
-	document.getElementById("teamManagerSelectLogoDisplay").src = logo.url || "";
+	const logo = teamLogos.value[teamManagerSelectLogo.selectedIndex - 1] || {url: ""};
+	document.getElementById("teamManagerSelectLogoDisplay").src = logo.url;
 }
 
 function updateRosterImage() {
-	const logo = teamLogos.value[teamManagerSelectRosterLogo.selectedIndex];
-	document.getElementById("teamManagerSelectRosterLogoDisplay").src = logo.url || "";
+	const logo = teamLogos.value[teamManagerSelectRosterLogo.selectedIndex - 1]|| {url: ""};
+	document.getElementById("teamManagerSelectRosterLogoDisplay").src = logo.url;
 }
-
 
 function updateDisplay() {
 	document.getElementById("teamManagerSelectLogoDisplay").src = modifyingTeam.logo || "";
-	const obj = document.getElementById("teamManagerSelectLogo");
-	const index = [...document.getElementById("teamManagerSelectLogo").options].findIndex(option =>
+	let obj = document.getElementById("teamManagerSelectLogo");
+	let index = [...document.getElementById("teamManagerSelectLogo").options].findIndex(option =>
 		option.getAttribute("data-image-url") === modifyingTeam.logo
 	);
 	obj.selectedIndex = index;
 
 	document.getElementById("teamManagerSelectRosterLogoDisplay").src = modifyingTeam.rosterLogo || "";
-	const obj2 = document.getElementById("teamManagerSelectRosterLogo");
-	const index2 = [...document.getElementById("teamManagerSelectRosterLogo").options].findIndex(option =>
+	obj = document.getElementById("teamManagerSelectRosterLogo");
+	index = [...document.getElementById("teamManagerSelectRosterLogo").options].findIndex(option =>
 		option.getAttribute("data-image-url") === modifyingTeam.rosterLogo
 	);
-	obj2.selectedIndex = index2;
+	obj.selectedIndex = index;
 
-	document.getElementById("updateTeamName").value = modifyingTeam.name;
-	document.getElementById("updateTeamName").disabled = false;
-	document.getElementById("teamManagerSelectLogoDisplay").disabled = false;
-	document.getElementById("teamManagerSelectLogo").disabled = false;
-	document.getElementById("teamManagerSelectRosterLogoDisplay").disabled = false;
-	document.getElementById("teamManagerSelectRosterLogo").disabled = false;
-	document.getElementById("saveTeamButton").disabled = false;
+	if (!modifyingTeam.colors)
+		modifyingTeam.colors = { teamColor: "#ffffff", playerColor: "#A4F0CA" }
+
+	$("#teamColor").val(modifyingTeam.colors.teamColor);
+	$("#playerColor").val(modifyingTeam.colors.playerColor);
+	$("#updateTeamName").val(modifyingTeam.name);
+
+	$("#updateTeamName").prop("disabled", false);
+	$("#teamManagerSelectLogoDisplay").prop("disabled", false);
+	$("#teamManagerSelectLogo").prop("disabled", false);
+	$("#teamManagerSelectRosterLogoDisplay").prop("disabled", false);
+	$("#teamManagerSelectRosterLogo").prop("disabled", false);
+	$("#saveTeamButton").prop("disabled", false);
+	$("#teamColor").prop("disabled", false);
+	$("#playerColor").prop("disabled", false);
 
 	for (let playerId = 1; playerId < 7; playerId++) {
 		// console.log(playerId);
-		document.getElementById("rosterPlayer" + playerId).disabled = false;
-		document.getElementById("player" + playerId + "role").disabled = false;
-		document.getElementById("player" + playerId + "picture").disabled = false;
-		document.getElementById("player" + playerId + "hero").disabled = false;
-	}
+		$("#rosterPlayer" + playerId).prop("disabled", false);
+		$("#player" + playerId + "hero").prop("disabled", false);
+		$("#player" + playerId + "role").prop("disabled", false);
 
 
-	for (let playerId = 1; playerId < 7; playerId++) {
 		const player = modifyingTeam.roster[playerId - 1];
 		if (player) {
+
+			const playerHero = document.getElementById("player" + playerId + "hero");
+			const playerHeroIndex = [...document.getElementById("player" + playerId + "hero").options].findIndex(option =>
+				option.getAttribute("data-hero") === player.hero
+			);
+			playerHero.selectedIndex = playerHeroIndex;
+
 			$("#rosterPlayer" + playerId).val(player.name);
 			$("#player" + playerId + "role").val(player.role);
-			const iconIndex = [...document.getElementById("player" + playerId + "picture").options].findIndex(option =>
-				option.getAttribute("data-image-url") === player.profileImage
-			);
-			$("#player" + playerId + "picture").prop("selectedIndex", iconIndex);
 		}
 	}
 
@@ -172,6 +182,15 @@ teamLogos.on("change", (logoList) => {
 	/* Remove all options from the select list */
 	$("#teamManagerSelectLogo").empty();
 	$("#teamManagerSelectRosterLogo").empty();
+
+	var nonSelect = document.createElement("option");
+	// console.log("Image Data", image);
+	nonSelect.text = "None";
+	nonSelect.id = "None";
+	nonSelect.setAttribute("data-image-url", "");
+
+	$("#teamManagerSelectLogo").append($(nonSelect).clone());
+	$("#teamManagerSelectRosterLogo").append($(nonSelect).clone());
 
 	/* Insert the new ones from the array above */
 	$.each(logoList, function (value) {

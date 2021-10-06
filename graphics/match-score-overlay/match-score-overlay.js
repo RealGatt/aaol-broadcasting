@@ -84,7 +84,8 @@ function updateGraphics() {
 		return false;
 	}
 	setTimeout(async function () {
-		const match = cachedMatchList[cachedCurrentMatch];
+		const match = Object.entries(cachedMatchList).filter((mtch)=>{console.log(mtch[1], mtch[1].matchId, cachedCurrentMatch); return mtch[1].matchId == currentMatch.value})[0][1]
+	
 		console.log(match);
 		const team1obj = cachedTeamList[match.team1];
 		const team2obj = cachedTeamList[match.team2];
@@ -98,6 +99,10 @@ function updateGraphics() {
 
 	}, 100);
 }
+
+
+nodecg.listenFor("leftTeam", (shown) => {})
+nodecg.listenFor("rightTeam", (shown) => {})
 
 nodecg.listenFor('showScoreboard', (shown) => {
 	console.log("showScoreboard", shown);

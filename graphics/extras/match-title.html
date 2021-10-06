@@ -1,0 +1,103 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/z-theme.js"></script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            margin: 0px auto;
+            overflow: hidden;
+            font-family: var(--FONT);
+            font-weight: 500;
+        }
+
+        .header {
+            font-family: var(--FONT);
+            text-transform: uppercase;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            padding: 50px;
+            width: 1820px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: right;
+            font-size: 3em;
+            color: var(--PRIMARY);
+            text-shadow: 2px 2px var(--SENARY);
+        }
+
+        .info {
+            flex: 1 1 100%;
+            animation: headeranimate2 1s;
+            animation-fill-mode: backwards;
+            animation-delay: .5s;
+        }
+
+        .title {
+            width: 100%;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            position: relative;
+            top: -37px;
+            animation: headeranimate 1s;
+            animation-fill-mode: backwards;
+            animation-delay: .7s;
+        }
+
+        @keyframes headeranimate {
+            0% {
+                transform: translateX(1920px);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes headeranimate2 {
+            0% {
+                transform: translateX(-1920px);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .LOADING {
+            display: none;
+        }
+    </style>
+    <script>
+        const matchConfiguration = nodecg.Replicant("matchConfiguration", {
+            defaultValue: {
+                matchTitle: "SET ME",
+                casters: ["Caster 1", "Caster 2"],
+            },
+        });
+
+        let cachedConfig = {
+            matchTitle: "SET ME",
+            casters: ["Caster 1", "Caster 2"],
+        };
+
+        matchConfiguration.on("change", (newData) => {
+            cachedConfig = newData;
+            $(".title").html(cachedConfig.matchTitle)
+        });
+        themeCallback = () => {
+            $(".LOADING").removeClass("LOADING");
+        }
+    </script>
+</head>
+
+<body class="LOADING">
+    <div class="header">
+        <span class="title"></span>
+    </div>
+</body>

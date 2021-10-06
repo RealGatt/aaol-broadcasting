@@ -1,88 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Roster View</title>
-		<meta charset="UTF-8" />
-		<script defer src="roster-view.js"></script>
-		<link rel="stylesheet" href="../css/index.css" />
-		<link rel="stylesheet" href="css/roster-view.css" />
-		<script src="../js/jquery.min.js"></script>
-	</head>
-	<body>
-		<div class="graphic OWD">
-			<div class="teamInformation offscreen">
-				<img src="" alt="" class="logo" />
-				<div class="teamName"></div>
-			</div>
-			<div class="vertical">
-				<div class="rosterParent">
-					<div class="playerDisplay offscreen" id="player1">
-						<span class="rosterDisplay">
-							<div class="heroDisplay">
-								<span class="namePlate">
-									<span class="rosterName"></span>
-									<span class="roleIcon"></span
-								></span>
-							</div>
+
+<head>
+	<title>Roster View</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="css/roster-view.css" />
+	<script src="../js/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+
+	<script src="../js/z-theme.js"></script>
+	<script src="../js/z-teams.js"></script>
+	<script defer src="roster-view.js"></script>
+	<style id="teamStyle"></style>
+
+	<style>
+		.LOADING {
+			transform: scaleX(0);
+		}
+	</style>
+</head>
+
+
+<body>
+	<div class="graphic OWD">
+		<div class="teamInformation offscreen">
+			<img src="" alt="" class="logo" />
+			<div class="topText"></div>
+		</div>
+		<div class="vertical">
+			<div class="rosterParent">
+				<div class="playerDisplay offscreen LOADING" id="player1">
+					<div class="heroDisplay">
+						<span class="namePlate offscreen">
+							<span class="rosterName"></span>
+							<span class="roleIcon"></span></span>
 						</span>
 					</div>
+				</div>
 
-					<div class="playerDisplay offscreen" id="player2">
-						<span class="rosterDisplay">
-							<div class="heroDisplay">
-								<span class="namePlate">
-									<span class="rosterName"></span>
-									<span class="roleIcon"></span
-								></span>
-							</div>
-						</span>
+				<div class="playerDisplay offscreen LOADING" id="player2">
+					<div class="heroDisplay">
+						<span class="namePlate offscreen">
+							<span class="rosterName"></span>
+							<span class="roleIcon"></span></span>
 					</div>
+				</div>
 
-					<div class="playerDisplay offscreen" id="player3">
-						<span class="rosterDisplay">
-							<div class="heroDisplay">
-								<span class="namePlate">
-									<span class="rosterName"></span>
-									<span class="roleIcon"></span
-								></span>
-							</div>
-						</span>
+				<div class="playerDisplay offscreen LOADING" id="player3">
+					<div class="heroDisplay">
+						<span class="namePlate offscreen">
+							<span class="rosterName"></span>
+							<span class="roleIcon"></span></span>
 					</div>
+				</div>
 
-					<div class="playerDisplay offscreen" id="player4">
-						<span class="rosterDisplay">
-							<div class="heroDisplay">
-								<span class="namePlate">
-									<span class="rosterName"></span>
-									<span class="roleIcon"></span
-								></span>
-							</div>
-						</span>
+				<div class="playerDisplay offscreen LOADING" id="player4">
+					<div class="heroDisplay">
+						<span class="namePlate offscreen">
+							<span class="rosterName"></span>
+							<span class="roleIcon"></span></span>
 					</div>
+				</div>
 
-					<div class="playerDisplay offscreen" id="player5">
-						<span class="rosterDisplay">
-							<div class="heroDisplay">
-								<span class="namePlate">
-									<span class="rosterName"></span>
-									<span class="roleIcon"></span
-								></span>
-							</div>
-						</span>
+				<div class="playerDisplay offscreen LOADING" id="player5">
+					<div class="heroDisplay">
+						<span class="namePlate offscreen">
+							<span class="rosterName"></span>
+							<span class="roleIcon"></span></span>
 					</div>
+				</div>
 
-					<div class="playerDisplay offscreen" id="player6">
-						<span class="rosterDisplay">
-							<div class="heroDisplay">
-								<span class="namePlate">
-									<span class="rosterName"></span>
-									<span class="roleIcon"></span
-								></span>
-							</div>
-						</span>
+				<div class="playerDisplay offscreen LOADING" id="player6">
+					<div class="heroDisplay">
+						<span class="namePlate offscreen">
+							<span class="rosterName"></span>
+							<span class="roleIcon"></span></span>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>

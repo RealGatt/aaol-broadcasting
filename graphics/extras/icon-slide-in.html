@@ -1,0 +1,69 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/z-theme.js"></script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            margin: 0px auto;
+            overflow: hidden;
+            font-family: 'Teko';
+        }
+
+        .footer {
+            position: fixed;
+            left: 0px;
+            top: 950px;
+            width: 1870px;
+            clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+            display: flex;
+            /* YEAH THIS IS HUGE */
+            flex-direction: row;
+            align-items: center;
+            /* YEAH THIS IS HUGE */
+            justify-content: center;
+            /* YEAH THIS IS HUGE */
+            padding: 25px;
+        }
+
+        .orgimage {
+            flex: 1 1 0;
+            height: 100px;
+            max-width: 100%;
+            background-position: left;
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: slideup 1s;
+            animation-fill-mode: backwards;
+            animation-delay: 1s;
+            background-position: center;
+        }
+
+        @keyframes slideup {
+            0% {
+                transform: translateY(150%);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .LOADING {
+            display: none;
+        }
+    </style>
+    <script>
+        themeCallback = () => {
+            $(".orgimage").css("background-image", `url(${cachedThemeObj.assets.orgIcon})`)
+            $(".LOADING").removeClass("LOADING");
+        }
+    </script>
+</head>
+
+<body class="LOADING">
+    <div class="footer">
+        <div class="orgimage"></div>
+    </div>
+</body>

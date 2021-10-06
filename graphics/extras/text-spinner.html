@@ -1,0 +1,74 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/jquery.vticker.js"></script>
+    <script src="../js/z-theme.js"></script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            margin: 0px auto;
+            overflow: hidden;
+            font-family: var(--FONT);
+            overflow: hidden;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0px;
+            top: 950px;
+            width: 1920px;
+            display: block;
+        }
+
+        .tickerParent {
+            font-size: 5em;
+            overflow-y: hidden !important;
+        }
+
+        li,
+        ul {
+            display: block;
+            list-style: none;
+            width: 100%;
+            margin: auto !important;
+            padding: auto !important;
+            text-align: center;
+            color: white;
+        }
+
+        .LOADING {
+            display: none;
+        }
+    </style>
+    <script>
+        themeCallback = () => {
+
+            $(".LOADING").removeClass("LOADING");
+            $("ul").empty();
+
+            let lines = cachedThemeObj.assets.advertBoxSpinnerLines.split("||") ?? [];
+            for (let line in lines) {
+                $("ul").append(`<li>${lines[line]}</li>`);
+            }
+
+            $(".tickerParent").vTicker({
+                speed: 400,
+                pause: 3000,
+                showItems: 1,
+                padding: 4,
+                margin: 4
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="footer">
+        <div class="tickerParent">
+            <ul></ul>
+        </div>
+    </div>
+
+</body>

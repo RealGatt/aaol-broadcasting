@@ -1,0 +1,385 @@
+:root {
+    --mapViewIncompleteMapBackgroundColor: gray;
+    --mapViewDrawMapBackgroundColor: rgb(0, 174, 255);
+    --mapViewMapNameColor: white;
+}
+
+@keyframes slideup {
+    0% {
+        clip-path: polygon(50% 0, 50% 0%, 50% 100%, 50% 100%);
+        transform: translateX(-50%);
+    }
+    100% {
+        clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes wrapperanimate {
+    0% {
+        transform: translate(50%, 50%)/* skewX(-15deg) */
+        ;
+        clip-path: polygon(0% 0, 0 0%, 0% 152px, 0% 152px);
+    }
+    50% {
+        transform: translate(0%, 50%)/* skewX(-15deg) */
+        ;
+        clip-path: polygon(0% 0, 100% 0%, 100% 152px, 0% 152px);
+    }
+    100% {
+        transform: translateY(0%, 0%)/* skewX(-15deg) */
+        ;
+        clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+@keyframes slideright {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes slideleft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+div.tournament {
+    animation: slideright 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+div.channel {
+    animation: slideleft 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+div.wrapper {
+    animation: wrapperanimate 1.0s;
+    animation-fill-mode: backwards;
+    animation-delay: 0.5s;
+}
+
+div.mapwrap1, div.mapinfo1 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.0s;
+}
+
+div.mapwrap2, div.mapinfo2 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.2s;
+}
+
+div.mapwrap3, div.mapinfo3 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.4s;
+}
+
+div.mapwrap4, div.mapinfo4 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.6s;
+}
+
+div.mapwrap5, div.mapinfo5 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.8s;
+}
+
+div.mapwrap6, div.mapinfo6 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2.0s;
+}
+
+div.mapwrap7, div.mapinfo7 {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2.2s;
+}
+
+div.mapbg1 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.2s;
+}
+
+div.mapbg2 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.4s;
+}
+
+div.mapbg3 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.6s;
+}
+
+div.mapbg4 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.8s;
+}
+
+div.mapbg5 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2.0s;
+}
+
+div.mapbg6 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2.2s;
+}
+
+div.mapbg7 div.mapscore {
+    animation: slideup 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2.4s;
+}
+
+body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+div {
+    text-align: center;
+    vertical-align: middle;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+}
+
+span {
+    text-align: center;
+    vertical-align: middle;
+    font-family: var(--FONT);
+    text-transform: uppercase;
+    /* text-shadow: 0px 0px 15px #000000; */
+    font-weight: bold;
+    font-size: 1.95em;
+}
+
+div.wrapper {
+    position: fixed;
+    left: 247px;
+    top: 94px;
+    width: 1398px;
+    height: 828px;
+    background-color: var(--mapViewBackgroundColor);
+    border-style: solid;
+    border-width: 0px 6px 0px 6px;
+    border-left-color: var(--mapViewLeftSideBorderColor);
+    border-right-color: var(--mapViewLeftSideBorderColor);
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+div.scoreboard {
+    height: 152px;
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+}
+
+div.scoreboard span {
+    font-size: 6em;
+    font-family: var(--FONT);
+    color: var(--mapViewMatchNameColor);
+    position: relative;
+    top: -5px;
+}
+
+div.mapgroup {
+    display: flex;
+    flex-direction: row;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+    flex: 1;
+    height: 493px;
+}
+
+div.mapbg {
+    width: 100%;
+    height: 493px;
+    background-color: black;
+    min-width: 100%;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+div.textgroup {
+    width: 100%;
+    height: 183px;
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: column;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+    min-width: 100%;
+}
+
+div.mapwrap {
+    flex: 1 1 0;
+    /* YEAH THIS IS HUGE */
+}
+
+div.mapinfo {
+    flex: 1 1 0;
+    width: 100%;
+    padding: 0px 10px 0px 10px;
+    /* YEAH THIS IS HUGE */
+}
+
+div.mapnames, div.maptypes {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 100%;
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: row;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+    min-width: 100%;
+}
+
+span.maptype {
+    color: var(--mapViewGamemodeTextColor);
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
+span.mapname {
+    color: var(--mapViewMapNameColor);
+}
+
+img, video {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    left: 0%;
+    object-fit: cover;
+    border: 0px;
+    overflow: visible;
+    opacity: 0.5;
+}
+
+img {
+    display: block;
+}
+
+video {
+    display: none;
+}
+
+div.mapscore {
+    position: relative;
+    height: 100%;
+    top: -100%;
+    padding: 0px 10px 0px 10px;
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: column;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+}
+
+div.mapscore span {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+}
+
+span.logo {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-filter: drop-shadow(0 0 10px black);
+}
+
+span.teamname {
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    font-size: 3em;
+    font-family: var(--FONT);
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+}
+
+span.score {
+    font-weight: normal;
+    font-size: 4em;
+    font-family: var(--FONT);
+    color: white;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+div.footer {
+    position: absolute;
+    left: 0px;
+    top: 950px;
+    width: 1870px;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: row;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+    padding: 25px;
+}
+
+div.tournament {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.channel {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+span.tertiary {
+    font-size: 1.8em;
+    border-style: solid;
+    font-weight: bold;
+    text-align: center;
+    font-family: var(--FONT);
+    padding: 3px 15px 2px 15px;
+    border-width: 0px 6px 0px 6px;
+    background-color: black;
+}

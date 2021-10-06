@@ -1,77 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="../css/bootstrap.min.css" />
-		<script src="../js/bootstrap.bundle.min.js"></script>
-		<script src="../js/jquery.min.js"></script>
-		<script defer src="panel-config.js"></script>
-		<style>
-			.monospace {
-				font-family: monospace;
-			}
-			.disabled {
-				display: none;
-			}
-			.section {
-				border-bottom: 1px dashed white;
-				padding: 16px;
-			}
-			.imageDisplay {
-				max-width: inherit;
-				min-width: 256px;
-				border: none;
-				background-color: transparent;
-			}
-			.icon {
-				border: none;
-				background-color: transparent;
-				max-height: 32px !important;
-			}
-		</style>
-	</head>
-	<body class="bg-dark text-white">
-		<br />
-		<div class="container-fluid input-group mb-3">
-			<div id="theme" class="container-fluid">
-				<div id="themeLoader">
-					<div class="input-group mb-3">
-						<input
-							type="text"
-							class="form-control"
-							id="newThemeName"
-							placeholder="New Theme Name"
-						/>
-						<button class="btn btn-success" onclick="createTheme()">
-							Create Theme
-						</button>
-						<select
-							class="form-select"
-							name="selectTheme"
-							id="selectTheme"
-						></select>
-						<button class="btn btn-warning" onclick="loadTheme()">
-							Load Theme
-						</button>
-					</div>
-				</div>
-				<hr />
 
-				<div id="themeConfiguration" class="">
-					<div class="input-group" id="topbar">				
-						<span class="input-group-text" id="themeName">Select a theme</span>
-						<button class="btn btn-danger" disabled onclick="deleteTheme()">
-							Delete Theme
-						</button>
-						<button class="btn btn-info" disabled onclick="saveTheme()">
-							Save Theme
-						</button>
-						<button class="btn btn-success" disabled onclick="setCurrent()">
-							Set Current Theme
-						</button>
-					</div>
+<head>
+	<meta charset="UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+		crossorigin="anonymous"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script defer src="panel-config.js"></script>
+	<style>
+		.monospace {
+			font-family: monospace;
+		}
+
+		.disabled {
+			display: none;
+		}
+
+		.section {
+			border-bottom: 1px dashed white;
+			padding: 16px;
+		}
+
+		.imageDisplay {
+			max-width: inherit;
+			min-width: 256px;
+			border: none;
+			background-color: transparent;
+		}
+
+		.icon {
+			border: none;
+			background-color: transparent;
+			max-height: 32px !important;
+		}
+
+		.colorDisplay {
+			color: white;
+			background-color: black;
+			text-align: center;
+		}
+
+		.colorDisplay::after {
+			content: "";
+			width: 64px;
+			height: 32px;
+			background-color: var(--displayColor);
+			position: absolute;
+			text-align: left;
+			left: 0px;
+			top: -1px;
+			z-index: 0;
+			margin-left: -1px;
+			border-radius: .25rem;
+			border: 1px solid #ced4da;
+		}
+	</style>
+</head>
+
+<body class="bg-dark text-white">
+	<br />
+	<div class="container-fluid input-group mb-3">
+		<div id="theme" class="container-fluid">
+			<div id="themeLoader">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" id="newThemeName" placeholder="New Theme Name" />
+					<button class="btn btn-success" onclick="createTheme()">
+						Create Theme
+					</button>
+					<select class="form-select" name="selectTheme" id="selectTheme"></select>
+					<button class="btn btn-warning" onclick="loadTheme()">
+						Load Theme
+					</button>
+				</div>
+			</div>
+			<hr />
+
+			<div id="themeConfiguration" class="">
+				<div class="input-group" id="topbar">
+					<span class="input-group-text" id="themeName">Select a theme</span>
+					<button class="btn btn-danger" disabled onclick="deleteTheme()">
+						Delete Theme
+					</button>
+					<button class="btn btn-info" disabled onclick="saveTheme()">
+						Save Theme
+					</button>
+					<button class="btn btn-success" disabled onclick="setCurrent()">
+						Set Current Theme
+					</button>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>

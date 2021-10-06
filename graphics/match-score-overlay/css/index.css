@@ -99,6 +99,7 @@ body{
     top: 28px;
     text-align: center;
     font-family: "FuturaPTHeavy", Arial, sans-serif;
+    color: #3a3a3a;
 }
 
 .hiddenCasters{
@@ -109,7 +110,7 @@ body{
 .casters{
     transition: all 2s;
     position: absolute;
-    bottom: 0px;
+    bottom: 100px;
     left: calc(50% - 242.5px);
 }
 

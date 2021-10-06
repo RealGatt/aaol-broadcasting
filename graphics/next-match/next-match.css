@@ -1,0 +1,454 @@
+@keyframes teamslideright {
+    0% {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+        transform: translateX(-100%) skew(-20deg);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px) skew(-20deg);
+    }
+}
+
+@keyframes teamslideleft {
+    0% {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        transform: translateX(100%) skew(20deg);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px) skew(20deg);
+    }
+}
+
+@keyframes teamsliderightnoskew {
+    0% {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+        transform: translateX(-100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes teamslideleftnoskew {
+    0% {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        transform: translateX(100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes teamsliderightbackground {
+    0% {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+        transform: translateX(-100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes teamslideleftbackground {
+    0% {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        transform: translateX(100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 4.5% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes scoreright {
+    0% {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+        transform: translateX(-100%) skew(-20deg);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(-55px) skew(-20deg);
+    }
+}
+
+@keyframes scoreleft {
+    0% {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        transform: translateX(100%) skew(20deg);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(-35px) skew(20deg);
+    }
+}
+
+@keyframes slideright {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes slideleft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.LOADING {
+    display: none !important;
+}
+
+body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 255);
+    font-family: var(--FONT), sans-serif;
+    border-color: var(--nextMatchBackgroundColor);
+}
+
+.header {
+    font-family: var(--FONT), sans-serif;
+    text-transform: uppercase;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 50px;
+    width: 1820px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+    font-size: 3em;
+}
+
+.info {
+    flex: 1 1 100%;
+    animation: headeranimate2 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .5s;
+}
+
+.title {
+    flex: 1 1 100%;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+    top: -37px;
+    animation: headeranimate 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .7s;
+}
+
+.wrapper {
+    position: absolute;
+    left: 0px;
+    top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 1620px;
+    height: 700px;
+    padding: 0px 150px 0px 150px;
+}
+
+.nextwrapper {
+    display: none;
+}
+
+.scoreboardwrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    /* flex: 1 1 100%; */
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+}
+
+.matchinfo {
+    font-family: var(--FONT), sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2em;
+    padding: 0px 0px 20px 0px;
+    position: relative;
+    top: -10px;
+    color: var(--nextMatchMatchInfoTextColor);
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.scoreboard .vs {
+    flex: 0 0 0;
+    background-color: var(--nextMatchVSBlockColor);
+    color: var(--nextMatchVSBlockTextColor);
+    height: 100px;
+    min-width: 150px;
+    max-width: 150px;
+    z-index: 10;
+}
+
+.scoreboard .vs span {
+    font-family: var(--FONT), sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: var(--SCOREBOX-VS-FONTSIZE);
+    position: relative;
+}
+
+.team {
+    flex: 1 1 0;
+    display: flex;
+    height: 100px;
+    background-color: #000000;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.team1::before {
+    position: absolute;
+    height: 100px;
+    width: 770px;
+    z-index: -2;
+    content: "";
+    background-color: var(--nextMatchBackgroundColor);
+    color: var(--nextMatchPrimaryColor);
+    border-left: var(--nextMatchBorderColor) 12px solid;
+    transform: skew(20deg);
+    animation-fill-mode: backwards;
+}
+
+.team2::before {
+    position: absolute;
+    height: 100px;
+    width: 780px;
+    z-index: -2;
+    content: "";
+    background-color: var(--nextMatchBackgroundColor);
+    color: var(--nextMatchPrimaryColor);
+    border-right: var(--nextMatchBorderColor) 12px solid;
+    transform: skew(-20deg);
+    animation-fill-mode: backwards;
+}
+
+.team1::after {
+    position: absolute;
+    height: 100px;
+    width: 795px;
+    z-index: -1;
+    content: "";
+    background: var(--team1background);
+    background-position: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 4% 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.team2::after {
+    position: absolute;
+    height: 100px;
+    width: 806px;
+    z-index: -1;
+    content: "";
+    overflow-x: hidden;
+    background: var(--team2background);
+    background-position: center;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.team1, .team2 {
+    color: var(--nextMatchPrimaryColor);
+    background-color: transparent;
+    animation-fill-mode: backwards;
+}
+
+.slideout>.team1 {
+    animation-delay: 1s;
+    animation: teamslideleftnoskew 0.7s;
+    animation-direction: reverse !important;
+    animation-play-state: running;
+    transform: translateX(-1000%);
+}
+
+.slideout>.team2 {
+    animation-delay: 1s;
+    animation: teamsliderightnoskew 0.7s;
+    animation-direction: reverse !important;
+    animation-play-state: running;
+    transform: translateX(1000%);
+}
+
+.slideout>.team1::before {
+    animation-delay: 1s;
+    animation: teamslideleft 0.7s;
+    animation-direction: reverse !important;
+    animation-play-state: running;
+    transform: translateX(-1000%) skew(-20deg);
+}
+
+.slideout>.team2::before {
+    animation-delay: 1s;
+    animation: teamslideright 0.7s;
+    animation-direction: reverse !important;
+    animation-play-state: running;
+    transform: translateX(1000%) skew(-20deg);
+}
+.slideout>.team2::after {
+    animation-delay: 1s;
+    animation: teamsliderightnoskew 0.5s;
+    animation-direction: reverse !important;
+    animation-play-state: running;
+    transform: translateX(1000%);
+}
+
+.slidein>.team1 {
+    animation: teamslideleftnoskew 0.5s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+.slidein>.team1::before {
+    animation: teamslideleft 0.7s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+.slidein>.team2 {
+    animation: teamsliderightnoskew 0.5s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+.slidein>.team2::before {
+    animation: teamslideright 0.7s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+
+.slidein>.team2::after {
+    animation: teamsliderightbackground 0.7s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+    clip-path: polygon(0 0, 100% 0, 95.5% 100%, 0% 100%);
+}
+.slidein>.team1::after {
+    animation: teamslideleftbackground 0.7s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 4.5% 100%);
+}
+
+
+.currentMatch::before {
+    --nextMatchBorderColor: var(--nextMatchCurrentMatchBorderColor);
+}
+
+.completedMatch::before {
+    --nextMatchBorderColor: var(--nextMatchCompletedMatchBorderColor);
+}
+
+.teamname {
+    flex: 5 1 0;
+    font-family: var(--FONT), sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 4rem;
+    position: relative;
+    bottom: 0.02em;
+    color: var(--nextMatchTeamNameColor);
+}
+
+.teamscore {
+    font-family: var(--FONT), sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: var(--SCOREBOX-VS-FONTSIZE);
+    position: relative;
+    z-index: 1;
+    color: var(--nextMatchScoreboxTextColor)
+}
+
+.scorebox {
+    flex: 1 1 0;
+}
+
+.scorebox::before {
+    position: absolute;
+    content: "";
+    z-index: 0;
+    width: 125px;
+    height: 100px;
+    background-color: var(--nextMatchScoreboxBackgroundColor);
+}
+
+.team1>.scorebox::before {
+    transform: translateX(-35px) translateY(var(--SCOREBOX-Y-OFFSET)) skew(20deg);
+    border-left: var(--left-team-color) 6px solid;
+}
+
+.team2>.scorebox::before {
+    transform: translateX(-55px) translateY(var(--SCOREBOX-Y-OFFSET)) skew(-20deg);
+    border-right: var(--right-team-color) 6px solid;
+}
+
+.completedMatch>.scorebox::before {
+    background-color: var(--nextMatchCompletedMatchScoreboxBackgroundColor) !important;
+}
+
+.completedMatch>.scorebox>.teamscore {
+    color: var(--nextMatchCompletedMatchScoreboxTextColor) !important;
+}
+
+img {
+    height: 80px;
+    width: 80px;
+    max-height: 80px;
+    max-width: 80px;
+    margin: 10px;
+    object-fit: contain;
+    overflow: hidden;
+    z-index: 100;
+}
+
+span.tertiary {
+    font-size: 1.8em;
+    border-style: solid;
+    font-weight: bold;
+    text-align: center;
+    font-family: var(--FONT), sans-serif;
+    text-transform: uppercase;
+    padding: 3px 15px 2px 15px;
+    border-width: 0px 6px 0px 6px;
+    background-color: var(--PRIMARY);
+    color: var(--SECONDARY);
+    border-color: var(--TERTIARY);
+}

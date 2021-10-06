@@ -1,0 +1,386 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url("../assets/fonts/Font Awesome/Font Awesome 5 Brands-Regular-400.otf") format('OpenType');
+}
+
+@keyframes headeranimate {
+    0% {
+        transform: translateX(1920px);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes headeranimate2 {
+    0% {
+        transform: translateX(-1920px);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes teamslideright {
+    0% {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+        transform: translateX(-100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes teamslideleft {
+    0% {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        transform: translateX(100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes slideright {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes slideleft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 255);
+    font-family: 'Teko';
+}
+
+.header {
+    font-family: 'Teko';
+    text-transform: uppercase;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 50px;
+    width: 1820px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+    font-size: 3em;
+}
+
+.info {
+    flex: 1 1 100%;
+    animation: headeranimate2 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .5s;
+}
+
+.info-notinfo {
+    color: white;
+    flex: 1 1 100%;
+    animation: headeranimate2 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .5s;
+    font-size: 2.25em;
+}
+
+.title {
+    flex: 1 1 100%;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+    top: -37px;
+    animation: headeranimate 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .7s;
+}
+
+.title-nottitle {
+    color: white;
+    flex: 1 1 100%;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+    animation: headeranimate 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .7s;
+}
+
+.wrapper {
+    position: absolute;
+    left: 0px;
+    top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 1620px;
+    height: 700px;
+    padding: 0px 150px 0px 150px;
+}
+
+.nextwrapper {
+    display: none;
+}
+
+.scoreboardwrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    /* flex: 1 1 100%; */
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+}
+
+.matchinfo {
+    font-family: 'Teko';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2em;
+    padding: 0px 0px 20px 0px;
+    position: relative;
+    top: -10px;
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.scoreboard .vs {
+    flex: 0 0 0;
+    background-color: #8cba11;
+    height: 100px;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.scoreboard .vs span {
+    font-family: 'Teko';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 5em;
+    position: relative;
+    bottom: 0.02em;
+}
+
+.team {
+    flex: 1 1 0;
+    height: 100px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-style: solid;
+    border-color: #8cba11;
+}
+
+.team1 {
+    border-width: 0px 0px 0px 6px;
+    animation: teamslideleft 0.5s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+.team2 {
+    border-width: 0px 6px 0px 0px;
+    animation: teamslideright 0.5s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+.teamname {
+    flex: 5 1 0;
+    font-family: 'Teko';
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 3em;
+    position: relative;
+    bottom: 0.02em;
+}
+
+.teamname-notteamname {
+    animation: headeranimate 1s;
+    animation-fill-mode: backwards;
+    animation-delay: .7s;
+    color: white;
+    flex: 5 1 0;
+    font-family: 'Teko';
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 3em;
+    position: relative;
+    bottom: 0.02em;
+}
+
+.teamscore {
+    font-family: 'Teko';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 5em;
+    position: relative;
+    bottom: 0.02em;
+}
+
+.scorebox {
+    flex: 1 1 0;
+    top: 0px;
+    height: 100px;
+    max-width: 105px;
+}
+
+img {
+    height: 80px;
+    width: 80px;
+    max-height: 80px;
+    max-width: 80px;
+    margin: 10px;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.socials {
+    font-family: 'Teko';
+    text-transform: uppercase;
+    position: absolute;
+    left: 0px;
+    top: 920px;
+    width: 1520px;
+    padding: 0px 200px 0px 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 3em;
+}
+
+.socials div {
+    flex: 1 1 0;
+}
+
+.socials span:before {
+    padding-right: 10px;
+}
+
+.twitter:before {
+    font-family: 'FontAwesome';
+    content: "\f099"
+    /* twitter logo */
+    /* content:"\f1e8" twitch logo*/
+}
+
+.twitch:before {
+    font-family: 'FontAwesome';
+    content: "\f1e8"
+    /* twitter logo */
+    /* content:"\f1e8" twitch logo*/
+}
+
+.youtube:before {
+    font-family: 'FontAwesome';
+    content: "\f167"
+    /* twitter logo */
+    /* content:"\f1e8" twitch logo*/
+}
+
+.footer {
+    position: fixed;
+    left: 0px;
+    top: 950px;
+    width: 2000px;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: row;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+    padding: 25px;
+}
+
+.tournament {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideright 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+.channel {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideleft 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+@keyframes tagline {
+    0% {
+        clip-path: polygon(0% -100%, 0 -100%, 0% 200%, 0% 200%);
+        transform: translateX(50%)
+        /* skewX(-15deg) */
+        ;
+    }
+    100% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+        transform: translateX(0%)
+        /* skewX(-15deg) */
+        ;
+    }
+}
+
+div.tagline {
+    min-width: 375px;
+    animation: tagline .5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2s;
+    /* transform: skewX(-15deg); */
+}
+
+span.tertiary {
+    font-size: 1.8em;
+    border-style: solid;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Teko';
+    text-transform: uppercase;
+    padding: 3px 15px 2px 15px;
+    border-width: 0px 6px 0px 6px;
+    background-color: black;
+}

@@ -1,0 +1,279 @@
+
+
+@keyframes teamanimate {
+    0% {
+        clip-path: polygon(0% 0, 0 0%, 0% 100%, 0% 100%);
+        transform: translateX(50%);
+    }
+    100% {
+        clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0%);
+    }
+}
+
+@keyframes headeranimate {
+    0% {
+        transform: translateX(120%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideright {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes slideleft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+
+:root {
+    --PRIMARY: #ffffff;
+    --SECONDARY: #000000;
+    --TERTIARY: #8cba11;
+    --QUATERNARY: #ffffff;
+    --QUINARY: #fff;
+    --SENARY: #fff;
+}
+
+.LOADING { display: none; }
+
+body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border-color: var(--TERTIARY);
+    font-family: 'Teko', sans-serif;
+    text-transform: uppercase;
+}
+
+.header {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: right;
+    text-align: right;
+    font-size: 3em;
+}
+
+.info {
+    flex: 1 1 100%;
+    animation: headeranimate 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+.title {
+    flex: 1 1 100%;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+    top: -37px;
+    right: -6px;
+    animation: headeranimate 0.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.2s;
+}
+
+.wrapper {
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 1920px;
+    height: 880px;
+    font-size: 2em;
+    /* transform: skewX(-15deg); */
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.teamData {
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+	/*clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);  that cut corner look */
+    padding: 0px 10px 0px 10px;
+}
+
+.team {
+    transition: all 0.5s ease-in-out;
+    min-width: 400px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+    padding: 0px 0px 0px 10px;
+    background-color: black;
+    border-width: 0px 0px 0px 6px;
+    border-color: var(--TERTIARY);
+    border-style: solid;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    animation: teamanimate 0.3s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+.player {
+    min-width: 400px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+    padding: 0px 0px 0px 10px;
+    background-color: black;
+    border-width: 0px 0px 0px 6px;
+    border-color: var(--TERTIARY);
+    border-style: solid;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    animation: teamanimate 0.3s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+    z-index: 100;
+}
+
+.player:nth-child(2n+0){
+    animation-delay: 1.2s !important;
+}
+
+.player:nth-child(3n+0){
+    animation-delay: 1.3s !important;
+}
+
+.dummy {
+    visibility: hidden;
+}
+
+.matchinfo {
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    animation: teamanimate 0.3s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+    font-weight: bold;
+}
+
+.teamname {
+    transition: all 0.5s ease-in-out;
+    flex: 5 5 0;
+    padding: 0px 0px 0px 0px;
+}
+
+.teamscore, .teamkills {
+    flex: 1 1 0;
+    padding: 1px 0px 0px 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.teamscore{
+    position: relative;
+    left: -12px;
+}
+
+.teamkills {
+    margin-left: 4px;
+}
+
+.playername {
+    flex: 5 5 0;
+    padding: 0px 0px 0px 0px;
+}
+
+.playericon{
+    max-width: 48px;
+    image-rendering: crisp-edges;
+}
+
+.playerscore {
+    max-width: 32px;
+    min-width: 32px;
+    padding: 2px 0px 2px 0px;
+    font-size: 1em;
+    font-weight: bold;
+    z-index: 10;
+}
+
+img {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    overflow: hidden;
+    /* transform: skewX(15deg); */
+}
+
+.footer {
+    position: fixed;
+    left: 0px;
+    top: 950px;
+    width: 1870px;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: row;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+    padding: 25px;
+}
+
+.tournament {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideright 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+.channel {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideleft 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}

@@ -1,41 +1,37 @@
 {
-	"assault": [
-		{"name":"Hanamura", "file":"Hanamura.png"},
-		{"name":"Horizon Lunar Colony", "file":"Horizon_Lunar_Colony.png"},
-		{"name":"Paris", "file":"Paris.png"},
-		{"name":"Temple of Anubis", "file":"Temple_of_Anubis.png"},
-		{"name":"Volskaya Industries", "file":"Volskaya_Industries.png"}
-	],
-	"escort": [
-		{"name":"Dorado", "file":"Dorado.png"},
-		{"name":"Havana", "file":"Havana.png"},
-		{"name":"Junkertown", "file":"Junkertown.png"},
-		{"name":"Rialto", "file":"Rialto.png"},
-		{"name":"Route 66", "file":"Route_66.png"},
-		{"name":"Watchpoint: Gibraltar", "file":"Waterpoint-_Gibraltar.png"}
-	],
-	"hybrid": [
-		{"name":"Blizzard World", "file":"Blizzard_World.png"},
-		{"name":"Eichenwalde", "file":"Eichenwalde.png"},
-		{"name":"Hollywood", "file":"Hollywood.png"},
-		{"name":"King's Row", "file":"King's_Row.png"},
-		{"name":"Numbani", "file":"Numbani.png"}
-	],
-	"control": [
-		{"name":"Busan", "file":"Busan.png"},
-		{"name":"Ilios", "file":"Ilios.png"},
-		{"name":"Lijiang Tower", "file":"Lijiang_Tower.png"},
-		{"name":"Nepal", "file":"Nepal.png"},
-		{"name":"Oasis", "file":"Oasis.png"}
-	],
-	"arcade": [
-		{"name":"Black Forest", "file":""},
-		{"name":"Castillo", "file":""},
-		{"name":"Ecopoint: Antarctica", "file":""},
-		{"name":"Necropolis", "file":""},
-		{"name":"Château Guillard", "file":""},
-		{"name":"Kanezaka", "file":""},
-		{"name":"Petra", "file":""},
-		{"name":"Ayutthaya", "file":""}
+	"gamemodes": [
+		{"name":"Assault", "file":"Assault.png"},
+		{"name":"Escort", "file":"Escort.png"},
+		{"name":"Hybrid", "file":"Hybrid.png"},
+		{"name":"Control", "file":"Control.png"},
+		{"name":"Arcade", "file":"Numbani.png"}],
+	"allmaps": [
+		{"name":"Hanamura", "file":"Hanamura.png", "gamemode": "Assault"},
+		{"name":"Horizon Lunar Colony", "file":"Horizon_Lunar_Colony.png", "gamemode": "Assault"},
+		{"name":"Paris", "file":"Paris.png", "gamemode": "Assault"},
+		{"name":"Temple of Anubis", "file":"Temple_of_Anubis.png", "gamemode": "Assault"},
+		{"name":"Volskaya Industries", "file":"Volskaya_Industries.png", "gamemode": "Assault"},
+		{"name":"Dorado", "file":"Dorado.png", "gamemode": "Escort"},
+		{"name":"Havana", "file":"Havana.png", "gamemode": "Escort"},
+		{"name":"Junkertown", "file":"Junkertown.png", "gamemode": "Escort"},
+		{"name":"Rialto", "file":"Rialto.png", "gamemode": "Escort"},
+		{"name":"Route 66", "file":"Route_66.png", "gamemode": "Escort"},
+		{"name":"Watchpoint: Gibraltar", "file":"Watchpoint-_Gibraltar.png", "gamemode": "Escort"},
+		{"name":"Blizzard World", "file":"Blizzard_World.png", "gamemode": "Hybrid"},
+		{"name":"Eichenwalde", "file":"Eichenwalde.png", "gamemode": "Hybrid"},
+		{"name":"Hollywood", "file":"Hollywood.png", "gamemode": "Hybrid"},
+		{"name":"King's Row", "file":"King's_Row.png", "gamemode": "Hybrid"},
+		{"name":"Numbani", "file":"Numbani.png", "gamemode": "Hybrid"},
+		{"name":"Busan", "file":"Busan.png", "gamemode": "Control"},
+		{"name":"Ilios", "file":"Ilios.png", "gamemode": "Control"},
+		{"name":"Lijiang Tower", "file":"Lijiang_Tower.png", "gamemode": "Control"},
+		{"name":"Nepal", "file":"Nepal.png", "gamemode": "Control"},
+		{"name":"Oasis", "file":"Oasis.png", "gamemode": "Control"},
+		
+		{"gamemode":"Upcoming","name":"Gamemode: Assault", "displayedName":"Assault", "file":"Assault.png"},
+		{"gamemode":"Upcoming", "name":"Gamemode: Escort", "displayedName":"Escort", "file":"Escort.png"},
+		{"gamemode":"Upcoming", "name":"Gamemode: Hybrid", "displayedName":"Hybrid", "file":"Hybrid.png"},
+		{"gamemode":"Upcoming","name":"Gamemode: Control", "displayedName":"Control", "file":"Control.png"},
+		{"gamemode":"Upcoming", "name":"Gamemode: Arcade", "displayedName":"Arcade", "file":"Numbani.png"}
 	]
 }

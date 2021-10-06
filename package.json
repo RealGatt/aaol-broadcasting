@@ -76,21 +76,21 @@
     ],
     "dashboardPanels": [
       {
-        "name": "score-panel",
-        "title": "Score Manager",
-        "file": "matchmanager/scoreboard-controls.html",
-        "fullbleed": false,
-        "headerColor": "#6b54b6",
-        "width": 4,
-        "workspace": ".Match Manager"
-      },
-      {
         "name": "match-set-panel",
-        "title": "Match List",
+        "title": "Matches (Next Match Overlay)",
         "file": "matchmanager/match-set.html",
         "fullbleed": false,
         "headerColor": "#6b54b6",
-        "width": 5,
+        "width": 7,
+        "workspace": ".Match Manager"
+      },
+      {
+        "name": "scoreboard-controls",
+        "title": "Match Scores and Maps",
+        "file": "matchmanager/scoreboard-controls.html",
+        "fullbleed": false,
+        "headerColor": "#6b54b6",
+        "width": 10,
         "workspace": ".Match Manager"
       },
       {
@@ -128,6 +128,7 @@
     ],
     "graphics": [
       {
+        "title": "Match Score Overlay",
         "file": "match-score-overlay/match-score-overlay.html",
         "width": 1920,
         "height": 1080
@@ -143,7 +144,47 @@
         "height": 1080
       },
       {
-        "file": "roster-view-custom/roster-view-custom.html",
+        "file": "map-selection/map-selection.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "team-scores/team-scores.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "cameras/side-by-side.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "cameras/stacked-left.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "cameras/single.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "credits/credits.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "extras/match-title.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "extras/icon-slide-in.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "extras/text-spinner.html",
         "width": 1920,
         "height": 1080
       }
