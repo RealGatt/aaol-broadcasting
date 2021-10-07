@@ -1,117 +1,90 @@
-const teamList = nodecg.Replicant("teamList");
-const matches = nodecg.Replicant("matchList");
-const currentMatch = nodecg.Replicant("currentMatch");
-const themes = nodecg.Replicant("themes");
-const currentTheme = nodecg.Replicant("currentTheme");
-const matchConfiguration = nodecg.Replicant("matchConfiguration");
+themeCallback = () => {
+	console.log(cachedThemeObj);
+	loadColors("scoreOverlay");
+	loadCustomCSS("scoreOverlayCSS");
+	nodecg.sendMessage("showScoreboard", true);
+}
 
-let cachedTeamList;
-let cachedMatchList;
-let cachedCurrentMatch;
-let cachedThemeObj;
-let cachedThemes;
-let cachedThemeId;
-
-themes.on("change", (themes) => {
-	cachedThemes = themes;
-	updateTheme();
-})
-
-currentTheme.on("change", (themeId) => {
-	cachedThemeId = themeId;
-	updateTheme();
-})
-
-
-teamList.on("change", (teamList) => {
-	console.log("Teamlist has been updated", teamList);
-	cachedTeamList = teamList;
-	updateGraphics();
-});
-
-matches.on("change", (matches) => {
-	console.log("Matches has been updated", matches);
-	cachedMatchList = matches;
-	updateGraphics();
-});
-
-currentMatch.on("change", (newMatch) => {
-	console.log("Current match has been updated", newMatch);
-	cachedCurrentMatch = newMatch;
-	updateGraphics();
-});
-
-matchConfiguration.on("change", (newConfig) => {
-	$("#matchTitleDiv").html(newConfig.matchTitle);
-	$("#caster1").html(newConfig.casters[0]);
-	$("#caster2").html(newConfig.casters[1]);
-	if (!newConfig.rolesDisplayed) {
+matchConfigUpdateCallback = () => {
+	console.log(`Loaded match`, cachedMatchConfiguration);
+	$("#matchtext").html(cachedMatchConfiguration.matchTitle);
+	$("#caster1").html(cachedMatchConfiguration.casters[0]);
+	$("#caster2").html(cachedMatchConfiguration.casters[1]);
+	if (!cachedMatchConfiguration.rolesDisplayed) {
 		$("#team1role").hide();
 		$("#team2role").hide();
 	} else {
-		const team1role = newConfig.leftRole == "Attack" ? cachedThemeObj.assets.attackIcon : cachedThemeObj.assets.defenseIcon;
-		const team2role = newConfig.rightRole == "Attack" ? cachedThemeObj.assets.attackIcon : cachedThemeObj.assets.defenseIcon;
+		const team1role = cachedMatchConfiguration.leftRole == "Attack" ? cachedThemeObj.assets.attackIcon : cachedThemeObj.assets.defenseIcon;
+		const team2role = cachedMatchConfiguration.rightRole == "Attack" ? cachedThemeObj.assets.attackIcon : cachedThemeObj.assets.defenseIcon;
 		$("#team1role").hide();
 		$("#team2role").hide();
-		$("#team1role").attr("src", `${team1role}`);
-		$("#team2role").attr("src", `${team2role}`);
+		$("#team1side span").css("background-image", `url(${team1role})`);
+		$("#team2side span").css("background-image", `url(${team2role})`);
 		$("#team1role").show();
 		$("#team2role").show();
 	}
-})
+	updateGraphics();
+}
 
-function updateTheme() {
-	console.log("Theme Stuff", cachedThemeId, cachedThemes);
-	if (cachedThemeId === undefined || !cachedThemes) {
-		console.log("Can't update theme, something is undefined", cachedThemeId, cachedThemes);
-		return;
-	}
-	console.log("Updating Theme");
-	cachedThemeObj = cachedThemes[cachedThemeId];
-	// console.log(cachedThemeObj);
-	// $("#team1").css('background-image', `url(${cachedThemeObj.assets.teamLeftImage})`);
-	// $("#team2").css('background-image', `url(${cachedThemeObj.assets.teamRightImage})`);
-	$("#team1Background").attr("src", cachedThemeObj.assets.teamLeftImage);
-	$("#team2Background").attr("src", cachedThemeObj.assets.teamRightImage);
-	$("#matchTitleBackground").attr("src", cachedThemeObj.assets.mapBackground);
-	$("#castersBackground").attr("src", cachedThemeObj.assets.castersNamesBackground);
+currentMatchCallback = () => {
+	updateGraphics();
 }
 
 function updateGraphics() {
 	console.log("Matches", cachedMatchList);
-	if (!(cachedCurrentMatch !== undefined && cachedTeamList && cachedMatchList)) {
-		console.log("Can't update graphics. Waiting on Cache Data", cachedCurrentMatch, cachedTeamList, cachedMatchList);
+	if (!(loadedMatch !== undefined && cachedTeamList && cachedMatchList)) {
+		console.log("Can't update graphics. Waiting on Cache Data", loadedMatch, cachedTeamList, cachedMatchList);
 		return false;
 	}
 	setTimeout(async function () {
-		const match = Object.entries(cachedMatchList).filter((mtch)=>{console.log(mtch[1], mtch[1].matchId, cachedCurrentMatch); return mtch[1].matchId == currentMatch.value})[0][1]
-	
-		console.log(match);
-		const team1obj = cachedTeamList[match.team1];
-		const team2obj = cachedTeamList[match.team2];
+		console.log(loadedMatch);
+		const team1obj = cachedTeamList[loadedMatch.team1];
+		const team2obj = cachedTeamList[loadedMatch.team2];
 
 		$("#team1name").html(team1obj.name);
 		$("#team2name").html(team2obj.name);
-		$("#team1score").html(match.team1score);
-		$("#team2score").html(match.team2score);
-		$("#team1logo").attr("src", team1obj.logo);
-		$("#team2logo").attr("src", team2obj.logo);
+		$("#team1score").html(loadedMatch.team1score);
+		$("#team2score").html(loadedMatch.team2score);
+		if (team1obj.logo) {
+			$(".team1 .logo").css("background-image", `url(${team1obj.logo})`);
+			$('div.left span.teamname').css("right", "200px");
+			$('div.left span.teamsr').css("right", "210px");
+            $('.team1 .logo').css("display", "inherit");
+            $('.team1 .logoshade').css("display", "inherit");
+		}else{
+			$('div.left span.teamname').css("right", "80px");
+			$('div.left span.teamsr').css("right", "90px");
+            $('.team1 .logo').css("display", "none");
+            $('.team1 .logoshade').css("display", "none");
+		}
+		if (team2obj.logo) {
+			$(".team2 .logo").css("background-image", `url(${team2obj.logo})`);
+			$('div.right span.teamname').css("left", "200px");
+			$('div.right span.teamsr').css("left", "210px");
+            $('.team2 .logo').css("display", "inherit");
+            $('.team2 .logoshade').css("display", "inherit");
+		}else{
+			$('div.right span.teamname').css("left", "80px");
+			$('div.right span.teamsr').css("left", "90px");
+            $('.team2 .logo').css("display", "none");
+            $('.team2 .logoshade').css("display", "none");
+		}
 
 	}, 100);
 }
 
 
-nodecg.listenFor("leftTeam", (shown) => {})
-nodecg.listenFor("rightTeam", (shown) => {})
+nodecg.listenFor("leftTeam", (shown) => { })
+nodecg.listenFor("rightTeam", (shown) => { })
 
 nodecg.listenFor('showScoreboard', (shown) => {
 	console.log("showScoreboard", shown);
-	if (shown){
+	if (shown) {
 		$(".hidden").each(async function (id, e) {
 			$(e).removeClass("hidden");
 			$(e).addClass("not-hidden");
 		})
-	}else{
+	} else {
 		$(".not-hidden").each(async function (id, e) {
 			$(e).removeClass("not-hidden");
 			$(e).addClass("hidden");
@@ -119,12 +92,12 @@ nodecg.listenFor('showScoreboard', (shown) => {
 	}
 });
 nodecg.listenFor('showCasters', (shown) => {
-	if (shown){
+	if (shown) {
 		$(".hiddenCasters").each(async function (id, e) {
 			$(e).removeClass("hiddenCasters");
 			$(e).addClass("not-hiddenCasters");
 		})
-	}else{
+	} else {
 		$(".not-hiddenCasters").each(async function (id, e) {
 			$(e).removeClass("not-hiddenCasters");
 			$(e).addClass("hiddenCasters");

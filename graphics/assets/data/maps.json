@@ -28,10 +28,10 @@
 		{"name":"Nepal", "file":"Nepal.png", "gamemode": "Control"},
 		{"name":"Oasis", "file":"Oasis.png", "gamemode": "Control"},
 		
-		{"gamemode":"Upcoming","name":"Gamemode: Assault", "displayedName":"Assault", "file":"Assault.png"},
-		{"gamemode":"Upcoming", "name":"Gamemode: Escort", "displayedName":"Escort", "file":"Escort.png"},
-		{"gamemode":"Upcoming", "name":"Gamemode: Hybrid", "displayedName":"Hybrid", "file":"Hybrid.png"},
-		{"gamemode":"Upcoming","name":"Gamemode: Control", "displayedName":"Control", "file":"Control.png"},
-		{"gamemode":"Upcoming", "name":"Gamemode: Arcade", "displayedName":"Arcade", "file":"Numbani.png"}
+		{"gamemode":"Upcoming","name":"Assault", "file":"Assault.png"},
+		{"gamemode":"Upcoming", "name":"Escort", "file":"Escort.png"},
+		{"gamemode":"Upcoming", "name":"Hybrid", "file":"Hybrid.png"},
+		{"gamemode":"Upcoming","name":"Control", "file":"Control.png"},
+		{"gamemode":"Upcoming", "name":"Arcade", "file":"Numbani.png"}
 	]
 }

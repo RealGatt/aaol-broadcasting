@@ -89,7 +89,9 @@ const sections = {
 	style: "Style",
 	nextMatchColors: "Next Match",
 	rosterViewColors: "Roster View",
+	scoreOverlay: "Scoreboard Overlay",
 	mapViewColors: "Maps View",
+	cameraColors: "Camera Overlay",
 	teamImages: "Team Images",
 	icons: "Icons",
 	overlay: "CSS",
@@ -225,6 +227,27 @@ const options = {
 		section: "nextMatchColors",
 		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
 	},
+
+	// Camera
+	cameraStaffNameColor: {
+		visibleName: "Camera Caster Name Color",
+		type: "color",
+		section: "cameraColors",
+		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
+	},
+	cameraCurtainColor: {
+		visibleName: "Camera Curtain Color",
+		type: "color",
+		section: "cameraColors",
+		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
+	},
+	cameraCameraBoxColor: {
+		visibleName: "Camera Box Color",
+		type: "color",
+		section: "cameraColors",
+		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
+	},
+
 	// Roster View
 	rosterViewNameplateBackgroundColor: {
 		visibleName: "Roster View Nameplate Background Color",
@@ -268,17 +291,50 @@ const options = {
 		section: "rosterViewColors",
 		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
 	},
-	teamLeftColor: {
-		visibleName: "Team Left Color",
+
+	// Score Overlay
+
+	scoreOverlayTeamLeftBackgroundColor: {
+		visibleName: "Team Left Background Color",
 		type: "color",
-		section: "style",
+		section: "scoreOverlay",
 		default: { data: { transparency: 1, baseHex: "#2989b2" }, value: "#ffffff" }
 	},
-	teamRightColor: {
+	scoreOverlayTeamRightBackgroundColor: {
+		visibleName: "Team Right Background Color",
+		type: "color",
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#2989b2" }, value: "#ffffff" }
+	},
+	scoreOverlayMiddleTextColor: {
+		visibleName: "Middle Text Color",
+		type: "color",
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
+	},
+	scoreOverlayMiddleBackgroundColor: {
+		visibleName: "Middle Text Background Color",
+		type: "color",
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
+	},
+	scoreOverlayMiddleTextFontSize: {
+		visibleName: "Middle Text Font Size",
+		type: "text",
+		section: "scoreOverlay",
+		default: "3em"
+	},
+	scoreOverlayTeamLeftBorderColor: {
+		visibleName: "Team Left Color",
+		type: "color",
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#27AAE1" }, value: "#27AAE1" }
+	},
+	scoreOverlayTeamRightBorderColor: {
 		visibleName: "Team Right Color",
 		type: "color",
-		section: "style",
-		default: { data: { transparency: 1, baseHex: "#a91320" }, value: "#ffffff" }
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
 	},
 	// Map View
 	
@@ -352,99 +408,7 @@ const options = {
 		visibleName: "Score Overlay CSS",
 		type: "css",
 		section: "overlay",
-		default: `#team1score {
-	position: absolute;
-	top: 15px;
-	left: 630px;
-	font-family: "FuturaPTHeavy", Arial, sans-serif;
-}
-
-#team1name {
-	position: absolute;
-	top: 15px;
-	left: 90px;
-	color: #3a3a3a;
-}
-
-#team1role {
-    position: absolute;
-    top: 12px;
-    left: 677px;
-}
-#team2score {
-	position: absolute;
-	top: 15px;
-	right: 630px;
-	font-family: "FuturaPTHeavy", Arial, sans-serif;
-}
-
-#team2name {
-	position: absolute;
-	top: 15px;
-	text-align: right;
-	right: 90px;
-	color: #3a3a3a;
-}
-
-#team2role {
-    position: absolute;
-    top: 12px;
-    right: 677px;
-}
-
-.matchTitle {
-	position: absolute;
-	top: -20px;
-	left: 50%;
-	margin-left: -141px;
-	transition-delay: 2s;
-	transition: all 2s;
-}
-
-.matchTitle > div {
-	list-style: none;
-	position: relative;
-	top: 28px;
-	text-align: center;
-	font-family: "FuturaPTHeavy", Arial, sans-serif;
-	color: #3a3a3a;
-}
-.casters{
-	transition: all 2s;
-	position: absolute;
-	bottom: 0px;
-	left: calc(50% - 242.5px);
-}
-
-.casterName{
-	font-family: "FuturaPTHeavy", Arial, sans-serif;
-	font-size: 24px;
-	position: absolute;
-	left: 155px;
-}
-
-.casters > .caster1{
-	top: 15px;
-}
-.casters > .caster2{
-	top: 45px;
-}
-.teamLogo {
-	max-height: 45px;
-	max-width: 45px;
-}
-
-.displayLeft {
-	position: absolute;
-	top: 10px;
-	left: 0%;
-}
-
-.displayRight {
-	position: absolute;
-	top: 10px;
-	right: 0%;
-}`
+		default: ``
 	},
 	rosterCSS: {
 		visibleName: "Team Roster CSS",
@@ -622,6 +586,16 @@ body {
 	},
 	orgIcon: {
 		visibleName: "Org Icon",
+		type: "imageAsset",
+		section: "extra"
+	},
+	attackIcon: {
+		visibleName: "Attack Icon",
+		type: "imageAsset",
+		section: "extra"
+	},
+	defenseIcon: {
+		visibleName: "Defense Icon",
 		type: "imageAsset",
 		section: "extra"
 	},

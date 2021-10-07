@@ -52,173 +52,22 @@
 	</div>
 	<hr>
 	<div class="container-fluid">
-		<h4>Map Set</h4>
-		<div class="maps">
-			<div id="map1group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map1map">
+		<h4>Map Set for <pre id="teamNames" style="display: inline;"></pre></h4>
+		<div class="maps" id="mapParent">
+			<div id="mapTemplate" style="display: none;" class="mapGroup input-group-sm mb-3">
+				<h4>Map %map%</h4>
+				<select class="form-select mapTarget" id="map%map%map">
 					<option selected value="None">Map (Select to Disable)</option>
 				</select>
 				<h4>Scores</h4>
 				<div class="input-group input-group-sm mb-3">
 					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map1team1score">
+						aria-label="Team 1 Score" id="map%map%team1score">
 					<span class="input-group-text">-</span>
 					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map1team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
+						aria-label="Team 1 Score" id="map%map%team2score">
 					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map1draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map1done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-
-			</div>
-			<div id="map2group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map2map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map2team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map2team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map2draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map2done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-			</div>
-			<div id="map3group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map3map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map3team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map3team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map3draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map3done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-			</div>
-			<div id="map4group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map4map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map4team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map4team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map4draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map4done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-			</div>
-			<div id="map5group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map5map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map5team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map5team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map5draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map5done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-			</div>
-			<div id="map6group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map6map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map6team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map6team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map6draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map6done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-			</div>
-			<div id="map7group" class="mapGroup input-group-sm mb-3">
-				<select class="form-select mapTarget" id="map7map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map7team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map7team2score">
-				</div>
-
-				<div class="input-group input-group-sm mb-3">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map7draw">
-					</span>
-					<span class="input-group-text">Draw?</span>
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map7done">
+						<input class="form-check-input mt-0" type="checkbox" value="" id="map%map%done">
 					</span>
 					<span class="input-group-text">Done?</span>
 				</div>

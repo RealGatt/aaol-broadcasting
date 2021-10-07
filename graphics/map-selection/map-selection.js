@@ -1,12 +1,5 @@
 let maps = null;
 
-const matchConfiguration = nodecg.Replicant("matchConfiguration", {
-    defaultValue: {
-        matchTitle: "SET ME",
-        casters: ["Caster 1", "Caster 2"],
-    },
-});
-
 let cachedConfig = {
     matchTitle: "SET ME",
     casters: ["Caster 1", "Caster 2"],
@@ -19,37 +12,40 @@ $.ajax({
 });
 
 
-let selectedMaps = [
-    { map: "Lijiang Tower", draw: false, winner: 0, team1score: 2, team2score: 1 },
-    { map: "King's Row", draw: true, winner: null, team1score: 6, team2score: 6 },
-    { map: "Rialto", draw: false, winner: 1, team1score: 0, team2score: 3 },
-    { map: "Hanamura", draw: false, winner: 0, team1score: 2, team2score: 1 },
-    { map: "Nepal", draw: false, winner: 1, team1score: 1, team2score: 2 },
-    { map: "Gamemode: Control", draw: false, winner: null, team1score: 1, team2score: 1 }
-];
-// let selectedMaps = [
-//     { map: "Gamemode: Control", mapNote: "Map 1", draw: false, winner: null, team1score: 0, team2score: 0 },
-//     { map: "Gamemode: Hybrid", mapNote: "Map 2", draw: false, winner: null, team1score: 0, team2score: 0 },
-//     { map: "Gamemode: Escort", mapNote: "Map 3", draw: false, winner: null, team1score: 0, team2score: 0 },
-//     { map: "Gamemode: Assault", mapNote: "Map 4", draw: false, winner: null, team1score: 0, team2score: 0 },
-//     { map: "Gamemode: Control", mapNote: "Map 5", draw: false, winner: null, team1score: 0, team2score: 0 },
-//     { map: "Gamemode: Control", mapNote: "Tie Breaker", draw: false, winner: null, team1score: 0, team2score: 0 }
-// ];
-
 
 function findMap(mapName) {
     return maps.allmaps.filter((map) => map.name == mapName)[0]
 }
 
+currentMatchCallback = async () => {
+    if (!loadedMatch) return;
+    console.log(`Match`, loadedMatch, cachedMatchList[currentMatch]);
+    if (!loadedMatch.maps) {
+        // default AAOL Map pool order
+        loadedMatch.maps = [{ map: "Control", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
+        { map: "Hybrid", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
+        { map: "Escort", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
+        { map: "Assault", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
+        { map: "Control", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
+        { map: "Control", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
+        { map: "None", team1score: 0, team2score: 0, done: false, winner: null, draw: false }];
+    }
+
+    console.log(`Updated the map pool`)
+
+    if (teamsLoaded && themeLoaded && loadedMatch)
+        await updateMaps(true);
+}
+
 themeCallback = async () => {
     loadColors("mapView");
     loadCustomCSS("mapCSS");
-    if (teamsLoaded && themeLoaded)
+    if (teamsLoaded && themeLoaded && loadedMatch)
         await updateMaps(true);
 }
 
 teamsCallback = async () => {
-    if (teamsLoaded && themeLoaded)
+    if (teamsLoaded && themeLoaded && loadedMatch)
         await updateMaps(true);
 }
 
@@ -65,7 +61,7 @@ async function updateMaps(first) {
     let totalmap = 0;
     for (let i = 0; i < 7; ++i) {
 
-        const mapData = selectedMaps[i];
+        const mapData = loadedMatch.maps[i];
         let node4 = $(".mapinfo" + (i + 1) + " .maptype");
         let node5 = $(".mapwrap" + (i + 1) + ", .mapinfo" + (i + 1));
         if (!mapData) {
@@ -73,8 +69,13 @@ async function updateMaps(first) {
             continue
         }
         const actualMapData = findMap(mapData.map);
+        if (!actualMapData) {
+            node5.css("display", "none");
+            continue
+        }
+        console.log(actualMapData);
         const mapWinner = mapData.winner !== null ? getTeamById(mapData.winner) : null;
-        
+
         node5.css("display", "block");
         totalmap = totalmap + 1;
 
@@ -170,7 +171,6 @@ async function updateMaps(first) {
 
         //End the loop
     }
-    mapCache = selectedMaps;
     if (first)
         $(".LOADING").removeClass("LOADING");
 }

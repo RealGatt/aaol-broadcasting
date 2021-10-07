@@ -94,12 +94,28 @@
 		$("#matchTitle").val(cachedConfig.matchTitle);
 		$("#caster1name").val(cachedConfig.casters[0]);
 		$("#caster2name").val(cachedConfig.casters[1]);
+
+		$("#matchTitle").val(newData.matchTitle);
+		$("#leftTeamRole").val(newData.leftRole);
+		$("#rightTeamRole").val(newData.rightRole);
+		$("#rolesDisplayed").prop(
+			"checked",
+			cachedConfig.rolesDisplayed || false
+		);
 	});
+
+	function swapRoles() {
+		$("#leftTeamRole").val(cachedConfig.rightRole);
+		$("#rightTeamRole").val(cachedConfig.leftRole);
+	}
 
 	function saveMatchConfig() {
 		cachedConfig.matchTitle = $("#matchTitle").val();
 		cachedConfig.casters[0] = $("#caster1name").val();
 		cachedConfig.casters[1] = $("#caster2name").val();
+		cachedConfig.leftRole = $("#leftTeamRole").val();
+		cachedConfig.rightRole = $("#rightTeamRole").val();
+		cachedConfig.rolesDisplayed = $("#rolesDisplayed").prop("checked");
 		matchConfiguration.value = cachedConfig;
 		console.log(cachedConfig);
 	}

@@ -1,129 +1,458 @@
-body{
-    overflow-y: hidden;
+:root{
+    --scoreOverlayTeamLeftBorderColor: #27AAE1;
+    --scoreOverlayTeamRightBorderColor: #C80013;
+    --scoreOverlayTeamLeftBackgroundColor: #777777;
+    --scoreOverlayTeamRightBackgroundColor: #777777;
+    --scoreOverlayMiddleTextFontSize: 3rem;
 }
 
+div.left {
+    background-color: var(--scoreOverlayTeamLeftBackgroundColor);
+  }
 
-.teamLogo {
-    /* max-width: max(0px, 35px);*/
-    max-height: 45px;
-    max-width: 45px;
-}
+  div.right {
+    background-color: var(--scoreOverlayTeamRightBackgroundColor);
+  }
 
-.displayLeft {
-    position: absolute;
-    top: 10px;
-    left: 0%;
-}
+  /*
 
-.displayRight {
-    position: absolute;
-    top: 10px;
-    right: 0%;
-}
+OVERWATCH OFFICIAL LEAGUE BRANDING COLORS
+#8cba11		Overwatch Contenders Green
+#ff9c00		Overwatch Generic/League Orange
+#202224		Overwatch Contenders/League Dark Grey
 
-#team1logo {
-    position: absolute;
-    top: 5px;
-    left: 25px;
-}
+OVERWATCH COLORBLIND UI COLORS
+#C80013		Red (Enemy Default)
+#D45800		Tawny
+#D47900		Orange
+#FFD700		Gold
+#FFFF00		Yellow
+#CCFF00		Lime Green
+#00AB84		Green
+#00FFFF		Neon Blue
+#27AAE1		Blue (Friendly Default)
+#800080		Purple
+#523FFF		Aqua
+#FF00FF		Magenta
+#FF6EC7		Pink
 
-#team2logo {
-    position: absolute;
-    top: 5px;
-    right: 25px;
-}
+OTHER BRANDED COLORS
+#00a5e2		Overwatch Website Blue
 
-#team1score {
-    position: absolute;
-    top: 15px;
-    left: 630px;
-    font-family: "FuturaPTHeavy", Arial, sans-serif;
-}
+*/
 
-#team1name {
-    position: absolute;
-    top: 15px;
-    left: 90px;
-    color: #3a3a3a;
-}
 
-#team2score {
-    position: absolute;
-    top: 15px;
-    right: 630px;
-    font-family: "FuturaPTHeavy", Arial, sans-serif;
-}
+  div {
+    -webkit-animation-timing-function: ease-out;
+  }
 
-#team2name {
-    position: absolute;
-    top: 15px;
+  span {
+    -webkit-animation-timing-function: ease-out;
+  }
+
+  div.left {
+    animation: leftmove 0.75s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
     text-align: right;
-    right: 90px;
-    color: #3a3a3a;
-}
+  }
 
-#team1role {
+  #team1side span {
+    animation: leftmove 1.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  div.right {
+    animation: rightmove 0.75s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  #team2side span {
+    animation: rightmove 1.5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  div.center {
+    animation: topmove 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  span.score {
+    animation: fadein 2s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  span.logo,
+  span.logoshade {
+    animation: fadein 3s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  span.teamname {
+    animation: fadein 4s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  span.teamsr {
+    animation: fadein 5s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }
+
+  @-webkit-keyframes leftmove {
+    from {
+      left: -850px;
+    }
+
+    to {
+      left: -7px;
+    }
+  }
+
+  @-webkit-keyframes rightmove {
+    from {
+      right: -850px;
+    }
+
+    to {
+      right: -7px;
+    }
+  }
+
+  @keyframes topmove {
+    0% {
+      top: -46px;
+    }
+
+    50% {
+      top: -46px;
+    }
+
+    100% {
+      top: 13px;
+    }
+  }
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+
+    15% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideleft {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes tagline {
+    0% {
+      clip-path: polygon(0% -100%, 0 -100%, 0% 200%, 0% 200%);
+      transform: translateX(50%)
+        /* skewX(-15deg) */
+      ;
+    }
+
+    100% {
+      clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+      transform: translateX(0%)
+        /* skewX(-15deg) */
+      ;
+    }
+  }
+
+
+
+  div.left,
+  div.right {
+    width: 685px/*694px*/;
+    height: 46px;
+    border: 0px solid black;
+    vertical-align: middle;
+  }
+
+
+  div.center {
+    width: 100%;
+    height: 13px;
+    border: 0px solid black;
+    vertical-align: middle;
+    position: fixed;
+    left: 0px;
+    top: 30px;
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: row;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    padding-top: 6px;
+    /* YEAH THIS IS HUGE */
+  }
+
+  span {
+    margin: 0;
+    /*
     position: absolute;
-    top: 12px;
-    left: 677px;
-}
+    */
+    top: 50%;
+    font-family: var(--FONT);
+    font-variant-ligatures: none;
+    text-transform: uppercase;
+    color: white;
+    /* text-shadow: 0px 0px 7px #000000; */
+  }
 
-#team2role {
+  span.logo,
+  span.logoshade {
+    /* -webkit-filter: drop-shadow(0 0 5px white); */
     position: absolute;
-    top: 12px;
-    right: 677px;
-}
+  }
 
-.hidden {
+  div.side {
+    /* -webkit-filter: drop-shadow(0 0 2px black); */
+  }
+
+  div.side span {
     position: absolute;
-    top: -1000px !important;
-}
+  }
 
-.teamDisplay {
-    background-repeat: no-repeat;
-    transition: all 2s;
-}
+  span.teamname {
+    font-size: 2em;
+  }
 
-.matchTitle {
+  span.teamsr {
+    font-size: 1.5em;
+    font-family: var(--FONT);
+  }
+
+  span.score {
+    font-size: 3em;
     position: absolute;
-    top: -20px;
-    left: 50%;
-    margin-left: -141px;
-    transition-delay: 2s;
-    transition: all 2s;
-}
+    font-weight: bold;
+    top: 23px;
+  }
 
-.matchTitle > div {
-    list-style: none;
+  div.left span.teamname {
     position: relative;
-    top: 28px;
+    right: 200px;
+    top: 3px;
+
+    /* transform: translate(-200px, -50%); */
+  }
+
+  div.left span.teamsr {
+    position: relative;
+    right: 210px;
+    top: 3px;
+    /* transform: translate(-200px, -50%); */
+  }
+
+  div.center span.teamname {
     text-align: center;
-    font-family: "FuturaPTHeavy", Arial, sans-serif;
-    color: #3a3a3a;
-}
+    transform: translate(0%, -50%);
+    font-size: var(--scoreOverlayMiddleTextFontSize);
+    padding-left: 120px;
+    padding-right: 120px;
+    font-family: var(--FONT);
+    background-color: var(--scoreOverlayMiddleBackgroundColor);
+    color: var(--scoreOverlayMiddleTextColor);
+  }
 
-.hiddenCasters{
-    position: absolute;
-    bottom: -300px !important;
-}
+  div.left span.score {
+    width: 65px;
+    text-align: center;
+    right: 0px;
+    top: 25px;
+    transform: translate(-7px, -50%);
+  }
 
-.casters{
-    transition: all 2s;
-    position: absolute;
-    bottom: 100px;
-    left: calc(50% - 242.5px);
-}
+  div.right span.teamname {
+    position: relative;
+    left: 200px;
+    top: 3px;
 
-.casterName{
-    font-family: "FuturaPTHeavy", Arial, sans-serif;
-    font-size: 24px;
-    position: absolute;
-    left: 155px;
-}
+    /* transform: translate(-200px, -50%); */
+  }
 
-.casters > .caster1{
-    top: 15px;
-}
-.casters > .caster2{
-    top: 45px;
-}
+  div.right span.teamsr {
+    position: relative;
+    left: 210px;
+    top: 3px;
+    /* transform: translate(-200px, -50%); */
+  }
+
+  div.left {
+    /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(127, 127, 127, 0), rgba(0, 0, 0, 0.3)); */
+    position: fixed;
+    top: 13px;
+    left: -7px;
+    border-style: solid;
+    border-width: 0px 7px 0px 0px;
+    border-color: var(--scoreOverlayTeamLeftBorderColor);
+    /* transform: skewX(-15deg); */
+    /* clip-path: polygon(0% 0%, 100% 0%, 691.14px 100%, 0 100%); */
+  }
+
+  div.left span.logo {
+    width: 80px;
+    height: 62px;
+    right: 0px;
+    transform: translate(-90px, -50%) /*skewX(15deg)*/;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  #team1side span {
+    position: fixed;
+    width: 818px;
+    height: 36px;
+    top: 35px;
+    left: -7px;
+    transform: translate(-70px, -50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    -webkit-mask-position: right;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 100;
+  }
+
+  div.left span.logoshade {
+    width: 100px;
+    height: 46px;
+    right: 0px;
+    transform: translate(-80px, -50%)
+      /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(127, 127, 127, 0), rgba(0, 0, 0, 0.3)); */
+  }
+
+  div.right span.logo {
+    width: 80px;
+    height: 62px;
+    left: 0px;
+    transform: translate(90px, -50%) /*skewX(-15deg)*/;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+  }
+
+  #team2side span {
+    position: fixed;
+    width: 818px;
+    height: 36px;
+    right: -7px;
+    top: 35px;
+    transform: translate(70px, -50%);
+    -webkit-mask-position: left;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    z-index: 100;
+  }
+
+  div.right span.logoshade {
+    width: 100px;
+    height: 46px;
+    left: 0px;
+    transform: translate(80px, -50%)
+      /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(127, 127, 127, 0), rgba(0, 0, 0, 0.3)); */
+  }
+
+  div.right span.score {
+    width: 65px;
+    text-align: center;
+    left: 0px;
+    top: 25px;
+    transform: translate(7px, -50%);
+  }
+
+  div.right {
+    /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(127, 127, 127, 0), rgba(0, 0, 0, 0.3)); */
+    position: fixed;
+    right: -7px;
+    top: 13px;
+    border-style: solid;
+    border-width: 0px 0px 0px 7px;
+    border-color: var(--scoreOverlayTeamRightBorderColor);
+    /* transform: skewX(15deg); */
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 12.86px 100%); */
+  }
+
+  div.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 1870px;
+    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
+    display: flex;
+    /* YEAH THIS IS HUGE */
+    flex-direction: row;
+    align-items: center;
+    /* YEAH THIS IS HUGE */
+    justify-content: center;
+    /* YEAH THIS IS HUGE */
+    padding: 10px;
+  }
+
+  div.tournament {
+    flex: 1 1 100%;
+    height: 80px;
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  div.tagline {
+    min-width: 375px;
+    animation: tagline .5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2s;
+    /* transform: skewX(-15deg); */
+  }
+
+  span.tertiary {
+    font-size: 1.8em;
+    border-style: solid;
+    font-weight: bold;
+    text-align: center;
+    font-family: var(--FONT);
+    padding: 3px 15px 2px 15px;
+    border-width: 0px 6px 0px 6px;
+    background-color: black;
+  }
+
+
+  div.channel {
+    flex: 1 1 100%;
+    height: 80px;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideleft 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+  }

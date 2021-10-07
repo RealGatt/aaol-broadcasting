@@ -63,7 +63,7 @@ async function loadColors(key, callback) {
     let addons = [];
     for (let k in cachedThemeObj.assets) {
         if (k.startsWith(key))
-            addons.push(`--${k}: ${cachedThemeObj.assets[k].value};`)
+            addons.push(`--${k}: ${cachedThemeObj.assets[k].value || cachedThemeObj.assets[k]};`)
     }
     $("#themeBonusColors").html(`:root {${addons.join("\n")}}`)
     if (callback) callback();

@@ -1,3 +1,5 @@
+
+
 $(".wrapper").addClass("LOADING");
 const matchConfiguration = nodecg.Replicant("matchConfiguration", {
     defaultValue: {
@@ -5,6 +7,8 @@ const matchConfiguration = nodecg.Replicant("matchConfiguration", {
         casters: ["Caster 1", "Caster 2"],
     },
 });
+
+
 
 let cachedConfig = {
     matchTitle: "SET ME",
@@ -69,8 +73,9 @@ matchConfiguration.on("change", (newData) => {
         }
     }
 });
-themeCallback = () => {
-    loadColors("casterCams", () => {
-        $(".LOADING").removeClass("LOADING");
-    })
+
+themeCallback = async () => {
+    await loadColors("camera");
+    await loadCustomCSS("cameraCSS");
+    $(".LOADING").removeClass("LOADING");
 }

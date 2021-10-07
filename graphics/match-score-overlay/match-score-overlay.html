@@ -4,41 +4,48 @@
 <head>
 	<title>Match Score Overlay</title>
 	<meta charset="UTF-8" />
-	<script defer src="match-score-overlay.js"></script>
-	<link rel="stylesheet" href="../css/index.css" />
 	<link rel="stylesheet" href="css/index.css" />
 	<script src="../js/jquery.min.js"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+
+	<script defer src="../js/z-theme.js"></script>
+	<script defer src="../js/z-teams.js"></script>
+	<script defer src="match-score-overlay.js"></script>
+	<style>
+		.LOADING {
+			display: none;
+		}
+	</style>
 
 </head>
 
+
 <body>
-	<div class="graphic OWD">
-		<div id="team1" class="displayLeft teamDisplay hidden">
-			<img src="" id="team1Background" alt="" />
-			<img src="" id="team1logo" class="teamLogo" />
-			<img src="" id="team1role" class="teamRole" />
-			<div id="team1name" class="teamDisplayName"></div>
-			<div id="team1score" class="teamScore"></div>
-		</div>
-		<div id="matchTitle" class="matchTitle hidden">
-			<div id="matchTitleDiv"></div>
-			<img src="" id="matchTitleBackground" class="" alt="" />
-		</div>
-		<div id="team2" class="displayRight teamDisplay hidden">
-			<img src="" id="team2Background" alt="" />
-			<img src="" id="team2logo" class="teamLogo" />
-			<img src="" id="team2role" class="teamRole" />
-			<div id="team2name" class="teamDisplayName"></div>
-			<div id="team2score" class="teamScore">0</div>
-		</div>
-		<div id="casters" class="casters hiddenCasters">
-			<img src="" id="castersBackground" alt="" />
-			<span class="casterName caster1" id="caster1"></span>
-			<span class="casterName caster2" id="caster2"></span>
-		</div>
+	<div class="center">
+		<span class="teamname" id="matchtext"></span>
+	</div>
+
+	<div class="side" id="team1side"><span></span></div>
+	<div class="side" id="team2side"><span></span></div>
+
+	<div class="left team1" id="team1color">
+		<span class="logoshade" id="team1logoshade"></span>
+		<span class="logo" id="team1logo"></span>
+		<span class="teamsr" id="team1sr"></span>
+		<span class="teamname" id="team1name"></span>
+		<span class="score" id="team1score"></span>
+
+
+	</div>
+
+	<div class="right team2" id="team2color">
+		<span class="logoshade" id="team2logoshade"></span>
+		<span class="logo" id="team2logo"></span>
+		<span class="teamname" id="team2name"></span>
+		<span class="teamsr" id="team2sr"></span>
+		<span class="score" id="team2score"></span>
+
 	</div>
 </body>
 
