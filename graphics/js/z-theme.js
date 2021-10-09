@@ -4,16 +4,11 @@ $("head").append("<style id='themeColors'></style>");
 $("head").append("<style id='themeBonusColors'></style>");
 $("head").append("<style id='userStyle'></style>");
 
-const themes = nodecg.Replicant("themes");
-const currentTheme = nodecg.Replicant("currentTheme");
-
 let cachedThemes;
 let cachedThemeId;
 let cachedThemeObj;
 
 let themeLoaded = false;
-let themeCallback;
-let themePreloadCallback;
 
 themes.on("change", async (themes) => {
     cachedThemes = themes;
@@ -55,7 +50,6 @@ async function updateTheme(callback) {
 
     themeLoaded = true;
     if (callback) callback();
-    if (themeCallback) themeCallback();
 }
 
 async function loadColors(key, callback) {

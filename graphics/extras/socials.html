@@ -1,0 +1,94 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/z-basic.js"></script>
+    <style>
+        @font-face {
+            font-family: 'FontAwesome';
+            src: url("../assets/fonts/Font Awesome/Font Awesome 5 Brands-Regular-400.otf") format('OpenType');
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            margin: 0px auto;
+            overflow: hidden;
+            font-family: 'Teko';
+        }
+
+        .socials {
+            font-family: var(--FONT);
+            text-transform: uppercase;
+            position: absolute;
+            left: 0px;
+            top: 980px;
+            width: 1520px;
+            padding: 0px 200px 0px 200px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 3em;
+            animation: slideup 1s;
+            animation-fill-mode: backwards;
+            animation-delay: 1s;
+        }
+
+        .socials div {
+            flex: 1 1 0;
+        }
+
+        .socials span:before {
+            padding-right: 10px;
+        }
+
+        .twitter:before {
+            font-family: 'FontAwesome';
+            content: "\f099"
+                /* twitter logo */
+                /* content:"\f1e8" twitch logo*/
+        }
+
+        .twitch:before {
+            font-family: 'FontAwesome';
+            content: "\f1e8"
+                /* twitter logo */
+                /* content:"\f1e8" twitch logo*/
+        }
+
+        .youtube:before {
+            font-family: 'FontAwesome';
+            content: "\f167"
+                /* twitter logo */
+                /* content:"\f1e8" twitch logo*/
+        }
+
+        @keyframes slideup {
+            0% {
+                transform: translateY(1000%);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .LOADING {
+            display: none;
+        }
+    </style>
+    <script>
+        useTheme()
+        waitForLoad(() => {
+            console.log(cachedThemeObj.assets.socialsText)
+            $(".socials").html(cachedThemeObj.assets.socialsText)
+            $(".LOADING").removeClass("LOADING");
+        });
+    </script>
+</head>
+
+<body class="LOADING">
+    <div class="socials">
+    </div>
+</body>

@@ -1,6 +1,19 @@
 let heroes = [];
 let heroData;
 
+useTeam();
+useTheme();
+waitForLoad(() => {
+
+	var urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.get("teamSide")) {
+		$(".graphic").addClass("LOADING");
+		setTimeout(() => {
+			displayRoster(urlParams.get("teamSide") == "1" ? loadedMatch.team1 : loadedMatch.team2);
+		}, 1000);
+	}
+})
+
 $.ajax({
 	url: "../assets/data/heroes.json",
 	success: function (data) {
@@ -52,10 +65,9 @@ function setDisplayedRoster(team) {
 			$("#player" + (playerId) + " > .heroDisplay").addClass(classToAdd);
 		}
 	}
+
 	$(".topText").html(teamObj.name);
-
 	$("img.logo").attr('src', teamObj.logo);
-
 	$("#teamStyle").html(`:root { --TEAM-COLOR: ${teamObj.colors.teamColor};
 	--PLAYER-COLOR: ${teamObj.colors.playerColor}; }`)
 }
@@ -99,7 +111,7 @@ nodecg.listenFor('updateRosterDisplay', (data) => {
 
 	const shown = data.shown;
 	const teamId = data.teamId;
-	
+
 	const displayTitle = data.displayTitle || urlParams.get("sceneTitle");
 	console.log("Got call", shown, teamId);
 	if (teamId !== null) {

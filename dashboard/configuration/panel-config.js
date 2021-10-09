@@ -148,6 +148,19 @@ const options = {
 		section: "style",
 		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
 	},
+	
+	teamLeftColor: {
+		visibleName: "Team Left (Default) Color",
+		type: "color",
+		section: "style",
+		default: { data: { transparency: 1, baseHex: "#27AAE1" }, value: "#27AAE1" }
+	},
+	teamRightColor: {
+		visibleName: "Team Right (Default) Color",
+		type: "color",
+		section: "style",
+		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
+	},
 	// Next Match
 	nextMatchPrimaryColor: {
 		visibleName: "Next Match Primary",
@@ -332,6 +345,12 @@ const options = {
 	},
 	scoreOverlayTeamRightBorderColor: {
 		visibleName: "Team Right Color",
+		type: "color",
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
+	},
+	scoreOverlayTeamNameColor: {
+		visibleName: "Team Name Color",
 		type: "color",
 		section: "scoreOverlay",
 		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
@@ -622,6 +641,12 @@ body {
 		type: "text",
 		section: "style",
 		default: `Koala Esports||Follow us on Social Media||Follow us on Twitch||discord.gg/koalaesports`
+	},
+	socialsText: {
+		visibleName: "Socials HTML Popup",
+		type: "text",
+		section: "style",
+		default: `<div><span class="twitter">Koala<span class="GG"><b>Esports</b></span></span></div><div><span class="twitter">AOE<b><span class="gg">sports</span></b></span></div>`
 	},
 	globalCSS: {
 		visibleName: "Global CSS Injection",

@@ -1,15 +1,4 @@
-
-const teamData = nodecg.Replicant("teamList");
-const matches = nodecg.Replicant("matchList", {
-    defaultValue: []
-});
-const currentMatch = nodecg.Replicant("currentMatch", { defaultValue: 0 });
-const matchConfiguration = nodecg.Replicant("matchConfiguration", {
-    defaultValue: {
-        matchTitle: "SET ME",
-        casters: ["Caster 1", "Caster 2"],
-    },
-});
+console.log(`Loading Teams`);
 
 let loadedMatch = null;
 let loadedMatchIndex = -1;
@@ -20,18 +9,6 @@ let cachedMatchList;
 
 let teamsLoaded = false;
 let matchesLoaded = false;
-
-let teamsCallback;
-let teamsPreloadCallback;
-
-let matchesCallback;
-let matchesPreloadCallback;
-
-let currentMatchCallback;
-let currentMatchPreloadCallback;
-
-let cachedMatchConfiguration;
-let matchConfigUpdateCallback;
 
 teamData.on("change", async (newTeams) => {
     if (teamsPreloadCallback) teamsPreloadCallback();
@@ -57,7 +34,7 @@ currentMatch.on("change", async (currentMatch) => {
     console.log(`Current Match change`)
     if (currentMatchPreloadCallback) currentMatchPreloadCallback();
     loadedMatchIndex = currentMatch;
-    loadedMatch = cachedMatchList[currentMatch];
+    loadedMatch = cachedMatchList.filter(mtch => mtch.matchId == currentMatch)[0];
     if (currentMatchCallback) currentMatchCallback();
 });
 

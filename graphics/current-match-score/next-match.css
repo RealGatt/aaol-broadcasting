@@ -405,18 +405,20 @@ body {
     position: absolute;
     content: "";
     z-index: 0;
-    width: 125px;
+    width: 150px;
     height: 100px;
+    max-width: 150px;
+    max-height: 100px;
     background-color: var(--nextMatchScoreboxBackgroundColor);
 }
 
 .team1>.scorebox::before {
-    transform: translateX(-35px) translateY(var(--SCOREBOX-Y-OFFSET)) skew(20deg);
+    transform: translateX(-45px) translateY(var(--SCOREBOX-Y-OFFSET)) skew(20deg);
     border-left: var(--left-team-color) 6px solid;
 }
 
 .team2>.scorebox::before {
-    transform: translateX(-55px) translateY(var(--SCOREBOX-Y-OFFSET)) skew(-20deg);
+    transform: translateX(-70px) translateY(var(--SCOREBOX-Y-OFFSET)) skew(-20deg);
     border-right: var(--right-team-color) 6px solid;
 }
 

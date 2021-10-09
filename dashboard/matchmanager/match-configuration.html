@@ -32,6 +32,10 @@
 		<div class="input-group">
 			<input type="text" id="matchTitle" class="form-control" value="" placeholder="Match Title" />
 		</div>
+		<h4>Map Title</h4>
+		<div class="input-group">
+			<input type="text" id="mapTitle" class="form-control" value="" placeholder="Map Title" />
+		</div>
 		<hr />
 		<h4>Team Roles</h4>
 		<div class="input-group">
@@ -72,11 +76,13 @@
 	const matchConfiguration = nodecg.Replicant("matchConfiguration", {
 		defaultValue: {
 			matchTitle: "SET ME",
+			mapTitle: "Best of 3",
 			casters: ["Caster 1", "Caster 2"],
 		},
 	});
 	let cachedConfig = {
 		matchTitle: "SET ME",
+		mapTitle: "Best of 3",
 		casters: ["Caster 1", "Caster 2"],
 	};
 
@@ -85,6 +91,7 @@
 		if (!cachedConfig)
 			cachedConfig = {
 				matchTitle: "SET ME",
+				mapTitle: "Best of 3",
 			};
 
 		if (!cachedConfig.casters)
@@ -92,6 +99,7 @@
 
 		console.log("Loaded Match Configuration", cachedConfig);
 		$("#matchTitle").val(cachedConfig.matchTitle);
+		$("#mapTitle").val(cachedConfig.mapTitle || "");
 		$("#caster1name").val(cachedConfig.casters[0]);
 		$("#caster2name").val(cachedConfig.casters[1]);
 
@@ -111,6 +119,7 @@
 
 	function saveMatchConfig() {
 		cachedConfig.matchTitle = $("#matchTitle").val();
+		cachedConfig.mapTitle = $("#mapTitle").val();
 		cachedConfig.casters[0] = $("#caster1name").val();
 		cachedConfig.casters[1] = $("#caster2name").val();
 		cachedConfig.leftRole = $("#leftTeamRole").val();

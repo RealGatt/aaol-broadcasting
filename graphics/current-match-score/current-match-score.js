@@ -1,3 +1,13 @@
+useTheme();
+useTeam();
+
+waitForLoad(() => {
+    updateTeamDisplays();
+    console.log(`Completed Loading`);
+    $(".LOADING").removeClass("LOADING")
+})
+
+
 themePreloadCallback = () => {
     for (let m = 0; m < 8; m++) {
         $('.match' + (m + 1) + ' .teamlogo2').css("display", "none");
@@ -6,41 +16,29 @@ themePreloadCallback = () => {
     }
 }
 
-themeCallback = async () => {
-    await loadColors("nextMatch");
-    await loadCustomCSS("nextMatchCSS");
-    console.log("Load Callback");
-    if (teamsLoaded) teamsLoaded = false;
-    await updateTeamDisplays();
-    if (themeLoaded && teamsLoaded) $(".LOADING").removeClass("LOADING")
+themeCallback = () => {
+    loadColors("nextMatch");
+    loadCustomCSS("nextMatchCSS");
 }
 
-const teamData = nodecg.Replicant("teamList");
-const currentMatch = nodecg.Replicant("currentMatch", { defaultValue: 0 });
-const matches = nodecg.Replicant("matchList", { defaultValue: [] });
+matchConfigUpdateCallback = () => {
+    $(".info").text(cachedMatchConfiguration.matchTitle);
+}
 
-let loadedMatch = null;
-let loadedMatchIndex = -1;
-let cachedRoster;
-let cachedTeamList;
-let cachedMatchList;
-let teamsLoaded = false;
+teamsCallback = () => {
+    updateTeamDisplays();
+}
 
-teamData.on("change", async (newTeams) => {
-    cachedTeamList = newTeams;
-    if (cachedTeamList && cachedMatchList && loadedMatchIndex >= 0) await updateTeamDisplays();
-})
-
-matches.on("change", async (matchList) => {
+matchesCallback = () => {
     console.log("Match List changed");
 
     /* Remove all options from the select list */
     $("#scoreboardSelectMatch").empty();
 
     /* Insert the new ones from the array above */
-    $.each(matchList, function (value) {
+    $.each(cachedMatchList, function (value) {
         var ele = document.createElement("option");
-        const match = matchList[value];
+        const match = cachedMatchList[value];
 
         const team1 = cachedTeamList[match.team1];
         const team2 = cachedTeamList[match.team2];
@@ -49,16 +47,12 @@ matches.on("change", async (matchList) => {
         $("#scoreboardSelectMatch").append(ele);
     });
     //if (loadedMatch == null) loadMatch();
-    cachedMatchList = matchList;
-    if (cachedTeamList && cachedMatchList && loadedMatchIndex >= 0) await updateTeamDisplays();
-});
+    updateTeamDisplays();
+}
 
-
-currentMatch.on("change", async (currentMatch) => {
-    loadedMatchIndex = currentMatch;
-    console.log("Updated current match to ", currentMatch);
-    if (cachedTeamList && cachedMatchList && loadedMatchIndex >= 0) await updateTeamDisplays();
-});
+currentMatchCallback = () => {
+    updateTeamDisplays();
+}
 
 let legacyMatchList = [];
 
@@ -85,21 +79,6 @@ function updateColors(match, matchData) {
     } else {
         $(`.match${match} .team1`).removeClass('completedMatch')
         $(`.match${match} .team2`).removeClass('completedMatch')
-    }
-
-    if (matchData.battleRoyaleMode) {
-        $(`.match${match} .vs`).html("BATTLE ROYALE");
-        $(`.match${match} .vs`).addClass("br");
-        $(`.match${match} .teamscore1`).html("0");
-        $(`.match${match} .teamscore2`).html("0");
-        $(`.match${match} .scorebox`).css("display", "none");
-    } else {
-
-        $(`.match${match} .vs`).html("<span>VS</span>");
-        $(`.match${match} .vs`).removeClass("br");
-        $(`.match${match} .vs`).css("font-size", "");
-        $(`.match${match} .vs`).css("line-height", "");
-        $(`.match${match} .vs`).css("padding-top", "");
     }
 }
 
@@ -159,7 +138,6 @@ function updateDisplay(match, matchData, update) {
     $(`.match${match}`).css("display", "");
 
     if (update) {
-
         $(`.match${match} .scoreboard`).addClass("slidein");
         setTimeout(function () {
             $(`.match${match} .scoreboard`).removeClass("slideout");
@@ -172,9 +150,6 @@ function updateDisplay(match, matchData, update) {
 
 function setScore(match, matchData, update) {
     if (!matchData) return;
-    legacyMatchList[matchData.matchId] = JSON.parse(JSON.stringify(matchData));
-    console.log(update ? `UPDATING MATCH ${match}` : `NOT UPDATING MATCH ${match}`)
-
     console.log(cachedTeamList);
     console.log(`Match Data for match ${match}`, matchData);
     if (update) {
@@ -197,29 +172,7 @@ function getLegacyMatch(match) {
 }
 
 async function updateTeamDisplays() {
-    let m = 1;
-    for (let potMatch in cachedMatchList) {
-        let match = cachedMatchList[potMatch];
-        let originalMatch = getLegacyMatch(match);
-        console.log(originalMatch)
-        if (originalMatch) {
-            console.log(`There is an original match for ${match.matchId}`, JSON.stringify(match), JSON.stringify(originalMatch))
-            if (originalMatch.team1 != match.team1 || originalMatch.team2 != match.team2) setScore(m, match, true);
-            else setScore(m, match, false);
-        } else {
-            setScore(m, match, false);
-        }
-
-        updateColors(m, match);
-
-        m++;
-    }
-
-    teamsLoaded = true;
-
-    if (themeLoaded && teamsLoaded) $(".LOADING").removeClass("LOADING")
+    if (!loaded) return;
+    console.log(`Updating Team Displays`);
+    setScore(1, loadedMatch, false);
 }
-
-let heroes = [];
-let heroData;
-

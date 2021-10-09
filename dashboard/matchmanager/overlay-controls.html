@@ -16,26 +16,18 @@
 		<br />
 		<h4>Scoreboard</h4>
 		<button class="btn btn-success" onclick="setScoreboard(true)">
-			Show Scoreboard
+			Show Score Overlay
 		</button>
 		<button class="btn btn-danger" onclick="setScoreboard(false)">
-			Hide Scoreboard
-		</button>
-		<hr />
-		<h4>Casters</h4>
-		<button class="btn btn-success" onclick="setCasters(true)">
-			Show Casters Block
-		</button>
-		<button class="btn btn-danger" onclick="setCasters(false)">
-			Hide Casters Block
+			Hide Score Overlay
 		</button>
 		<hr />
 		<h4>Set Roster Display</h4>
-		<input type="text" name="rosterDisplayTitle" class="form-control" placeholder="Roster Display Title"
+		<input type="hidden" name="rosterDisplayTitle" class="form-control" placeholder="Roster Display Title"
 			id="rosterDisplayTitle">
+		<select class="form-select" name="teamToDisplay" id="teamToDisplay"></select>
 		<div class="input-group mb-3">
-			<select class="form-select" name="teamToDisplay" id="teamToDisplay"></select><button class="btn btn-success"
-				onclick="showTeam()">
+			<button class="btn btn-success" onclick="showTeam()">
 				Show Roster
 			</button>
 			<button class="btn btn-danger" onclick="hideTeam()">
@@ -97,7 +89,6 @@
 
 	function setCasters(shown) {
 		nodecg.sendMessage("showCasters", shown);
-
 	}
 </script>
 

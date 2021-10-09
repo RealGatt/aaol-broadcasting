@@ -1,5 +1,12 @@
 let maps = null;
 
+useTheme();
+useTeam();
+
+waitForLoad(() => {
+    updateMaps(true);
+})
+
 let cachedConfig = {
     matchTitle: "SET ME",
     casters: ["Caster 1", "Caster 2"],
@@ -10,8 +17,6 @@ $.ajax({
         maps = data;
     },
 });
-
-
 
 function findMap(mapName) {
     return maps.allmaps.filter((map) => map.name == mapName)[0]
@@ -30,28 +35,15 @@ currentMatchCallback = async () => {
         { map: "Control", team1score: 0, team2score: 0, done: false, winner: null, draw: false },
         { map: "None", team1score: 0, team2score: 0, done: false, winner: null, draw: false }];
     }
-
     console.log(`Updated the map pool`)
-
-    if (teamsLoaded && themeLoaded && loadedMatch)
-        await updateMaps(true);
 }
 
 themeCallback = async () => {
     loadColors("mapView");
     loadCustomCSS("mapCSS");
-    if (teamsLoaded && themeLoaded && loadedMatch)
-        await updateMaps(true);
+    $("div.scoreboard span").html("MAP SET");
 }
 
-teamsCallback = async () => {
-    if (teamsLoaded && themeLoaded && loadedMatch)
-        await updateMaps(true);
-}
-
-matchConfiguration.on("change", (newMatch) => {
-    $("div.scoreboard span").html(newMatch.matchTitle);
-})
 
 let mapCache;
 
@@ -171,6 +163,7 @@ async function updateMaps(first) {
 
         //End the loop
     }
+    sceneLoaded = true;
     if (first)
         $(".LOADING").removeClass("LOADING");
 }

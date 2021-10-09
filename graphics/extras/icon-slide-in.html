@@ -1,7 +1,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/z-theme.js"></script>
+    <script src="../js/z-basic.js"></script>
     <style>
         body {
             width: 1920px;
@@ -38,6 +38,7 @@
             animation-fill-mode: backwards;
             animation-delay: 1s;
             background-position: center;
+            transform: translateY(-26px);
         }
 
         @keyframes slideup {
@@ -46,7 +47,7 @@
             }
 
             100% {
-                transform: translateY(0px);
+                transform: translateY(-26px);
             }
         }
 
@@ -54,11 +55,13 @@
             display: none;
         }
     </style>
-    <script>
-        themeCallback = () => {
+    <script defer>
+        useTheme()
+        waitForLoad(() => {
+            console.log(cachedThemeObj.assets.orgIcon)
             $(".orgimage").css("background-image", `url(${cachedThemeObj.assets.orgIcon})`)
             $(".LOADING").removeClass("LOADING");
-        }
+        })
     </script>
 </head>
 

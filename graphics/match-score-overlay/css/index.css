@@ -98,6 +98,7 @@ OTHER BRANDED COLORS
     animation: fadein 4s;
     animation-fill-mode: backwards;
     animation-delay: 1s;
+    color: var(--scoreOverlayTeamNameColor);
   }
 
   span.teamsr {
@@ -271,8 +272,8 @@ OTHER BRANDED COLORS
     text-align: center;
     transform: translate(0%, -50%);
     font-size: var(--scoreOverlayMiddleTextFontSize);
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: 100px;
+    padding-right: 100px;
     font-family: var(--FONT);
     background-color: var(--scoreOverlayMiddleBackgroundColor);
     color: var(--scoreOverlayMiddleTextColor);
