@@ -8,7 +8,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
 		crossorigin="anonymous"></script>
-	<script src="../js/jquery.min.js"></script>
+	<script src="../../assets/js/z-basic.js"></script>
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script defer src="scoreboard-controls.js"></script>
 	<style>
 		.monospace {
 			font-family: monospace;
@@ -28,56 +30,62 @@
 
 <body class="bg-dark text-white">
 	<br />
-	<div class="container-fluid">
-		<h4 id="scoreboardMatchNameDisplay"></h4>
-		<div class="input-group mb-3">
-			<input type="number" class="form-control" value="0" min="0" style="max-width: 10%" id="team1score"
-				placeholder="" />
-			<input type="number" class="form-control" value="0" style="max-width: 10%" min="0" id="team2score"
-				placeholder="" />
-			<div class="input-group-text">
-				<input class="form-check-input mt-0" type="checkbox" id="matchComplete" />
-				<label class="form-check-label" for="matchComplete">Match Complete?</label>
+	<span id="noMatch" style="display: block;"><h4>There is no Current Match.</h4></span>
+	<span id="activeMatch" style="display: none;">
+		<div class="container-fluid">
+			<h4 id="scoreboardMatchNameDisplay"></h4>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" value="0" min="0" style="max-width: 10%" id="team1score"
+					placeholder="" />
+				<input type="number" class="form-control" value="0" style="max-width: 10%" min="0" id="team2score"
+					placeholder="" />
+				<div class="input-group-text">
+					<input class="form-check-input mt-0" type="checkbox" id="matchComplete" />
+					<label class="form-check-label" for="matchComplete">Match Complete?</label>
+				</div>
+				<button class="btn btn-danger" id="resetBtn" onclick="resetScores()">
+					Reset
+				</button>
+				<button class="btn btn-warning" id="swapButton" onclick="swapTeams()">
+					Swap Sides
+				</button>
+				<button class="btn btn-success" id="updateBtn" onclick="saveMatch()">
+					Update
+				</button>
 			</div>
-			<button class="btn btn-danger" id="resetBtn" onclick="resetScores()">
-				Reset
-			</button>
-			<button class="btn btn-warning" id="swapButton" onclick="swapTeams()">
-				Swap Sides
-			</button>
+		</div>
+		<hr>
+		<div class="container-fluid">
+			<h4>Map Set for
+				<pre id="teamNames" style="display: inline;"></pre>
+			</h4>
+			<div class="maps" id="mapParent">
+				<div id="mapTemplate" style="display: none;" class="mapGroup input-group-sm mb-3">
+					<h4>Map %map%</h4>
+					<select class="form-select mapTarget" id="map%map%map">
+						<option selected value="None">Map (Select to Disable)</option>
+					</select>
+					<h4>Scores</h4>
+					<div class="input-group input-group-sm mb-3">
+						<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
+							aria-label="Team 1 Score" id="map%map%team1score">
+						<span class="input-group-text">-</span>
+						<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
+							aria-label="Team 1 Score" id="map%map%team2score">
+						<span class="input-group-text">
+							<input class="form-check-input mt-0" type="checkbox" value="" id="map%map%done">
+						</span>
+						<span class="input-group-text">Done?</span>
+					</div>
+				</div>
+			</div>
 			<button class="btn btn-success" id="updateBtn" onclick="saveMatch()">
 				Update
 			</button>
 		</div>
-	</div>
-	<hr>
-	<div class="container-fluid">
-		<h4>Map Set for <pre id="teamNames" style="display: inline;"></pre></h4>
-		<div class="maps" id="mapParent">
-			<div id="mapTemplate" style="display: none;" class="mapGroup input-group-sm mb-3">
-				<h4>Map %map%</h4>
-				<select class="form-select mapTarget" id="map%map%map">
-					<option selected value="None">Map (Select to Disable)</option>
-				</select>
-				<h4>Scores</h4>
-				<div class="input-group input-group-sm mb-3">
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map%map%team1score">
-					<span class="input-group-text">-</span>
-					<input type="number" min="0" max="10" step="1" class="form-control" placeholder="0"
-						aria-label="Team 1 Score" id="map%map%team2score">
-					<span class="input-group-text">
-						<input class="form-check-input mt-0" type="checkbox" value="" id="map%map%done">
-					</span>
-					<span class="input-group-text">Done?</span>
-				</div>
-			</div>
 		</div>
-		<button class="btn btn-success" id="updateBtn" onclick="saveMatch()">
-			Update
-		</button>
-	</div>
-	</div>
+		<br>
+	</span>
 	<!-- 
 		<hr />
 		<div class="container-fluid">
@@ -94,6 +102,5 @@
 		</div> -->
 </body>
 
-<script src="scoreboard-controls.js"></script>
 
 </html>

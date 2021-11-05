@@ -1,13 +1,13 @@
-let currentTheme = nodecg.Replicant("currentTheme", {
-	defaultValue: -1
-});
-const themes = nodecg.Replicant("themes", {
-	defaultValue: []
-});
 const themeAssets = nodecg.Replicant("assets:theme");
 
-let cachedThemes = [];
-let cachedCurrentTheme = -1;
+useTheme();
+waitForLoad(() => {
+	updateThemeList();
+})
+themeCallback = () => {
+	updateThemeList();
+}
+
 let modifyingTheme = undefined,
 	modifyingThemeId = -1;
 let themeAssetsCache = null;
@@ -15,16 +15,6 @@ let themeAssetsCache = null;
 themeAssets.on("change", (assetList) => {
 	themeAssetsCache = assetList;
 	updateAssets();
-
-});
-
-themes.on("change", (themes) => {
-	cachedThemes = themes;
-	updateThemeList();
-});
-
-currentTheme.on("change", (currentTheme) => {
-	updateThemeList();
 });
 
 function updateThemeList() {
@@ -36,7 +26,7 @@ function updateThemeList() {
 	$.each(cachedThemes, function (value) {
 		var ele = document.createElement("option");
 		const theme = cachedThemes[value];
-		if (currentTheme.value == value)
+		if (cachedThemeId == value)
 			ele.text = theme.name + " (Current)";
 		else
 			ele.text = theme.name;
@@ -83,6 +73,11 @@ const typeTemplates = {
 		title="%title%"
 		placeholder="%title%"
 	/>`,
+	checkbox: `
+	<div class="input-group-text">
+		<input class="form-check-input mt-0 checkboxInput" type="checkbox" id="%id%" />
+		<label class="form-check-label" for="%id%">%title%</label>
+	</div>`,
 }
 
 const sections = {
@@ -148,7 +143,7 @@ const options = {
 		section: "style",
 		default: { data: { transparency: 1, baseHex: "#ffffff" }, value: "#ffffff" }
 	},
-	
+
 	teamLeftColor: {
 		visibleName: "Team Left (Default) Color",
 		type: "color",
@@ -337,6 +332,18 @@ const options = {
 		section: "scoreOverlay",
 		default: "3em"
 	},
+	scoreOverlayTeamNameFontSize: {
+		visibleName: "Team Name Font Size",
+		type: "text",
+		section: "scoreOverlay",
+		default: "3em"
+	},
+	scoreOverlayTeamNameColor: {
+		visibleName: "Team Name Color",
+		type: "color",
+		section: "scoreOverlay",
+		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
+	},
 	scoreOverlayTeamLeftBorderColor: {
 		visibleName: "Team Left Color",
 		type: "color",
@@ -349,14 +356,20 @@ const options = {
 		section: "scoreOverlay",
 		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
 	},
-	scoreOverlayTeamNameColor: {
-		visibleName: "Team Name Color",
-		type: "color",
+	scoreOverlayTeamLeftBottomBorderToggle: {
+		visibleName: "Toggle Team Left Bottom Border",
+		type: "checkbox",
 		section: "scoreOverlay",
-		default: { data: { transparency: 1, baseHex: "#C80013" }, value: "#C80013" }
+		default: false
+	},
+	scoreOverlayTeamRightBottomBorderToggle: {
+		visibleName: "Toggle Team Right Bottom Border",
+		type: "checkbox",
+		section: "scoreOverlay",
+		default: false
 	},
 	// Map View
-	
+
 	mapViewIncompleteMapBackgroundColor: {
 		visibleName: "Incomplete Map Overlay Color",
 		type: "color",
@@ -754,6 +767,10 @@ function updateSelection() {
 		}
 	});
 
+	$("input[type=checkbox]").each(async (id, dis) => {
+		const optionId = $(dis).attr('id');
+		$(dis).prop("checked", modifyingTheme.assets[optionId] || false);
+	});
 
 	$(".cssInput, .textInput").each(async (id, dis) => {
 		const optionId = $(dis).attr('id');
@@ -783,7 +800,6 @@ function loadConfigurationOptions() {
 			createSection(opt.section);
 			sections.push(opt.section);
 		}
-		console.log(`Loading `, key, opt)
 		const newOption = document.createElement("span");
 		let template = typeTemplates[opt.type];
 		template = template.replaceAll("%id%", key);
@@ -865,6 +881,11 @@ function saveTheme() {
 		modifyingTheme.assets[optionId].data.transparency = $(`#${optionId}-transparency`).val() || 1;
 		let rgb = hexToRgb(dis.value);
 		modifyingTheme.assets[optionId].value = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${$(`#${optionId}-transparency`).val() || 1})`
+	});
+
+	$("input[type=checkbox]").each(async (id, dis) => {
+		const optionId = $(dis).attr('id');
+		modifyingTheme.assets[optionId] = $(dis).prop("checked")
 	});
 
 	$(".cssInput, .textInput").each(async (id, dis) => {

@@ -15,7 +15,7 @@ waitForLoad(() => {
 })
 
 $.ajax({
-	url: "../assets/data/heroes.json",
+	url: "../../assets/data/heroes.json",
 	success: function (data) {
 		heroes = data.allheroes;
 		heroData = data;
@@ -69,7 +69,7 @@ function setDisplayedRoster(team) {
 	$(".topText").html(teamObj.name);
 	$("img.logo").attr('src', teamObj.logo);
 	$("#teamStyle").html(`:root { --TEAM-COLOR: ${teamObj.colors.teamColor};
-	--PLAYER-COLOR: ${teamObj.colors.playerColor}; }`)
+	--PLAYER-COLOR: ${teamObj.colors.playerColor}; --BORDER: ${teamObj.colors.borderColor || "transparent"}}`)
 }
 
 let displayedState = false;
@@ -92,9 +92,9 @@ function displayRoster(team, text) {
 }
 
 function hideRoster() {
-	$(".playerDisplay").addClass("offscreen");
-	$(".teamInformation").addClass("offscreen");
-	$(".namePlate").addClass("offscreen");
+	$(".playerDisplay").addClass("slideout");
+	$(".teamInformation").addClass("slideout");
+	$(".namePlate").addClass("slideout");
 	displayedState = false;
 }
 
@@ -103,6 +103,7 @@ function showRoster() {
 	$(".offscreen").removeClass("offscreen");
 	$(".teamInformation").removeClass("offscreen");
 	$(".namePlate").removeClass("offscreen");
+	$(".slideout").removeClass("slideout");
 	displayedState = true;
 }
 

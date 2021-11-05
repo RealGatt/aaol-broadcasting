@@ -19,7 +19,6 @@ function swapMapScores() {
 		if (loadedMatch.maps[mapId - 1]) {
 			const map = loadedMatch.maps[mapId - 1];
 			if (map) {
-				const mapGroup = $(`#map${mapId}group`);
 				const old1Score = map.team1score;
 				const old2Score = map.team2score;
 				map.team1score = old2Score;
@@ -30,7 +29,7 @@ function swapMapScores() {
 }
 
 $.ajax({
-	url: "../assets/data/maps.json",
+	url: "../../assets/data/maps.json",
 	success: function (data) {
 		maps = data.allmaps;
 		console.log("Successfully grabbed Maps.json");
@@ -47,49 +46,32 @@ function loadMaps() {
 	})
 }
 
-let loadedMatch = null;
-let loadedMatchIndex = -1;
-const teamList = nodecg.Replicant("teamList", {
-	defaultValue: []
-});
-const matches = nodecg.Replicant("matchList", {
-	defaultValue: []
-});
-const currentMatch = nodecg.Replicant("currentMatch");
-
-let cachedTeamList;
-let cachedMatchList;
-let cachedCurrentMatch;
+useTeam();
+teamsCallback = () => {
+	updateDisplay();
+}
+currentMatchCallback = () => {
+	updateDisplay();
+}
+teamsCallback = () => {
+	updateDisplay();
+}
+waitForLoad(() => {
+	updateDisplay();
+})
 
 const scoreboardSelectMatch = document.getElementById(
 	"scoreboardSelectMatch"
 );
-teamList.on("change", (teamList) => {
-	cachedTeamList = teamList;
-});
-
-matches.on("change", (matchList) => {
-	console.log("Match List changed");
-	cachedMatchList = matchList;
-	updateDisplay();
-});
-
-
-currentMatch.on("change", (currentMatch) => {
-	loadedMatchIndex = currentMatch;
-	console.log("Updated current match to ", currentMatch);
-	updateDisplay();
-});
-
-
 function updateDisplay() {
+	$("#activeMatch").hide();
+	$("#noMatch").show();
 	console.log("Got call to update Score Manage Display");
 	if (!cachedMatchList || !cachedTeamList || loadedMatchIndex == -1) {
 		console.log("cache is empty")
 		return;
 	}
 
-	loadedMatch = Object.entries(cachedMatchList).filter((mtch) => { console.log(mtch[1], mtch[1].matchId, currentMatch.value); return mtch[1].matchId == currentMatch.value })[0][1]
 	if (!loadedMatch) return;
 	console.log("Cached Team List", cachedTeamList);
 	console.log("Loaded Match obj", loadedMatch);
@@ -100,7 +82,6 @@ function updateDisplay() {
 	$("#teamNames").html(team1.name + " vs " + team2.name)
 	$("#team1score").attr("placeholder", team1.name);
 	$("#team2score").attr("placeholder", team2.name);
-
 
 	$("#team1score").val(loadedMatch.team1score || 0);
 	$("#team2score").val(loadedMatch.team2score || 0);
@@ -132,7 +113,6 @@ function updateDisplay() {
 		}
 	}
 
-
 	if (loadedMatch.matchCompleted) {
 		if (loadedMatch.team1score > loadedMatch.team2score)
 			$("#team1score").css("background-color", "lime");
@@ -143,6 +123,8 @@ function updateDisplay() {
 			$("#team2score").css("background-color", "lime");
 		}
 	}
+	$("#activeMatch").show();
+	$("#noMatch").hide();
 }
 
 function calculateMapWinners(recalc) {

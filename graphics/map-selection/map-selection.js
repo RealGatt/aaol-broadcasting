@@ -1,9 +1,9 @@
-let maps = null;
-
+useMaps();
 useTheme();
 useTeam();
 
 waitForLoad(() => {
+    loadColors("mapView");
     updateMaps(true);
 })
 
@@ -11,19 +11,9 @@ let cachedConfig = {
     matchTitle: "SET ME",
     casters: ["Caster 1", "Caster 2"],
 };
-$.ajax({
-    url: "../assets/data/maps.json",
-    success: function (data) {
-        maps = data;
-    },
-});
 
-function findMap(mapName) {
-    return maps.allmaps.filter((map) => map.name == mapName)[0]
-}
-
-currentMatchCallback = async () => {
-    if (!loadedMatch) return;
+anyUpdateCallback = async () => {
+    if (!loadedMatch || !loaded) return;
     console.log(`Match`, loadedMatch, cachedMatchList[currentMatch]);
     if (!loadedMatch.maps) {
         // default AAOL Map pool order
@@ -36,19 +26,13 @@ currentMatchCallback = async () => {
         { map: "None", team1score: 0, team2score: 0, done: false, winner: null, draw: false }];
     }
     console.log(`Updated the map pool`)
+    await updateMaps(false);
 }
-
-themeCallback = async () => {
-    loadColors("mapView");
-    loadCustomCSS("mapCSS");
-    $("div.scoreboard span").html("MAP SET");
-}
-
 
 let mapCache;
 
 async function updateMaps(first) {
-    if (!maps) return setTimeout(updateMaps(first), 100);
+    if (!maps) return;
     let theincomplete = 0;
     let totalmap = 0;
     for (let i = 0; i < 7; ++i) {
@@ -90,7 +74,7 @@ async function updateMaps(first) {
         } else {
             reptext = (maptxt)
         }
-        let img = "../assets/maps/" + actualMapData.file;
+        let img = "../../assets/maps/" + actualMapData.file;
         //let reptext = (maptxt).replace("?", "TBA");
         let node1 = $(".mapbg" + (i + 1) + " img");
         let node2 = $(".mapinfo" + (i + 1) + " .mapname");
@@ -128,7 +112,7 @@ async function updateMaps(first) {
                 $('.mapbg' + (i + 1) + ' img').css("mix-blend-mode", "luminosity");
                 document.querySelector(".mapbg" + (i + 1) + " .mapscore .logo").style.backgroundImage = "url(" + mapWinner.logo + ")";
                 $('.mapbg' + (i + 1)).css("background-color", (mapWinner.colors.teamColor));
-                $('.mapbg' + (i + 1) + ' .mapscore span').css("color", (mapWinner.colors.playerColor));
+                $('.mapbg' + (i + 1) + ' .mapscore span').css("color", (mapWinner.colors.borderColor));
                 $('.mapbg' + (i + 1) + ' .mapscore .score').html((mt1scoretxt) + "-" + (mt2scoretxt) + "");
             }
         } else if (theincomplete > 0) { // for other incomplete maps

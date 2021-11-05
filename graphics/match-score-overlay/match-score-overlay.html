@@ -2,25 +2,16 @@
 <html lang="en">
 
 <head>
+	<script src="../../assets/js/jquery.min.js"></script>
 	<title>Match Score Overlay</title>
-	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="css/index.css" />
-	<script src="../js/jquery.min.js"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-	<script src="../js/z-basic.js"></script>
+	<script src="../../assets/js/z-basic.js"></script>
 	<script defer src="match-score-overlay.js"></script>
-	<style>
-		.LOADING {
-			display: none;
-		}
-	</style>
 
 </head>
 
 
-<body>
+<body class="hidden">
 	<div class="center">
 		<span class="teamname" id="matchtext"></span>
 	</div>
@@ -29,22 +20,15 @@
 	<div class="side" id="team2side"><span></span></div>
 
 	<div class="left team1" id="team1color">
-		<span class="logoshade" id="team1logoshade"></span>
 		<span class="logo" id="team1logo"></span>
-		<span class="teamsr" id="team1sr"></span>
 		<span class="teamname" id="team1name"></span>
 		<span class="score" id="team1score"></span>
-
-
 	</div>
 
 	<div class="right team2" id="team2color">
-		<span class="logoshade" id="team2logoshade"></span>
 		<span class="logo" id="team2logo"></span>
 		<span class="teamname" id="team2name"></span>
-		<span class="teamsr" id="team2sr"></span>
 		<span class="score" id="team2score"></span>
-
 	</div>
 </body>
 

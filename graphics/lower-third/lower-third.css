@@ -1,0 +1,329 @@
+:root {
+    --team1scorecolor: white;
+    --team2scorecolor: white;
+    --lowerThirdTopBarColor: black;
+    --lowerThirdTopBarTextColor: white;
+    --lowerThirdTeamNameColor: white;
+    --lowerThirdScoreBackgroundColor: #2E2E2E;
+}
+
+.show {
+    animation: slideinleftmore 2s 1s 1 normal forwards !important;
+    clip-path: polygon(-10% -5%, -100px -5%, -100px 105%, -20% 105%);
+}
+
+/* Caster Lower Third */
+
+.casterWrapper {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 100px;
+    bottom: 100px;
+    width: 450px;
+    height: 150px;
+    animation: slideoutleftmore 2s 0s 1 normal forwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s !important;
+}
+
+.casterIcon {
+    min-width: 150px;
+    height: 150px;
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 125px 125px;
+    background-image: var(--casterIcon);
+    background-color: var(--lowerThirdScoreBackgroundColor);
+}
+
+.infoBlock {
+    flex-grow: 1;
+    text-align: left;
+    font-family: var(--FONT);
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 1.5rem;
+    animation-delay: 1.4s !important;
+    color: white;
+}
+
+.infoBlock>.casterName {
+    display: flex;
+    width: 280px;
+    height: 75px;
+    justify-content: left;
+    align-items: center;
+    font-size: 3rem;
+    animation-delay: 1.4s !important;
+    background-color: var(--lowerThirdScoreBackgroundColor);
+    padding-left: 8px;
+    animation: slideoutleftmore;
+}
+
+.infoBlock>.casterName::after {
+    background-color: var(--lowerThirdScoreBackgroundColor) !important;
+    position: absolute;
+    content: '';
+    height: 75px;
+    width: 300px;
+    transform-origin: bottom left;
+    transform: skew( -8deg, 0deg);
+    display: block;
+    z-index: -1;
+    border-right: #E23E36 4px solid;
+}
+
+.infoBlock>.casterHandle {
+    display: flex;
+    width: 280px;
+    height: 75px;
+    justify-content: left;
+    align-items: center;
+    font-size: 2rem;
+    animation-delay: 1.6s !important;
+    background-color: var(--lowerThirdScoreBackgroundColor);
+    padding-left: 8px;
+}
+
+.infoBlock>.casterHandle::after {
+    background-color: var(--lowerThirdScoreBackgroundColor) !important;
+    position: absolute;
+    content: '';
+    height: 75px;
+    width: 290px;
+    transform-origin: bottom left;
+    transform: skew( -8deg, 0deg);
+    border-right: #E23E36 4px solid;
+    border-top: unset;
+    display: block;
+    z-index: -1;
+}
+
+/* Map Lower Third*/
+
+th, td, thead, tr {
+    animation: slideoutleftmore 2s 0s 1 normal backwards !important;
+    animation-timing-function: ease-in-out;
+    clip-path: polygon(-10% -5%, 120% -5%, 120% 105%, -20% 105%);
+}
+
+.team1 {
+    animation-delay: .2s !important;
+}
+
+.team2 {
+    animation-delay: .4s !important;
+}
+
+.team1.show {
+    animation-delay: 1.2s !important;
+}
+
+.team2.show {
+    animation-delay: 1.4s !important;
+}
+
+.mapWrapper>table {
+    font-family: var(--FONT);
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+
+.mapWrapper {
+    position: fixed;
+    left: 100px;
+    bottom: 100px;
+    width: 820px;
+    height: 150px;
+}
+
+.mapWrapper>table>thead {
+    padding: none;
+    height: 30px;
+    max-height: 30px;
+    overflow: hidden;
+    background-color: var(--lowerThirdTopBarColor) !important;
+}
+
+.matchName, .teamName, .teamName::after, .teamName::before {
+    width: 350px;
+}
+
+.score, .teamScore {
+    width: 70px;
+}
+
+.mapCol {
+    background: transparent;
+    min-width: 55px;
+    max-width: 100%;
+}
+
+tr.team1, tr.team2 {
+    height: 60px;
+    width: 100%;
+    background-color: var(--lowerThirdScoreBackgroundColor);
+    z-index: -1;
+}
+
+tr>.mapCol {
+    z-index: 1;
+}
+
+.teamScore::before {
+    width: 70px;
+    margin-left: 0px;
+}
+
+.teamLogo.hidden {
+    display: none;
+}
+
+.teamLogo {
+    display: inline;
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: var(--teamLogo);
+    padding-left: 8px;
+    padding-right: 50px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    z-index: 5;
+}
+
+td.teamName>span.teamName {
+    display: inline;
+    font-size: 2.5rem;
+    overflow: visible;
+    overflow-wrap: normal;
+    vertical-align: middle;
+}
+
+.mapCol.mapScore, .mapCol.teamScore {
+    vertical-align: middle;
+    color: black;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.teamScore::after {
+    position: absolute;
+    display: inherit;
+    content: "";
+    width: 60px;
+    height: 40px;
+    margin-top: -47px;
+    transform: skew(-8deg) translateX(3px);
+    border-left: white solid 2px;
+}
+
+tr.team1>.teamName {
+    color: var(--lowerThirdTeamNameColor);
+    text-shadow: 2px 2px var(--team1BorderColor);
+    background-color: transparent;
+    clip-path: polygon(-10% -5%, 120% -5%, 120% 105%, -20% 105%) !important;
+}
+
+tr.team2>.teamName {
+    color: var(--lowerThirdTeamNameColor);
+    text-shadow: 2px 2px var(--team2BorderColor);
+    background-color: transparent;
+    clip-path: polygon(-10% -5%, 120% -5%, 120% 105%, -20% 105%) !important;
+}
+
+tr.team1>.teamName::after {
+    background-color: var(--team1TeamColor) !important;
+    position: absolute;
+    content: '';
+    height: 60px;
+    top: 29px;
+    left: 0px;
+    transform-origin: bottom left;
+    transform: skew(-8deg, 0deg);
+    overflow-x: hidden;
+    display: block;
+    z-index: -1;
+}
+
+tr.team2>.teamName::after {
+    background-color: var(--team2TeamColor) !important;
+    position: absolute;
+    content: '';
+    height: 60px;
+    top: 89px;
+    left: 0px;
+    transform: skew(-8deg);
+    transform-origin: bottom left;
+    overflow-x: hidden;
+    display: block;
+    z-index: -1;
+}
+
+tr.team1>.teamName::before {
+    background-color: var(--team1TeamColor) !important;
+    position: absolute;
+    content: '';
+    height: 60px;
+    top: 29px;
+    left: 0px;
+    z-index: -1;
+}
+
+tr.team2>.teamName::before {
+    background-color: var(--team2TeamColor) !important;
+    position: absolute;
+    content: '';
+    height: 60px;
+    top: 89px;
+    left: 0px;
+    z-index: -1;
+}
+
+.team1score {
+    color: var(--team1scorecolor) !important;
+}
+
+.team2score {
+    color: var(--team2scorecolor) !important;
+}
+
+.matchName {
+    color: var(--lowerThirdTopBarTextColor);
+    text-align: left;
+    padding-left: 8px;
+}
+
+.Control {
+    background-image: url("../../assets/icons/Control.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.Hybrid {
+    background-image: url("../../assets/icons/Hybrid.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.Escort {
+    background-image: url("../../assets/icons/Escort.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.Assault {
+    background-image: url("../../assets/icons/Assault.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

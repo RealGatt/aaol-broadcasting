@@ -1,0 +1,41 @@
+@keyframes slideinleft {
+    0% {
+        clip-path: polygon(-10% -5%, -100px -5%, -100px 105%, -20% 105%);
+    }
+    90% {
+        clip-path: polygon(-10% -5%, 100% -5%, 100% 105%, -20% 100%);
+    }
+    100% {
+        clip-path: unset;
+    }
+}
+
+@keyframes slideoutleft {
+    0% {
+        clip-path: unset;
+    }
+    10% {
+        clip-path: polygon(-10% -5%, 100% -5%, 100% 105%, -20% 100%);
+    }
+    100% {
+        clip-path: polygon(-10% -5%, -100px -5%, -100px 105%, -20% 105%);
+    }
+}
+
+@keyframes slideinleftmore {
+    0% {
+        clip-path: polygon(-10% -5%, -100px -5%, -100px 105%, -20% 105%);
+    }
+    100% {
+        clip-path: polygon(-10% -5%, 120% -5%, 120% 105%, -20% 105%);
+    }
+}
+
+@keyframes slideoutleftmore {
+    0% {
+        clip-path: polygon(-10% -5%, 120% -5%, 120% 105%, -20% 105%);
+    }
+    100% {
+        clip-path: polygon(-10% -5%, -100px -5%, -100px 105%, -20% 105%);
+    }
+}

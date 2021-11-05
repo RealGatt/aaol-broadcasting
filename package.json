@@ -11,14 +11,19 @@
   "files": [
     "dashboard",
     "graphics",
-    "extension.js",
-    "extension"
+    "extension.js"
   ],
   "keywords": [
     "",
     "nodecg-bundle"
   ],
   "nodecg": {
+    "mount": [
+      {
+        "directory": "assets",
+        "endpoint": "assets"
+      }
+    ],
     "compatibleRange": "^1.6.0",
     "assetCategories": [
       {
@@ -120,6 +125,11 @@
       },
       {
         "file": "current-match-score/current-match-score.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "lower-third/lower-third.html",
         "width": 1920,
         "height": 1080
       },

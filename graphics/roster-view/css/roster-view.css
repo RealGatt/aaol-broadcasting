@@ -4,6 +4,94 @@
 	--PLAYER-COLOR: #FEFF72;
 }
 
+.offscreen, .LOADING {
+	display: none;
+}
+
+body {
+	background-color: gray;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+@keyframes slideright {
+	0% {
+		transform: translateX(-1000%);
+	}
+	100% {
+		transform: translateX(0px);
+	}
+}
+
+@keyframes slideout {
+	0% {
+		transform: translateX(0px);
+	}
+	100% {
+		transform: translateX(-1000%);
+	}
+}
+
+/* Animation Stuff */
+
+.offscreen:nth-child(6) {
+	animation-delay: 0.0s !important;
+}
+
+.offscreen:nth-child(5) {
+	animation-delay: 0.1s !important;
+}
+
+.offscreen:nth-child(4) {
+	animation-delay: 0.2s !important;
+}
+
+.offscreen:nth-child(3) {
+	animation-delay: 0.3s !important;
+}
+
+.offscreen:nth-child(2) {
+	animation-delay: 0.4s !important;
+}
+
+.offscreen:nth-child(1) {
+	animation-delay: 0.5s !important;
+}
+
+.playerDisplay:nth-child(6) {
+	animation-delay: 0.1s;
+}
+
+.playerDisplay:nth-child(5) {
+	animation-delay: 0.2s;
+}
+
+.playerDisplay:nth-child(4) {
+	animation-delay: 0.3s;
+}
+
+.playerDisplay:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+.playerDisplay:nth-child(2) {
+	animation-delay: 0.5s;
+}
+
+.playerDisplay:nth-child(1) {
+	animation-delay: 0.6s;
+}
+
+.vertical {
+	transform: translateY(25%);
+}
+
+.slideout {
+	animation: slideout 2s !important;
+	animation-fill-mode: backwards;
+	transform: translateX(-1000%);
+}
+
 /* Styling */
 
 .rosterParent {
@@ -40,6 +128,8 @@
 	vertical-align: middle;
 	display: flex;
 	align-items: center;
+	animation: slideright 2s;
+	animation-fill-mode: backwards;
 }
 
 .logo {
@@ -50,7 +140,6 @@
 	z-index: 11;
 	max-width: 128px;
 	max-height: 128px;
-	min-width: 128px;
 	margin-top: 150px;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -65,6 +154,7 @@
 	text-transform: uppercase;
 	top: 75px;
 	position: relative;
+	text-shadow: 2px 2px var(--BORDER);
 }
 
 .playerDisplay {
@@ -77,6 +167,8 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	background: var(--rosterViewBackgroundBoxColor);
+	animation: slideright 1s;
+	animation-fill-mode: backwards;
 }
 
 .blocker {
@@ -183,25 +275,25 @@
 /* Icons */
 
 .Tank {
-	background-image: url(../../assets/icons/Tank.png);
+	background-image: url(../../../assets/icons/Tank.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .DPS {
-	background-image: url(../../assets/icons/DPS.png);
+	background-image: url(../../../assets/icons/DPS.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .Support {
-	background-image: url(../../assets/icons/Support.png);
+	background-image: url(../../../assets/icons/Support.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .Flex {
-	background-image: url(../../assets/icons/Flex.png);
+	background-image: url(../../../assets/icons/Flex.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -210,161 +302,161 @@
 
 .Reinhardt {
 	/* background-position-x: -270px; */
-	background-image: url(../../assets/portraits/Reinhardt.png);
+	background-image: url(../../../assets/portraits/Reinhardt.png);
 }
 
 .Zarya {
 	/* background-position-x: -130px; */
-	background-image: url(../../assets/portraits/Zarya.png);
+	background-image: url(../../../assets/portraits/Zarya.png);
 }
 
 .Genji {
 	/* background-position-x: -120px; */
-	background-image: url(../../assets/portraits/Genji.png);
+	background-image: url(../../../assets/portraits/Genji.png);
 }
 
 .Mercy {
 	/* background-position-x: -210px;
     background-position-y: -80px;
     background-size: 900px 800px; */
-	background-image: url(../../assets/portraits/Mercy.png);
+	background-image: url(../../../assets/portraits/Mercy.png);
 }
 
 .Tracer {
 	/* background-position-x: 0px; */
-	background-image: url(../../assets/portraits/Tracer.png);
+	background-image: url(../../../assets/portraits/Tracer.png);
 }
 
 .Moira {
 	/* background-position-x: -50px; */
-	background-image: url(../../assets/portraits/Moira.png);
+	background-image: url(../../../assets/portraits/Moira.png);
 }
 
 .DVa {
 	/* background-position-x: -150px;
     background-position-y: -80px;
     background-size: 900px 800px; */
-	background-image: url(../../assets/portraits/DVa.png);
+	background-image: url(../../../assets/portraits/DVa.png);
 }
 
 .Orisa {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Orisa.png);
+	background-image: url(../../../assets/portraits/Orisa.png);
 }
 
 .Roadhog {
 	/* background-position-x: -120px; */
-	background-image: url(../../assets/portraits/Roadhog.png);
+	background-image: url(../../../assets/portraits/Roadhog.png);
 }
 
 .Sigma {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Sigma.png);
+	background-image: url(../../../assets/portraits/Sigma.png);
 }
 
 .Winston {
 	/* background-position-x: -180px; */
-	background-image: url(../../assets/portraits/Winston.png);
+	background-image: url(../../../assets/portraits/Winston.png);
 }
 
 .Wrecking_Ball {
 	/* background-position-x: -230px; */
-	background-image: url(../../assets/portraits/WreckingBall.png);
+	background-image: url(../../../assets/portraits/WreckingBall.png);
 }
 
 .Ashe {
 	/* background-position-x: -130px;
     background-position-y: -180px;
     background-size: 900px 950px; */
-	background-image: url(../../assets/portraits/Ashe.png);
+	background-image: url(../../../assets/portraits/Ashe.png);
 }
 
 .Bastion {
 	/* background-position-x: -230px; */
-	background-image: url(../../assets/portraits/Bastion.png);
+	background-image: url(../../../assets/portraits/Bastion.png);
 }
 
 .Doomfist {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Doomfist.png);
+	background-image: url(../../../assets/portraits/Doomfist.png);
 }
 
 .Echo {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Echo.png);
+	background-image: url(../../../assets/portraits/Echo.png);
 }
 
 .Hanzo {
 	/* background-position-x: -90px; */
-	background-image: url(../../assets/portraits/Hanzo.png);
+	background-image: url(../../../assets/portraits/Hanzo.png);
 }
 
 .Junkrat {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Junkrat.png);
+	background-image: url(../../../assets/portraits/Junkrat.png);
 }
 
 .McCree {
 	/* background-position-x: -150px;
     background-position-y: 30px; */
-	background-image: url(../../assets/portraits/McCree.png);
+	background-image: url(../../../assets/portraits/McCree.png);
 }
 
 .Mei {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Mei.png);
+	background-image: url(../../../assets/portraits/Mei.png);
 }
 
 .Pharah {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Pharah.png);
+	background-image: url(../../../assets/portraits/Pharah.png);
 }
 
 .Reaper {
 	/* No changes needed */
-	background-image: url(../../assets/portraits/Reaper.png);
+	background-image: url(../../../assets/portraits/Reaper.png);
 }
 
 .Soldier_76 {
 	/* background-position-x: -10px; */
-	background-image: url(../../assets/portraits/Soldier76.png);
+	background-image: url(../../../assets/portraits/Soldier76.png);
 }
 
 .Sombra {
 	/* background-position-x: -180px; */
-	background-image: url(../../assets/portraits/Sombra.png);
+	background-image: url(../../../assets/portraits/Sombra.png);
 }
 
 .Symmetra {
 	/* background-position-x: -30px;
     background-size: 923px 2000px; */
-	background-image: url(../../assets/portraits/Symmetra.png);
+	background-image: url(../../../assets/portraits/Symmetra.png);
 }
 
 .Torbjorn {
-	background-image: url(../../assets/portraits/Torbjorn.png);
+	background-image: url(../../../assets/portraits/Torbjorn.png);
 }
 
 .Widowmaker {
-	background-image: url(../../assets/portraits/Widowmaker.png);
+	background-image: url(../../../assets/portraits/Widowmaker.png);
 }
 
 .Ana {
-	background-image: url(../../assets/portraits/Ana.png);
+	background-image: url(../../../assets/portraits/Ana.png);
 }
 
 .Baptiste {
-	background-image: url(../../assets/portraits/Baptiste.png);
+	background-image: url(../../../assets/portraits/Baptiste.png);
 }
 
 .Brigitte {
-	background-image: url(../../assets/portraits/Brigitte.png);
+	background-image: url(../../../assets/portraits/Brigitte.png);
 }
 
 .Lucio {
-	background-image: url(../../assets/portraits/Lucio.png);
+	background-image: url(../../../assets/portraits/Lucio.png);
 }
 
 .Zenyatta {
-	background-image: url(../../assets/portraits/Zenyatta.png);
+	background-image: url(../../../assets/portraits/Zenyatta.png);
 }

@@ -1,19 +1,37 @@
-const teamList = nodecg.Replicant("teamList", {
-	defaultValue: []
-});
+useTeam();
+teamsCallback = () => {
+	$("#teamManagerSelectTeam").empty();
+
+	/* Insert the new ones from the array above */
+
+	$.each(cachedTeamList, function (value) {
+		const team = cachedTeamList[value];
+		if (team) {
+			var ele = document.createElement("option");
+			// console.log("Team Data", team);
+			ele.text = team.name;
+			ele.id = team.id;
+			$("#teamManagerSelectTeam").append(ele);
+		}
+	});
+	if (modifyingTeam) updateDisplay();
+	if (selectedIndex >= 0) teamManagerSelectTeam.selectedIndex = selectedIndex;
+}
+waitForLoad(() => {
+	updateDisplay();
+})
+
 const teamLogos = nodecg.Replicant("assets:teamlogos");
 const playerIcons = nodecg.Replicant("assets:player-icons");
 
 let selectedIndex = -1;
 let modifyingTeam = null;
 
-
-
 let heroes = [];
 let heroData;
 
 $.ajax({
-	url: "../assets/data/heroes.json",
+	url: "../../assets/data/heroes.json",
 	success: function (data) {
 		heroes = data.allheroes;
 		heroData = data;
@@ -36,16 +54,16 @@ function addTeam() {
 	if (newTeamName && newTeamName.length > 0) {
 		const newTeamObj = {
 			name: newTeamName,
-			id: (teamList.value.length || 0),
+			id: (cachedTeamList.length || 0),
 			logo: null,
 			rosterRoster: null,
 			roster: [],
 			colors: { teamColor: "#ffffff", playerColor: "#A4F0CA" }
 		};
-		const allTeams = teamList.value || [];
+		const allTeams = cachedTeamList || [];
 		allTeams[allTeams.length] = newTeamObj;
 		// console.log("All Teams", allTeams, newTeamObj);
-		teamList.value = allTeams;
+		cachedTeamList = allTeams;
 	}
 }
 
@@ -62,7 +80,7 @@ function saveTeamData() {
 	modifyingTeam.logo = $("#teamManagerSelectLogo option:selected").attr("data-image-url");
 	modifyingTeam.rosterLogo = $("#teamManagerSelectRosterLogo option:selected").attr("data-image-url");
 
-	modifyingTeam.colors = { teamColor: $("#teamColor").val(), playerColor: $("#playerColor").val() }
+	modifyingTeam.colors = { teamColor: $("#teamColor").val(), playerColor: $("#playerColor").val(), borderColor: $("#borderColor").val() }
 
 	modifyingTeam.roster = [];
 	console.log($("#teamColor").val(), $("#playerColor").val())
@@ -83,7 +101,7 @@ function saveTeamData() {
 
 function loadTeam() {
 	const teamToLoad = teamManagerSelectTeam.selectedIndex;
-	modifyingTeam = teamList.value[teamToLoad];
+	modifyingTeam = cachedTeamList[teamToLoad];
 	selectedIndex = teamManagerSelectTeam.selectedIndex
 
 	if (!modifyingTeam.roster) modifyingTeam.roster = [];
@@ -91,16 +109,17 @@ function loadTeam() {
 }
 
 function updateImage() {
-	const logo = teamLogos.value[teamManagerSelectLogo.selectedIndex - 1] || {url: ""};
+	const logo = teamLogos.value[teamManagerSelectLogo.selectedIndex - 1] || { url: "" };
 	document.getElementById("teamManagerSelectLogoDisplay").src = logo.url;
 }
 
 function updateRosterImage() {
-	const logo = teamLogos.value[teamManagerSelectRosterLogo.selectedIndex - 1]|| {url: ""};
+	const logo = teamLogos.value[teamManagerSelectRosterLogo.selectedIndex - 1] || { url: "" };
 	document.getElementById("teamManagerSelectRosterLogoDisplay").src = logo.url;
 }
 
 function updateDisplay() {
+	if (!modifyingTeam) return;
 	document.getElementById("teamManagerSelectLogoDisplay").src = modifyingTeam.logo || "";
 	let obj = document.getElementById("teamManagerSelectLogo");
 	let index = [...document.getElementById("teamManagerSelectLogo").options].findIndex(option =>
@@ -117,9 +136,11 @@ function updateDisplay() {
 
 	if (!modifyingTeam.colors)
 		modifyingTeam.colors = { teamColor: "#ffffff", playerColor: "#A4F0CA" }
+	if (!modifyingTeam.colors.borderColor) modifyingTeam.colors.borderColor = "#FFFFFF";
 
 	$("#teamColor").val(modifyingTeam.colors.teamColor);
 	$("#playerColor").val(modifyingTeam.colors.playerColor);
+	$("#borderColor").val(modifyingTeam.colors.borderColor);
 	$("#updateTeamName").val(modifyingTeam.name);
 
 	$("#updateTeamName").prop("disabled", false);
@@ -130,6 +151,7 @@ function updateDisplay() {
 	$("#saveTeamButton").prop("disabled", false);
 	$("#teamColor").prop("disabled", false);
 	$("#playerColor").prop("disabled", false);
+	$("#borderColor").prop("disabled", false);
 
 	for (let playerId = 1; playerId < 7; playerId++) {
 		// console.log(playerId);
@@ -153,28 +175,6 @@ function updateDisplay() {
 	}
 
 }
-
-teamList.on("change", (teamList) => {
-	// console.log("Team List changed");
-
-	/* Remove all options from the select list */
-	$("#teamManagerSelectTeam").empty();
-
-	/* Insert the new ones from the array above */
-
-	$.each(teamList, function (value) {
-		const team = teamList[value];
-		if (team) {
-			var ele = document.createElement("option");
-			// console.log("Team Data", team);
-			ele.text = team.name;
-			ele.id = team.id;
-			$("#teamManagerSelectTeam").append(ele);
-		}
-	});
-	if (modifyingTeam) updateDisplay();
-	if (selectedIndex >= 0) teamManagerSelectTeam.selectedIndex = selectedIndex;
-});
 
 teamLogos.on("change", (logoList) => {
 	// console.log("Loaded Team Logos", logoList);

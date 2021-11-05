@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'FontAwesome';
-    src: url("../assets/fonts/Font Awesome/Font Awesome 5 Brands-Regular-400.otf") format('OpenType');
+    src: url("../../assets/fonts/Font Awesome/Font Awesome 5 Brands-Regular-400.otf") format('OpenType');
 }
 
 @keyframes staffanimate {

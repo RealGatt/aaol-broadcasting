@@ -1,3 +1,26 @@
+@keyframes teamlogoslideright {
+    0% {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+        transform: translateX(-100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+@keyframes teamlogoslideleft {
+    0% {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+        transform: translateX(100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        transform: translateX(0px);
+    }
+}
+
+
 @keyframes teamslideright {
     0% {
         clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
@@ -104,6 +127,18 @@
     }
 }
 
+.team1 > .teamlogo{
+    animation: teamlogoslideleft 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: backwards;
+}
+
+.team2 > .teamlogo{
+    animation: teamlogoslideright 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: backwards;
+}
+
 .LOADING {
     display: none !important;
 }
@@ -146,7 +181,7 @@ body {
     font-size: 2.5em;
     font-weight: bold;
     position: relative;
-    top: -37px;
+    top: -25px;
     animation: headeranimate 1s;
     animation-fill-mode: backwards;
     animation-delay: .7s;
@@ -187,9 +222,9 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 2em;
-    padding: 0px 0px 20px 0px;
+    padding: 0px 0px 10px 0px;
     position: relative;
-    top: -10px;
+    top: -5px;
     color: var(--nextMatchMatchInfoTextColor);
 }
 
@@ -229,6 +264,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
 }
 
 .team1::before {

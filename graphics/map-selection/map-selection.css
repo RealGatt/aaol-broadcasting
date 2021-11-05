@@ -173,7 +173,6 @@ span {
     font-family: var(--FONT);
     text-transform: uppercase;
     /* text-shadow: 0px 0px 15px #000000; */
-    font-weight: bold;
     font-size: 1.95em;
 }
 
@@ -187,7 +186,7 @@ div.wrapper {
     border-style: solid;
     border-width: 0px 6px 0px 6px;
     border-left-color: var(--mapViewLeftSideBorderColor);
-    border-right-color: var(--mapViewLeftSideBorderColor);
+    border-right-color: var(--mapViewRightSideBorderColor);
     clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%);
 }
 
@@ -330,7 +329,6 @@ span.teamname {
     font-size: 3em;
     font-family: var(--FONT);
     text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-
 }
 
 span.score {

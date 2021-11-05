@@ -1,22 +1,16 @@
 useTheme();
 useTeam();
+
 waitForLoad(() => {
 	updateMatchNumber();
 	updateGraphics();
-	
 	nodecg.sendMessage("showScoreboard", true);
 })
 
 
-themeCallback = () => {
-	loadColors("scoreOverlay");
-	loadCustomCSS("scoreOverlayCSS");
-}
 
 matchConfigUpdateCallback = () => {
 	console.log(`Loaded match`, cachedMatchConfiguration);
-
-
 	if (!cachedMatchConfiguration.rolesDisplayed) {
 		$("#team1side").hide();
 		$("#team2side").hide();
@@ -34,6 +28,16 @@ matchConfigUpdateCallback = () => {
 	updateMatchNumber();
 }
 
+themeCallback = () => {
+	loadColors("scoreOverlay");
+	loadCustomCSS("scoreOverlayCSS");
+	updateGraphics();
+}
+
+teamsCallback = () => {
+	updateGraphics();
+}
+
 currentMatchCallback = () => {
 	updateMatchNumber();
 	updateGraphics();
@@ -42,7 +46,7 @@ currentMatchCallback = () => {
 function updateMatchNumber() {
 	if (!loaded) return;
 	console.log(`Updating match number`);
-	let allmaps = "FT3";
+	let allmaps = cachedMatchConfiguration.mapTitle || "FT3";
 	let gametype = null;
 	if (allmaps.match(/bo/gi) != null || allmaps.match(/best of/gi) != null) {
 		gametype = "bo"
@@ -84,6 +88,7 @@ function updateMatchNumber() {
 
 function updateGraphics() {
 	if (!loaded) return;
+
 	console.log("Matches", cachedMatchList);
 	if (!(loadedMatch !== undefined && cachedTeamList && cachedMatchList)) {
 		console.log("Can't update graphics. Waiting on Cache Data", loadedMatch, cachedTeamList, cachedMatchList);
@@ -91,15 +96,35 @@ function updateGraphics() {
 	}
 	setTimeout(async function () {
 		console.log(loadedMatch);
-		const team1obj = cachedTeamList[loadedMatch.team1];
-		const team2obj = cachedTeamList[loadedMatch.team2];
+		const team1obj = getTeamById(loadedMatch.team1);
+		const team2obj = getTeamById(loadedMatch.team2);
 
+		$("#teamColors").html(`:root {
+			--team1TeamColor: 	${cachedTeamList[loadedMatch.team1].colors.teamColor || "var(--LEFT-TEAM)"} !important;
+			--team2TeamColor: 	${cachedTeamList[loadedMatch.team2].colors.teamColor || "var(--LEFT-TEAM)"} !important;
+			--team1BorderColor: ${cachedMatchConfiguration.useTeamBorders ? cachedTeamList[loadedMatch.team1].colors.borderColor : "var(--LEFT-TEAM)"} !important;
+			--team2BorderColor: ${cachedMatchConfiguration.useTeamBorders ? cachedTeamList[loadedMatch.team2].colors.borderColor : "var(--RIGHT-TEAM)"} !important;
+			--team1PlayerColor: ${cachedTeamList[loadedMatch.team1].colors.playerColor || "var(--LEFT-TEAM)"} !important;
+			--team2PlayerColor: ${cachedTeamList[loadedMatch.team2].colors.playerColor || "var(--LEFT-TEAM)"} !important;
+		}`);
 		$("#team1name").html(team1obj.name);
 		$("#team2name").html(team2obj.name);
 		$("#team1score").html(loadedMatch.team1score);
 		$("#team2score").html(loadedMatch.team2score);
+
+		if (!cachedThemeObj.assets.scoreOverlayTeamLeftBottomBorderToggle)
+			$("div.left").get(0).style.setProperty("--team1BottomBorderColor", "0px solid transparent");
+		else
+			$("div.left").get(0).style.setProperty("--team1BottomBorderColor", "var(--team1BorderColor)");
+
+		if (!cachedThemeObj.assets.scoreOverlayTeamRightBottomBorderToggle)
+			$("div.right").get(0).style.setProperty("--team2BottomBorderColor", "0px solid transparent");
+		else
+			$("div.right").get(0).style.setProperty("--team2BottomBorderColor", "var(--team2BorderColor)");
+
+
 		if (team1obj.logo) {
-			$(".team1 .logo").css("background-image", `url(${team1obj.logo})`);
+			$(".team1 .logo").get(0).style.setProperty("--teamLogo", `url(${team1obj.logo})`);
 			$('div.left span.teamname').css("right", "200px");
 			$('div.left span.teamsr').css("right", "210px");
 			$('.team1 .logo').css("display", "inherit");
@@ -111,7 +136,7 @@ function updateGraphics() {
 			$('.team1 .logoshade').css("display", "none");
 		}
 		if (team2obj.logo) {
-			$(".team2 .logo").css("background-image", `url(${team2obj.logo})`);
+			$(".team2 .logo").get(0).style.setProperty("--teamLogo", `url(${team2obj.logo})`);
 			$('div.right span.teamname').css("left", "200px");
 			$('div.right span.teamsr').css("left", "210px");
 			$('.team2 .logo').css("display", "inherit");
@@ -122,7 +147,6 @@ function updateGraphics() {
 			$('.team2 .logo').css("display", "none");
 			$('.team2 .logoshade').css("display", "none");
 		}
-
 	}, 100);
 }
 
@@ -135,11 +159,16 @@ nodecg.listenFor('showScoreboard', (shown) => {
 		})
 	} else {
 		$(".not-hidden").each(async function (id, e) {
-			$(e).removeClass("not-hidden");
-			$(e).addClass("hidden");
+			$(e).addClass("slideTop");
+			setTimeout(() => {
+				$(e).removeClass("not-hidden");
+				$(e).addClass("hidden");
+				$(e).removeClass("slideTop");
+			}, 2200)
 		})
 	}
 });
+
 nodecg.listenFor('showCasters', (shown) => {
 	if (shown) {
 		$(".hiddenCasters").each(async function (id, e) {

@@ -1,0 +1,65 @@
+<head>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/z-basic.js"></script>
+    <script src="lower-third.js"></script>
+    <link rel="stylesheet" href="lower-third-animation.css">
+    <link rel="stylesheet" href="lower-third.css">
+    <title>Lower Third Displays</title>
+</head>
+
+<body>
+    <div class="mapWrapper" id="mapThird" style="display: none;">
+        <table cellspacing="0">
+            <thead class="topbar">
+                <th class="mapCol matchName" id="matchName"></th>
+                <th id="map1display" class="mapCol map1 map Control"></th>
+                <th id="map2display" class="mapCol map2 map Hybrid"></th>
+                <th id="map3display" class="mapCol map3 map Escort"></th>
+                <th id="map4display" class="mapCol map4 map Assault"></th>
+                <th id="map5display" class="mapCol map5 map Control"></th>
+                <th id="map6display" class="mapCol map6 map Control"></th>
+                <th id="map7display" class="mapCol map7 map Assault"></th>
+                <th class="mapCol score"></th>
+            </thead>
+            <tbody>
+                <tr class="team1">
+                    <td class="mapCol teamName">
+                        <span class="teamLogo"></span>
+                        <span class="teamName"></span>
+                    </td>
+                    <td class="mapCol map1 team1score mapScore" id="team1map1">-</td>
+                    <td class="mapCol map2 team1score mapScore" id="team1map2">-</td>
+                    <td class="mapCol map3 team1score mapScore" id="team1map3">-</td>
+                    <td class="mapCol map4 team1score mapScore" id="team1map4">-</td>
+                    <td class="mapCol map5 team1score mapScore" id="team1map5">-</td>
+                    <td class="mapCol map6 team1score mapScore" id="team1map6">-</td>
+                    <td class="mapCol map7 team1score mapScore" id="team1map7">-</td>
+                    <td class="mapCol team1score teamScore" id="team1score">0</td>
+                </tr>
+                <tr class="team2">
+                    <td class="mapCol teamName">
+                        <span class="teamLogo"></span>
+                        <span class="teamName"></span>
+                    </td>
+                    <td class="mapCol map1 team2score mapScore" id="team2map1">-</td>
+                    <td class="mapCol map2 team2score mapScore" id="team2map2">-</td>
+                    <td class="mapCol map3 team2score mapScore" id="team2map3">-</td>
+                    <td class="mapCol map4 team2score mapScore" id="team2map4">-</td>
+                    <td class="mapCol map5 team2score mapScore" id="team2map5">-</td>
+                    <td class="mapCol map6 team2score mapScore" id="team2map6">-</td>
+                    <td class="mapCol map7 team2score mapScore" id="team2map7">-</td>
+                    <td class="mapCol team2score teamScore" id="team2score">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="casterWrapper show" id="casterWrapper" style="display: none;">
+        <div class="casterIcon" id="casterIcon" style="--casterIcon: url(http://localhost/assets/aaol-broadcasting/theme/Ascent%403x.png);">
+        </div>
+        <div class="infoBlock ">
+            <span class="casterName "><span class="teamLogo hidden"></span>Ascent Season 5</span>
+            <span class="casterHandle ">Grand Finals!</span>
+        </div>
+    </div>
+</body>
