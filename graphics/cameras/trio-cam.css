@@ -1,0 +1,55 @@
+.curtainl {
+    animation: curtainanimate-l 0.5s;
+}
+
+.curtainr {
+    animation: curtainanimate-r 0.5s;
+}
+
+.curtainl,
+.curtainr {
+    animation-fill-mode: forwards;
+    animation-delay: 10s;
+}
+
+.wrapper {
+    position: absolute;
+    left: 0px;
+    /* top: 100px; */
+    top: 175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 1920px;
+    height: 880px;
+}
+
+@keyframes curtainanimate-r {
+    0% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+    }
+
+    100% {
+        clip-path: polygon(100% -100%, 100% -100%, 100% 200%, 100% 200%);
+    }
+}
+
+@keyframes curtainanimate-l {
+    0% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+    }
+
+    100% {
+        clip-path: polygon(0% -100%, 0 -100%, 0% 200%, 0% 200%);
+    }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

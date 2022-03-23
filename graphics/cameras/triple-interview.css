@@ -1,0 +1,166 @@
+.leftcolumn .camerahole {
+    width: 480px;
+    height: 270px;
+}
+
+.rightcolumn .camerahole {
+    width: 1136px;
+    height: 639px;
+}
+
+.leftcolumn .staff {
+    font-size: 0.85em;
+    padding: 6px 0px 6px 0px;
+}
+
+.leftcolumn .camerahole {
+    width: 480px;
+    height: 270px;
+}
+
+.rightcolumn .camerahole {
+    width: 1136px;
+    height: 639px;
+}
+
+.leftcolumn .staff {
+    font-size: 0.85em;
+    padding: 6px 0px 6px 0px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.curtain {
+    flex: 1 1 0;
+    height: 100%;
+}
+
+.curtainl {
+    animation: curtainanimate-l 0.5s;
+}
+
+.curtainr {
+    animation: curtainanimate-r 0.5s;
+}
+
+.curtainl,
+.curtainr {
+    animation-fill-mode: forwards;
+    animation-delay: 10s;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@keyframes staffanimate {
+    0% {
+        clip-path: polygon(0% -100%, 0 -100%, 0% 200%, 0% 200%);
+        transform: translateX(50%);
+    }
+
+    100% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+        transform: translateX(0%);
+    }
+}
+
+@keyframes curtainanimate-r {
+    0% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+    }
+
+    100% {
+        clip-path: polygon(100% -100%, 100% -100%, 100% 200%, 100% 200%);
+    }
+}
+
+@keyframes curtainanimate-l {
+    0% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+    }
+
+    100% {
+        clip-path: polygon(0% -100%, 0 -100%, 0% 200%, 0% 200%);
+    }
+}
+
+.wrapper {
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 1920px;
+    height: 880px;
+}
+
+.tournament {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideright 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+.channel {
+    flex: 1 1 0;
+    height: 80px;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: slideleft 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1s;
+}
+
+@keyframes tagline {
+    0% {
+        clip-path: polygon(0% -100%, 0 -100%, 0% 200%, 0% 200%);
+        transform: translateX(50%)
+            /* skewX(-15deg) */
+        ;
+    }
+
+    100% {
+        clip-path: polygon(0% -100%, 100% -100%, 100% 200%, 0% 200%);
+        transform: translateX(0%)
+            /* skewX(-15deg) */
+        ;
+    }
+}
+
+div.tagline {
+    min-width: 375px;
+    animation: tagline .5s;
+    animation-fill-mode: backwards;
+    animation-delay: 2s;
+    /* transform: skewX(-15deg); */
+}
+
+span.tertiary {
+    font-size: 1.8em;
+    border-style: solid;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Rajdhani';
+    padding: 3px 15px 2px 15px;
+    border-width: 0px 6px 0px 6px;
+    background-color: black;
+}

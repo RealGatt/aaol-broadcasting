@@ -31,6 +31,30 @@ anyUpdateCallback = async () => {
 
 let mapCache;
 
+
+function updateMatchNumber() {
+    if (!loaded) return;
+    console.log(`Updating match number`);
+    let allmaps = cachedMatchConfiguration.mapTitle || "FT3";
+    let gametype = null;
+    if (allmaps.match(/bo/gi) != null || allmaps.match(/best of/gi) != null) {
+        gametype = "bo"
+        allmaps = (allmaps).replace(/\n/gi, "").replace(/\r/gi, "").replace(/bo/gi, "").replace(/best of/gi, "")
+        allmaps = parseInt(allmaps, 10)
+    } else if (allmaps.match(/ft/gi) != null || allmaps.match(/first to/gi) != null) {
+        gametype = "ft"
+        allmaps = (allmaps).replace(/\n/gi, "").replace(/\r/gi, "").replace(/ft/gi, "").replace(/first to/gi, "")
+        allmaps = parseInt(allmaps, 10)
+    }
+    if (gametype == "bo") {
+        $('.scoreboard span').html("<b>Best</b> of <b>" + (allmaps) + "</b>");
+    } else if (gametype == "ft") {
+        $('.scoreboard span').html("<b>First</b> to <b>" + (allmaps) + "</b>");
+    } else {
+        $('.scoreboard span').html("<b>First</b> to <b>" + (allmaps) + "</b>");
+    }
+}
+
 async function updateMaps(first) {
     if (!maps) return;
     let theincomplete = 0;
@@ -147,6 +171,7 @@ async function updateMaps(first) {
 
         //End the loop
     }
+    updateMatchNumber();
     sceneLoaded = true;
     if (first)
         $(".LOADING").removeClass("LOADING");

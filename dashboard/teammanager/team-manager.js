@@ -90,7 +90,8 @@ function saveTeamData() {
 		const newPlayer = {
 			name: $("#rosterPlayer" + playerId).val(),
 			role: $("#player" + playerId + "role option:selected").text(),
-			hero: $("#player" + playerId + "hero option:selected").attr("data-hero")
+			hero: $("#player" + playerId + "hero option:selected").attr("data-hero"),
+			quote: $("#rosterPlayer" + playerId + "Quote").val()
 		};
 		modifyingTeam.roster[playerId - 1] = (newPlayer);
 		console.log(playerId, newPlayer, modifyingTeam.roster);
@@ -158,6 +159,7 @@ function updateDisplay() {
 		$("#rosterPlayer" + playerId).prop("disabled", false);
 		$("#player" + playerId + "hero").prop("disabled", false);
 		$("#player" + playerId + "role").prop("disabled", false);
+		$("#rosterPlayer" + playerId + "Quote").prop("disabled", false);
 
 
 		const player = modifyingTeam.roster[playerId - 1];
@@ -171,6 +173,7 @@ function updateDisplay() {
 
 			$("#rosterPlayer" + playerId).val(player.name);
 			$("#player" + playerId + "role").val(player.role);
+			$("#rosterPlayer" + playerId + "Quote").val(player.quote || "");
 		}
 	}
 

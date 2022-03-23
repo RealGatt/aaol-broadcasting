@@ -18,7 +18,7 @@ themeCallback = async () => {
 function updateCameras() {
     console.log("Loaded Match Configuration", cachedMatchConfiguration);
     var staff = [
-        "caster1", "caster2",
+        "caster1", "caster2"
     ];
     var urlParams = new URLSearchParams(window.location.search);
     let casteroverride = null;
@@ -29,6 +29,12 @@ function updateCameras() {
         casteroverride = (parseInt(urlParams.get("caster")) - 1);
         staff = [
             "caster1"
+        ];
+    }
+    if (window.location.pathname.endsWith("triple-interview.html") || window.location.pathname.endsWith("trio-cam.html")) {
+        console.log("single");
+        staff = [
+            "caster1", "caster2", "host"
         ];
     }
 
@@ -45,7 +51,6 @@ function updateCameras() {
             $('.' + staff[i] + ' .twitter').html("");
         } else {
             let staffname = stafftxt.replace(new RegExp(/ @\w*/), "");
-
             let stafftwitter = stafftxt.match(new RegExp(/ @\w*/))
             if (stafftwitter != null) {
                 stafftwitter = stafftwitter.toString()

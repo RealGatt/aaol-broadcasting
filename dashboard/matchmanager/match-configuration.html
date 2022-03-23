@@ -74,7 +74,10 @@
 			<span class="input-group-text">Caster 1</span>
 			<input type="text" id="caster1name" class="form-control" value="" placeholder="Caster 1 name" />
 			<span class="input-group-text">Caster 2</span>
-			<input type="text" id="caster2name" class="form-control" value="" placeholder="Caster 1 name" />
+			<input type="text" id="caster2name" class="form-control" value="" placeholder="Caster 2 name" />
+			<span class="input-group-text">Interviewee</span>
+			<input type="text" id="caster3name" class="form-control" value="" placeholder="Interviewee name" />
+
 		</div>
 		<hr />
 
@@ -88,13 +91,13 @@
 		defaultValue: {
 			matchTitle: "SET ME",
 			mapTitle: "Best of 3",
-			casters: ["Caster 1", "Caster 2"],
+			casters: ["Caster 1", "Caster 2", ""],
 		},
 	});
 	let cachedConfig = {
 		matchTitle: "SET ME",
 		mapTitle: "Best of 3",
-		casters: ["Caster 1", "Caster 2"],
+		casters: ["Caster 1", "Caster 2", ""],
 	};
 
 	matchConfiguration.on("change", (newData) => {
@@ -106,13 +109,14 @@
 			};
 
 		if (!cachedConfig.casters)
-			cachedConfig.casters = ["Caster 1", "Caster 2"];
+			cachedConfig.casters = ["Caster 1", "Caster 2", ""];
 
 		console.log("Loaded Match Configuration", cachedConfig);
 		$("#matchTitle").val(cachedConfig.matchTitle);
 		$("#mapTitle").val(cachedConfig.mapTitle || "");
 		$("#caster1name").val(cachedConfig.casters[0]);
 		$("#caster2name").val(cachedConfig.casters[1]);
+		$("#caster3name").val(cachedConfig.casters[2] || "Interviewee");
 
 		$("#matchTitle").val(newData.matchTitle);
 		$("#leftTeamRole").val(newData.leftRole);
@@ -134,6 +138,7 @@
 		cachedConfig.mapTitle = $("#mapTitle").val();
 		cachedConfig.casters[0] = $("#caster1name").val();
 		cachedConfig.casters[1] = $("#caster2name").val();
+		cachedConfig.casters[2] = $("#caster3name").val();
 		cachedConfig.leftRole = $("#leftTeamRole").val();
 		cachedConfig.rightRole = $("#rightTeamRole").val();
 		cachedConfig.rolesDisplayed = $("#rolesDisplayed").prop("checked");

@@ -46,14 +46,15 @@
             $(".LOADING").removeClass("LOADING");
             $("ul").empty();
 
-            let lines = cachedThemeObj.assets.advertBoxSpinnerLines.split("||") ?? [];
+            if (!cachedThemeObj || !cachedThemeObj.assets.advertBoxSpinnerLines) return;
+            let lines = cachedThemeObj.assets.advertBoxSpinnerLines.split("||") ? cachedThemeObj.assets.advertBoxSpinnerLines.split("||") : [];
             for (let line in lines) {
                 $("ul").append(`<li>${lines[line]}</li>`);
             }
 
             $(".tickerParent").vTicker({
-                speed: 400,
-                pause: 3000,
+                speed: 700,
+                pause: 5000,
                 showItems: 1,
                 padding: 4,
                 margin: 4

@@ -1,37 +1,80 @@
 {
 	"gamemodes": [
-		{"name":"Assault", "file":"Assault.png"},
-		{"name":"Escort", "file":"Escort.png"},
-		{"name":"Hybrid", "file":"Hybrid.png"},
-		{"name":"Control", "file":"Control.png"},
-		{"name":"Arcade", "file":"Numbani.png"}],
+		{ "name": "Assault", "file": "Assault.png" },
+		{ "name": "Escort", "file": "Escort.png" },
+		{ "name": "Hybrid", "file": "Hybrid.png" },
+		{ "name": "Control", "file": "Control.png" },
+		{ "name": "Arcade", "file": "Numbani.png" }
+	],
 	"allmaps": [
-		{"name":"Hanamura", "file":"Hanamura.png", "gamemode": "Assault"},
-		{"name":"Horizon Lunar Colony", "file":"Horizon_Lunar_Colony.png", "gamemode": "Assault"},
-		{"name":"Paris", "file":"Paris.png", "gamemode": "Assault"},
-		{"name":"Temple of Anubis", "file":"Temple_of_Anubis.png", "gamemode": "Assault"},
-		{"name":"Volskaya Industries", "file":"Volskaya_Industries.png", "gamemode": "Assault"},
-		{"name":"Dorado", "file":"Dorado.png", "gamemode": "Escort"},
-		{"name":"Havana", "file":"Havana.png", "gamemode": "Escort"},
-		{"name":"Junkertown", "file":"Junkertown.png", "gamemode": "Escort"},
-		{"name":"Rialto", "file":"Rialto.png", "gamemode": "Escort"},
-		{"name":"Route 66", "file":"Route_66.png", "gamemode": "Escort"},
-		{"name":"Watchpoint: Gibraltar", "file":"Watchpoint-_Gibraltar.png", "gamemode": "Escort"},
-		{"name":"Blizzard World", "file":"Blizzard_World.png", "gamemode": "Hybrid"},
-		{"name":"Eichenwalde", "file":"Eichenwalde.png", "gamemode": "Hybrid"},
-		{"name":"Hollywood", "file":"Hollywood.png", "gamemode": "Hybrid"},
-		{"name":"King's Row", "file":"King's_Row.png", "gamemode": "Hybrid"},
-		{"name":"Numbani", "file":"Numbani.png", "gamemode": "Hybrid"},
-		{"name":"Busan", "file":"Busan.png", "gamemode": "Control"},
-		{"name":"Ilios", "file":"Ilios.png", "gamemode": "Control"},
-		{"name":"Lijiang Tower", "file":"Lijiang_Tower.png", "gamemode": "Control"},
-		{"name":"Nepal", "file":"Nepal.png", "gamemode": "Control"},
-		{"name":"Oasis", "file":"Oasis.png", "gamemode": "Control"},
-		
-		{"gamemode":"Upcoming","name":"Assault", "file":"Assault.png"},
-		{"gamemode":"Upcoming", "name":"Escort", "file":"Escort.png"},
-		{"gamemode":"Upcoming", "name":"Hybrid", "file":"Hybrid.png"},
-		{"gamemode":"Upcoming","name":"Control", "file":"Control.png"},
-		{"gamemode":"Upcoming", "name":"Arcade", "file":"Numbani.png"}
+		{ "name": "Hanamura", "file": "Hanamura.png", "gamemode": "Assault" },
+		{
+			"name": "Horizon Lunar Colony",
+			"file": "Horizon_Lunar_Colony.png",
+			"gamemode": "Assault"
+		},
+		{ "name": "Paris", "file": "Paris.png", "gamemode": "Assault" },
+		{
+			"name": "Temple of Anubis",
+			"file": "Temple_of_Anubis.png",
+			"gamemode": "Assault"
+		},
+		{
+			"name": "Volskaya Industries",
+			"file": "Volskaya_Industries.png",
+			"gamemode": "Assault"
+		},
+		{ "name": "Dorado", "file": "Dorado.png", "gamemode": "Escort" },
+		{ "name": "Havana", "file": "Havana.png", "gamemode": "Escort" },
+		{
+			"name": "Junkertown",
+			"file": "Junkertown.png",
+			"gamemode": "Escort"
+		},
+		{ "name": "Rialto", "file": "Rialto.png", "gamemode": "Escort" },
+		{ "name": "Route 66", "file": "Route_66.png", "gamemode": "Escort" },
+		{
+			"name": "Watchpoint: Gibraltar",
+			"file": "Watchpoint-_Gibraltar.png",
+			"gamemode": "Escort"
+		},
+		{
+			"name": "Blizzard World",
+			"file": "Blizzard_World.png",
+			"gamemode": "Hybrid"
+		},
+		{
+			"name": "Eichenwalde",
+			"file": "Eichenwalde.png",
+			"gamemode": "Hybrid"
+		},
+		{ "name": "Hollywood", "file": "Hollywood.png", "gamemode": "Hybrid" },
+		{
+			"name": "King's Row",
+			"file": "King's_Row.png",
+			"gamemode": "Hybrid"
+		},
+		{ "name": "Numbani", "file": "Numbani.png", "gamemode": "Hybrid" },
+		{ "name": "Busan", "file": "Busan.png", "gamemode": "Control" },
+		{ "name": "Ilios", "file": "Ilios.png", "gamemode": "Control" },
+		{
+			"name": "Lijiang Tower",
+			"file": "Lijiang_Tower.png",
+			"gamemode": "Control"
+		},
+		{ "name": "Nepal", "file": "Nepal.png", "gamemode": "Control" },
+		{ "name": "Oasis", "file": "Oasis.png", "gamemode": "Control" },
+
+		{ "gamemode": "Upcoming", "name": "Assault", "file": "Assault.png" },
+		{
+			"gamemode": "Upcoming",
+			"displayedName": "Escort or Hybrid",
+			"name": "EscortHybrid",
+			"file": "HybridEscort.png"
+		},
+		{ "gamemode": "Upcoming", "name": "Escort", "file": "Escort.png" },
+		{ "gamemode": "Upcoming", "name": "Hybrid", "file": "Hybrid.png" },
+		{ "gamemode": "Upcoming", "name": "Control", "file": "Control.png" },
+		{ "gamemode": "Upcoming", "name": "Arcade", "file": "Numbani.png" }
 	]
 }
