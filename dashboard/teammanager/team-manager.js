@@ -73,6 +73,10 @@ function setLogo() {
 	// console.log("Selected Logo", logo);
 }
 
+function deleteTeamData() {
+	cachedTeamList.splice(cachedTeamList.findIndex(team => team.name = modifyingTeam.name), 1);
+}
+
 function saveTeamData() {
 	const newName = document.getElementById("updateTeamName").value;
 
@@ -150,6 +154,7 @@ function updateDisplay() {
 	$("#teamManagerSelectRosterLogoDisplay").prop("disabled", false);
 	$("#teamManagerSelectRosterLogo").prop("disabled", false);
 	$("#saveTeamButton").prop("disabled", false);
+	$("#deleteTeamButton").prop("disabled", false);
 	$("#teamColor").prop("disabled", false);
 	$("#playerColor").prop("disabled", false);
 	$("#borderColor").prop("disabled", false);
